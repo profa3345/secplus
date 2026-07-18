@@ -84,19 +84,20 @@ p{margin:0;}
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   font-family:var(--ff-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase;
   padding:15px 26px; border-radius:var(--radius-sm); border:1px solid transparent;
-  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  transition:transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
   white-space:nowrap;
 }
-.btn:hover{transform:translateY(-1px);}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(0);}
 .btn-sm{padding:10px 18px; font-size:11.5px;}
-.btn-primary{background:var(--blue); color:#fff; border-color:var(--blue);}
-.btn-primary:hover{background:var(--blue-light); border-color:var(--blue-light);}
+.btn-primary{background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 4px 16px rgba(47,95,199,.28);}
+.btn-primary:hover{background:var(--blue-light); border-color:var(--blue-light); box-shadow:0 8px 24px rgba(92,134,224,.38);}
 .btn-ghost{background:transparent; color:var(--silver-bright); border-color:var(--border-strong);}
-.btn-ghost:hover{border-color:var(--blue-light); color:var(--blue-light);}
-.btn-wa{background:var(--wa-green); color:#04220f; border-color:var(--wa-green); font-weight:600;}
-.btn-wa:hover{background:#2fe077; border-color:#2fe077;}
+.btn-ghost:hover{border-color:var(--blue-light); color:var(--blue-light); background:rgba(92,134,224,.06);}
+.btn-wa{background:var(--wa-green); color:#04220f; border-color:var(--wa-green); font-weight:600; box-shadow:0 4px 16px rgba(37,211,102,.22);}
+.btn-wa:hover{background:#2fe077; border-color:#2fe077; box-shadow:0 8px 24px rgba(37,211,102,.32);}
 .btn-block{width:100%;}
-.btn:disabled{opacity:.4; cursor:not-allowed; transform:none;}
+.btn:disabled{opacity:.4; cursor:not-allowed; transform:none; box-shadow:none;}
 
 /* ============ SCANLINE / TEXTURE ============ */
 .bg-grid{
@@ -123,8 +124,10 @@ p{margin:0;}
 }
 .header-row{display:flex; align-items:center; justify-content:space-between; height:78px; gap:24px;}
 nav.main-nav{display:flex; align-items:center; gap:30px;}
-nav.main-nav a{font-size:14px; color:var(--text-muted); font-weight:500; transition:color .15s;}
+nav.main-nav a{font-size:14px; color:var(--text-muted); font-weight:500; transition:color .15s; position:relative; padding-bottom:3px;}
+nav.main-nav a::after{content:''; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--blue-light); transition:right .2s ease;}
 nav.main-nav a:hover{color:var(--silver-bright);}
+nav.main-nav a:hover::after{right:0;}
 .header-actions{display:flex; align-items:center; gap:12px;}
 .header-phone{display:flex; flex-direction:column; align-items:flex-end; font-family:var(--ff-mono); font-size:12px; color:var(--text-muted); margin-right:4px; transition:opacity .15s;}
 .header-phone b{color:var(--silver-bright); font-size:14px;}
@@ -170,33 +173,38 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 
 /* ============ TRUST BAR ============ */
 #trust{padding:52px 0; border-bottom:1px solid var(--border); background:var(--panel);}
-.trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px;}
-.trust-item{border-left:1px solid var(--border-strong); padding-left:20px;}
+.trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.trust-item{background:var(--bg-1); border:1px solid var(--border); border-radius:var(--radius); padding:24px 22px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
+.trust-item:hover{transform:translateY(-3px); box-shadow:0 16px 32px rgba(0,0,0,.3); border-color:var(--border-strong);}
 .trust-num{font-family:var(--ff-display); font-weight:800; font-size:38px; color:var(--silver-bright); display:flex; align-items:baseline; gap:4px;}
 .trust-num .unit{font-size:18px; color:var(--blue-light);}
-.trust-label{font-family:var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:6px;}
+.trust-label{font-family:var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:8px;}
 
 /* ============ CAROUSEL ============ */
 #carousel-section{padding:28px 0; border-bottom:1px solid var(--border);}
-.carousel{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border-strong); background:var(--bg-1);}
+.carousel{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border-strong); background:var(--bg-1); box-shadow:0 24px 56px rgba(0,0,0,.32);}
 .carousel-track{display:flex; transition:transform .55s cubic-bezier(.65,0,.35,1);}
 .carousel-slide{flex:0 0 100%; position:relative; display:flex; flex-direction:column; background:var(--panel-2);}
 .carousel-slide img{width:100%; display:block; aspect-ratio:1774/887; object-fit:cover;}
-.carousel-caption{position:relative; padding:22px 32px; background:var(--panel-2); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+.carousel-caption{position:relative; padding:24px 32px; background:var(--panel-2); border-top:1px solid var(--border-strong); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+.carousel-caption::before{content:''; position:absolute; top:-1px; left:32px; width:40px; height:2px; background:var(--blue-light);}
 .carousel-caption h4{font-family:var(--ff-body); font-weight:700; font-size:17px; text-transform:none; color:var(--silver-bright);}
-.carousel-caption p{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-muted); margin-top:4px; max-width:440px;}
-.carousel-arrow{position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(8,11,18,.7); border:1px solid var(--border-strong); color:var(--silver-bright); display:flex; align-items:center; justify-content:center; z-index:5; backdrop-filter:blur(4px);}
-.carousel-arrow:hover{border-color:var(--blue-light); color:var(--blue-light);}
+.carousel-caption p{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-muted); margin-top:5px; max-width:440px; line-height:1.6;}
+.carousel-arrow{position:absolute; top:42%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(8,11,18,.75); border:1px solid var(--border-strong); color:var(--silver-bright); display:flex; align-items:center; justify-content:center; z-index:5; backdrop-filter:blur(6px); box-shadow:0 8px 20px rgba(0,0,0,.3); transition:border-color .15s, color .15s, transform .15s;}
+.carousel-arrow:hover{border-color:var(--blue-light); color:var(--blue-light); transform:translateY(-50%) scale(1.06);}
 .carousel-arrow.prev{left:16px;} .carousel-arrow.next{right:16px;}
-.carousel-dots{display:flex; justify-content:center; gap:8px; margin-top:20px;}
-.carousel-dot{width:8px; height:8px; border-radius:50%; background:var(--border-strong); border:none; padding:0;}
-.carousel-dot.active{background:var(--blue-light); width:24px; border-radius:5px; transition:all .25s;}
+.carousel-dots{display:flex; justify-content:center; gap:8px; margin-top:22px;}
+.carousel-dot{width:8px; height:8px; border-radius:50%; background:var(--border-strong); border:none; padding:0; transition:all .25s; cursor:pointer;}
+.carousel-dot:hover{background:var(--text-muted);}
+.carousel-dot.active{background:var(--blue-light); width:24px; border-radius:5px;}
 
 /* ============ SERVICES ============ */
 .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
-.service-card{background:var(--bg-1); padding:34px 28px; display:flex; flex-direction:column; gap:16px; transition:background .2s;}
-.service-card:hover{background:var(--panel-2);}
-.service-icon{width:44px; height:44px; color:var(--blue-light);}
+.service-card{background:var(--bg-1); padding:34px 28px; display:flex; flex-direction:column; gap:16px; transition:background .2s, transform .2s, box-shadow .2s; position:relative; z-index:1;}
+.service-card:hover{background:var(--panel-2); transform:translateY(-3px); box-shadow:0 16px 32px rgba(0,0,0,.35); z-index:2;}
+.service-icon-badge{width:50px; height:50px; border-radius:var(--radius); background:linear-gradient(155deg, rgba(92,134,224,.16), rgba(92,134,224,.04)); border:1px solid rgba(92,134,224,.22); display:flex; align-items:center; justify-content:center; transition:background .2s, border-color .2s;}
+.service-card:hover .service-icon-badge{background:linear-gradient(155deg, rgba(92,134,224,.26), rgba(92,134,224,.08)); border-color:rgba(92,134,224,.4);}
+.service-icon{width:24px; height:24px; color:var(--blue-light);}
 .service-card h3{font-family:var(--ff-body); font-weight:700; font-size:17px; text-transform:none; letter-spacing:0; color:var(--silver-bright);}
 .service-card p{color:var(--text-muted); font-size:14.5px; line-height:1.65;}
 .service-tag{font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint); letter-spacing:.08em; text-transform:uppercase;}
@@ -205,12 +213,13 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 #differentials{background:var(--panel);}
 .diff-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:start;}
 .diff-list{display:flex; flex-direction:column;}
-.diff-row{display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);}
+.diff-row{display:flex; gap:20px; padding:22px 4px; border-top:1px solid var(--border); transition:padding-left .2s, background .2s; border-radius:var(--radius-sm);}
+.diff-row:hover{padding-left:12px; background:rgba(92,134,224,.04);}
 .diff-row:last-child{border-bottom:1px solid var(--border);}
 .diff-num{font-family:var(--ff-mono); font-size:12px; color:var(--blue-light); padding-top:3px; flex:none; width:28px;}
 .diff-row h4{font-family:var(--ff-body); font-weight:700; font-size:16px; text-transform:none; color:var(--silver-bright); margin-bottom:6px;}
 .diff-row p{color:var(--text-muted); font-size:14.5px;}
-.diff-panel{background:var(--bg-1); border:1px solid var(--border); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden;}
+.diff-panel{background:var(--bg-1); border:1px solid var(--border); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden; box-shadow:0 20px 48px rgba(0,0,0,.28);}
 .diff-panel::before{content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg, var(--blue), transparent);}
 .diff-panel .eyebrow{margin-bottom:20px;}
 .metric-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--border); font-family:var(--ff-mono); font-size:13px;}
@@ -226,8 +235,8 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .step-card p{color:var(--text-muted); font-size:14.5px;}
 
 /* ============ QUOTE WIZARD ============ */
-#quote{background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
-.quote-shell{display:grid; grid-template-columns:.85fr 1.15fr; gap:0; border:1px solid var(--border-strong); background:var(--bg-1); border-radius:var(--radius); overflow:hidden;}
+#quote{background:var(--panel);}
+.quote-shell{display:grid; grid-template-columns:.85fr 1.15fr; gap:0; border:1px solid var(--border-strong); background:var(--bg-1); border-radius:var(--radius); overflow:hidden; box-shadow:0 24px 56px rgba(0,0,0,.3);}
 .quote-side{background:var(--panel-3); padding:44px 36px; display:flex; flex-direction:column; justify-content:space-between;}
 .quote-side-top h3{font-family:var(--ff-display); font-size:26px; color:var(--silver-bright); text-transform:uppercase;}
 .quote-side-top p{color:var(--text-muted); font-size:14.5px; margin-top:14px; line-height:1.7;}
@@ -243,9 +252,10 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .qstep.active{display:flex;}
 .qstep h4{font-family:var(--ff-body); font-weight:700; font-size:18px; text-transform:none; color:var(--silver-bright); margin-bottom:22px;}
 .option-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-.opt-card{border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:18px; cursor:pointer; transition:all .15s; background:var(--panel-2);}
-.opt-card:hover{border-color:var(--blue-light);}
-.opt-card.selected{border-color:var(--blue-light); background:rgba(92,134,224,.1); box-shadow:inset 0 0 0 1px var(--blue-light);}
+.opt-card{border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:18px; cursor:pointer; transition:all .15s; background:var(--panel-2); position:relative;}
+.opt-card:hover{border-color:var(--blue-light); transform:translateY(-1px);}
+.opt-card.selected{border-color:var(--blue-light); background:rgba(92,134,224,.1); box-shadow:inset 0 0 0 1px var(--blue-light), 0 8px 20px rgba(47,95,199,.18);}
+.opt-card.selected::after{content:'✓'; position:absolute; top:12px; right:12px; width:18px; height:18px; border-radius:50%; background:var(--blue-light); color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center;}
 .opt-card .opt-title{font-weight:600; font-size:14.5px; color:var(--silver-bright);}
 .opt-card .opt-sub{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint); margin-top:4px;}
 .field{margin-bottom:18px;}
@@ -253,18 +263,38 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .field input, .field textarea, .field select{
   width:100%; background:var(--panel-2); border:1px solid var(--border-strong); border-radius:var(--radius-sm);
   color:var(--silver-bright); padding:12px 14px; font-family:var(--ff-body); font-size:14.5px;
+  transition:border-color .15s, box-shadow .15s; appearance:none;
 }
-.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--blue-light);}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2393a0b8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center; padding-right:36px;
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--blue-light); box-shadow:0 0 0 3px rgba(92,134,224,.15);}
+.field input::placeholder, .field textarea::placeholder{color:var(--text-faint);}
 .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
 .qstep-actions{display:flex; justify-content:space-between; margin-top:auto; padding-top:28px;}
 .result-box{background:var(--panel-2); border:1px solid var(--border-strong); border-radius:var(--radius); padding:26px; margin-bottom:20px;}
 .result-range{font-family:var(--ff-display); font-weight:800; font-size:34px; color:var(--silver-bright);}
 .result-note{font-family:var(--ff-mono); font-size:12px; color:var(--text-faint); margin-top:10px; line-height:1.6;}
 .result-actions{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;}
+.file-drop{border:1px dashed var(--border-strong); border-radius:var(--radius-sm); padding:26px 20px; text-align:center; cursor:pointer; background:var(--panel-2); transition:border-color .15s;}
+.file-drop:hover, .file-drop.dragover{border-color:var(--blue-light);}
+.file-drop input[type="file"]{display:none;}
+.file-drop .fd-icon{color:var(--blue-light); display:flex; justify-content:center; margin-bottom:10px;}
+.file-drop .fd-hint{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint);}
+.file-drop .fd-name{font-family:var(--ff-mono); font-size:12.5px; color:var(--silver-bright); margin-top:10px; word-break:break-all;}
+.file-drop.has-file{border-style:solid; border-color:var(--green);}
+.file-drop.file-invalid{border-style:solid; border-color:var(--red);}
+.consent-row{display:flex; gap:10px; align-items:flex-start; margin:20px 0 6px; font-size:13px; color:var(--text-muted); line-height:1.6; cursor:pointer;}
+.consent-row input{margin-top:3px; flex:none;}
+.badge-pending{display:inline-flex; align-items:center; gap:6px; font-family:var(--ff-mono); font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--amber); margin-top:3px;}
+.badge-approved{color:var(--green);}
+.badge-rejected{color:var(--red);}
 
 /* ============ TESTIMONIALS ============ */
 .test-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-.test-card{border:1px solid var(--border); border-radius:var(--radius); padding:28px; background:var(--bg-1);}
+.test-card{border:1px solid var(--border); border-radius:var(--radius); padding:28px; background:var(--bg-1); transition:transform .2s, box-shadow .2s, border-color .2s;}
+.test-card:hover{transform:translateY(-3px); box-shadow:0 16px 32px rgba(0,0,0,.3); border-color:var(--border-strong);}
 .test-quote{color:var(--silver); font-size:15px; line-height:1.75; font-style:normal;}
 .test-quote::before{content:'“'; color:var(--blue-light); font-family:var(--ff-display); font-size:28px;}
 .test-foot{display:flex; align-items:center; gap:12px; margin-top:20px; padding-top:16px; border-top:1px solid var(--border);}
@@ -273,7 +303,8 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .test-role{font-family:var(--ff-mono); font-size:11px; color:var(--text-faint);}
 
 /* ============ CONTACT ============ */
-#contact{background:var(--panel);}
+#cadastro-vigilante{background:var(--panel);}
+#contact{}
 .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
 .contact-list{display:flex; flex-direction:column; gap:0;}
 .contact-item{display:flex; gap:16px; padding:20px 0; border-top:1px solid var(--border);}
@@ -282,18 +313,19 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .contact-item h5{font-family:var(--ff-body); font-size:14px; font-weight:700; text-transform:none; color:var(--silver-bright); margin-bottom:4px;}
 .contact-item p{color:var(--text-muted); font-size:14px;}
 .contact-item a{color:var(--blue-light);}
-.contact-form{background:var(--bg-1); border:1px solid var(--border-strong); border-radius:var(--radius); padding:36px;}
+.contact-form{background:var(--bg-1); border:1px solid var(--border-strong); border-radius:var(--radius); padding:36px; box-shadow:0 24px 56px rgba(0,0,0,.28);}
 
 /* ============ FOOTER ============ */
-footer{padding:48px 0 34px; border-top:1px solid var(--border);}
+footer{padding:52px 0 34px; border-top:1px solid var(--border); position:relative;}
+footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; height:2px; background:linear-gradient(90deg, var(--blue-light), transparent);}
 .footer-row{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
 .footer-brand{display:flex; align-items:center; gap:10px;}
 .footer-brand .brand-mark{height:28px;}
 .footer-links{display:flex; gap:26px; flex-wrap:wrap;}
-.footer-links a{font-size:13px; color:var(--text-muted);}
-.footer-links a:hover{color:var(--silver-bright);}
+.footer-links a{font-size:13px; color:var(--text-muted); transition:color .15s;}
+.footer-links a:hover{color:var(--blue-light);}
 .footer-bottom{margin-top:34px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--ff-mono); font-size:11px; color:var(--text-faint);}
-.footer-bottom a{color:var(--text-faint);}
+.footer-bottom a{color:var(--text-faint); transition:color .15s;}
 .footer-bottom a:hover{color:var(--blue-light);}
 
 /* ============ FLOATING BUTTONS ============ */
@@ -337,7 +369,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 #admin-view.open{display:block;}
 #public-view.hidden{display:none;}
 .admin-login{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;}
-.login-card{width:100%; max-width:400px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); padding:40px;}
+.login-card{width:100%; max-width:400px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); padding:40px; box-shadow:0 24px 64px rgba(0,0,0,.4);}
 .login-card .brand-mark{height:44px;}
 .login-card h3{font-size:22px; margin:22px 0 6px; color:var(--silver-bright);}
 .login-card p.sub{color:var(--text-muted); font-size:13.5px; margin-bottom:26px;}
@@ -367,8 +399,9 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 .admin-panel{display:none;}
 .admin-panel.active{display:block;}
 
-.kpi-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:32px;}
-.kpi-card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px;}
+.kpi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:32px;}
+.kpi-card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; transition:transform .15s, box-shadow .15s;}
+.kpi-card:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.25);}
 .kpi-num{font-family:var(--ff-display); font-weight:800; font-size:30px; color:var(--silver-bright);}
 .kpi-label{font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-top:6px;}
 .kpi-card.k-green .kpi-num{color:var(--green);}
@@ -380,7 +413,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 .search-input{background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:10px 14px; color:var(--silver-bright); font-size:13.5px; min-width:220px;}
 .filter-select{background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:10px 14px; color:var(--silver-bright); font-size:13.5px;}
 
-.data-table{width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+.data-table{width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:0 12px 32px rgba(0,0,0,.2);}
 .data-table th{
   text-align:left; font-family:var(--ff-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
   color:var(--text-faint); padding:14px 16px; border-bottom:1px solid var(--border-strong); background:var(--panel-2);
@@ -408,7 +441,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 /* Modal */
 .modal-overlay{position:fixed; inset:0; background:rgba(5,7,12,.7); backdrop-filter:blur(3px); z-index:600; display:none; align-items:center; justify-content:center; padding:20px;}
 .modal-overlay.open{display:flex;}
-.modal{width:100%; max-width:560px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); max-height:90vh; overflow-y:auto;}
+.modal{width:100%; max-width:560px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); max-height:90vh; overflow-y:auto; box-shadow:0 32px 72px rgba(0,0,0,.45);}
 .modal-head{display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--border);}
 .modal-head h3{font-size:18px; text-transform:uppercase; color:var(--silver-bright);}
 .modal-body{padding:26px;}
@@ -481,6 +514,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
       <a href="#differentials">Diferenciais</a>
       <a href="#how">Como Funciona</a>
       <a href="#quote">Orçamento</a>
+      <a href="#cadastro-vigilante">Trabalhe Conosco</a>
       <a href="#contact">Contato</a>
     </nav>
     <div class="header-actions">
@@ -495,6 +529,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
     <a href="#differentials">Diferenciais</a>
     <a href="#how">Como Funciona</a>
     <a href="#quote">Orçamento</a>
+    <a href="#cadastro-vigilante">Trabalhe Conosco</a>
     <a href="#contact">Contato</a>
     <a href="#" style="color:var(--text-faint); font-family:var(--ff-mono); font-size:12px;" id="mobileAdminLink">Área Restrita</a>
   </div>
@@ -609,7 +644,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="section" style="padding-top:0;">
+<section id="services" class="section" style="padding-top:72px;">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">O que fazemos</div>
@@ -620,37 +655,37 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
   <div class="container" style="padding:0 24px;">
     <div class="services-grid">
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 20 6v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 20 6v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <span class="service-tag">Eventos</span>
         <h3>Segurança para Eventos Corporativos</h3>
         <p>Planejamento, dimensionamento de equipe e operação completa para congressos, feiras, lançamentos e grandes públicos.</p>
       </div>
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="m16 9 5-3v12l-5-3z"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="m16 9 5-3v12l-5-3z"/></svg></div>
         <span class="service-tag">Monitoramento</span>
         <h3>Videomonitoramento 24 Horas</h3>
         <p>Central própria acompanhando câmeras em tempo real, com alertas inteligentes e acionamento imediato da polícia.</p>
       </div>
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
         <span class="service-tag">Acesso</span>
         <h3>Portaria e Controle de Acesso</h3>
         <p>Recepção, credenciamento de visitantes e fornecedores, controle de catracas e integração com sua política de segurança.</p>
       </div>
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 9 4v6c0 5.5-3.8 9.7-9 11-5.2-1.3-9-5.5-9-11V6z"/><path d="m9.5 12.5 1.8 1.8 3.7-4.1"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 9 4v6c0 5.5-3.8 9.7-9 11-5.2-1.3-9-5.5-9-11V6z"/><path d="m9.5 12.5 1.8 1.8 3.7-4.1"/></svg></div>
         <span class="service-tag">Cibersegurança</span>
         <h3>Pentest — Teste de Invasão</h3>
         <p>Red team, blue team e purple team para identificar vulnerabilidades em redes, aplicações e ambientes cloud antes dos atacantes.</p>
       </div>
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
         <span class="service-tag">Cibersegurança</span>
         <h3>Resposta e Recuperação de Incidentes</h3>
         <p>Contenção, neutralização e recuperação de operações após ataques cibernéticos, com análise forense e plano de prevenção.</p>
       </div>
       <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11H3v10h6z"/><path d="M21 3h-6a2 2 0 0 0-2 2v16h8V5a2 2 0 0 0-2-2z"/></svg>
+        <div class="service-icon-badge"><svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11H3v10h6z"/><path d="M21 3h-6a2 2 0 0 0-2 2v16h8V5a2 2 0 0 0-2-2z"/></svg></div>
         <span class="service-tag">Consultoria</span>
         <h3>Consultoria em Segurança Corporativa</h3>
         <p>Diagnóstico de riscos, plano de contingência e capacitação de equipes internas para elevar seu padrão de segurança.</p>
@@ -699,7 +734,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how" class="section" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section id="how" class="section">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Processo</div>
@@ -742,7 +777,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
         <div class="qstep active" data-step="1">
           <h4>Qual serviço você precisa?</h4>
           <div class="option-grid" id="serviceOptions">
-            <div class="opt-card" data-value="evento"><div class="opt-title">Evento Corporativo</div><div class="opt-sub">Congressos, feiras, lançamentos</div></div>
+            <div class="opt-card" data-value="evento"><div class="opt-title">Segurança para Eventos</div><div class="opt-sub">Congressos, feiras, lançamentos</div></div>
             <div class="opt-card" data-value="monitoramento"><div class="opt-title">Videomonitoramento</div><div class="opt-sub">Câmeras + central 24h</div></div>
             <div class="opt-card" data-value="portaria"><div class="opt-title">Portaria / Controle de Acesso</div><div class="opt-sub">Recepção e catracas</div></div>
             <div class="opt-card" data-value="pentest"><div class="opt-title">Pentest</div><div class="opt-sub">Teste de invasão</div></div>
@@ -806,7 +841,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="section">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Confiança</div>
@@ -824,6 +859,114 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
       <div class="test-card">
         <p class="test-quote">O videomonitoramento 24h da SecPlus reduziu nossas ocorrências no pátio praticamente a zero no primeiro trimestre.</p>
         <div class="test-foot"><div class="test-avatar">CO</div><div><div class="test-name">Coordenador de Operações</div><div class="test-role">Centro de distribuição · Cariacica/ES</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRABALHE CONOSCO -->
+<section id="cadastro-vigilante" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Trabalhe conosco</div>
+      <h2>Faça parte da equipe SecPlus</h2>
+      <p class="lead">Vagas para segurança (vigilante, portaria), operações (porteiro, serviços gerais, recepção) e tecnologia. Cadastre seus dados e anexe o comprovante de curso ou seu currículo.</p>
+    </div>
+
+    <div class="quote-shell">
+      <div class="quote-side">
+        <div class="quote-side-top">
+          <h3>Cadastro de Candidato</h3>
+          <p>Seus dados ficam com a nossa equipe de recrutamento. Documentos anexados passam por verificação automática de formato e depois são conferidos pela nossa equipe.</p>
+        </div>
+        <div class="quote-progress" style="margin-top:32px;">
+          <div class="qp-item active"><span class="qp-dot">✓</span> Verificação automática do arquivo enviado</div>
+          <div class="qp-item active"><span class="qp-dot">✓</span> Confirmação pela nossa equipe de recrutamento</div>
+          <div class="qp-item active"><span class="qp-dot">✓</span> Vagas de segurança, operações e tecnologia</div>
+        </div>
+      </div>
+
+      <div class="quote-body" id="guardSignupForm">
+        <h4>Seus dados</h4>
+        <div class="field-row">
+          <div class="field"><label for="gsName">Nome completo</label><input id="gsName" type="text" placeholder="Seu nome completo"></div>
+          <div class="field"><label for="gsPhone">Telefone / WhatsApp</label><input id="gsPhone" type="tel" placeholder="(27) 90000-0000"></div>
+        </div>
+        <div class="field"><label for="gsAddress">Endereço completo</label><input id="gsAddress" type="text" placeholder="Rua, número, bairro, cidade"></div>
+        <div class="field">
+          <label for="gsRole">Função de interesse</label>
+          <select id="gsRole">
+            <optgroup label="Segurança">
+              <option value="Vigilante patrimonial">Vigilante patrimonial</option>
+              <option value="Vigilante de eventos">Vigilante de eventos</option>
+              <option value="Portaria / Controle de acesso">Portaria / Controle de acesso</option>
+            </optgroup>
+            <optgroup label="Operações">
+              <option value="Porteiro">Porteiro</option>
+              <option value="Serviços Gerais">Serviços Gerais</option>
+              <option value="Recepção">Recepção</option>
+            </optgroup>
+            <optgroup label="Tecnologia">
+              <option value="Profissional de Tecnologia (TI / Cibersegurança)">Profissional de Tecnologia (TI / Cibersegurança)</option>
+            </optgroup>
+            <option value="Outra">Outra função</option>
+          </select>
+        </div>
+
+        <!-- Bloco exibido para funções de segurança (vigilante/portaria) -->
+        <div id="gsVigilanteBlock">
+          <div class="toggle-row">
+            <span>Possui curso de vigilante?</span>
+            <label class="switch"><input type="checkbox" id="gsHasCourse" checked><span class="slider"></span></label>
+          </div>
+          <div class="course-fields show" id="gsCourseFields">
+            <div class="field-row">
+              <div class="field"><label for="gsCourseName">Nome do curso / instituição (opcional)</label><input id="gsCourseName" type="text" placeholder="Ex: Formação de Vigilante — CFP"></div>
+              <div class="field"><label for="gsCourseValidity">Data de validade (se souber)</label><input id="gsCourseValidity" type="date"></div>
+            </div>
+            <div class="field">
+              <label>Comprovante do curso</label>
+              <div class="file-drop" id="gsFileDrop">
+                <input type="file" id="gsFile" accept="application/pdf,image/jpeg,image/png,image/webp">
+                <div class="fd-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4 7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                </div>
+                <div class="fd-hint">Clique para anexar o PDF ou foto do certificado (até 8 MB)</div>
+                <div class="fd-name" id="gsFileName"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloco exibido para funções gerais (porteiro, serviços gerais, recepção, tecnologia, outra) -->
+        <div id="gsResumeBlock" style="display:none;">
+          <div class="field">
+            <label>Currículo (opcional, mas recomendado)</label>
+            <div class="file-drop" id="gsResumeDrop">
+              <input type="file" id="gsResumeFile" accept="application/pdf,image/jpeg,image/png,image/webp,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+              <div class="fd-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M12 4 7 9M12 4l5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+              </div>
+              <div class="fd-hint">Clique para anexar seu currículo em PDF, Word ou imagem (até 8 MB)</div>
+              <div class="fd-name" id="gsResumeFileName"></div>
+            </div>
+          </div>
+        </div>
+
+        <label class="consent-row">
+          <input type="checkbox" id="gsConsent">
+          <span>Autorizo a SecPlus a armazenar meus dados e documento para fins de cadastro e possível contratação.</span>
+        </label>
+
+        <div class="qstep-actions" style="margin-top:8px;">
+          <span id="gsError" style="font-family:var(--ff-mono); font-size:12px; color:var(--red); display:none;"></span>
+          <button class="btn btn-primary" id="gsSubmitBtn">Enviar cadastro</button>
+        </div>
+
+        <div id="gsSuccess" style="display:none; margin-top:20px;" class="result-box">
+          <div class="eyebrow" style="margin-bottom:10px;">Cadastro enviado</div>
+          <p style="color:var(--silver-bright); font-size:14.5px; line-height:1.7;">Recebemos seus dados! Se você anexou um documento, nossa equipe vai conferir em até 2 dias úteis. Qualquer dúvida, fale com a gente pelo WhatsApp.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -966,6 +1109,10 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H8l-4 4z"/></svg>
           Orçamentos
         </button>
+        <button data-panel="applications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h3"/></svg>
+          Candidaturas
+        </button>
       </nav>
       <div class="admin-sidebar-foot">
         <div class="who" id="adminWho"></div>
@@ -1001,6 +1148,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
             <input type="text" class="search-input" id="guardSearch" placeholder="Buscar por nome ou telefone...">
             <select class="filter-select" id="guardFilter">
               <option value="todos">Todos os status</option>
+              <option value="pendente-aprovacao">Aguardando aprovação</option>
               <option value="valido">Curso válido</option>
               <option value="vencendo">Vencendo em 30 dias</option>
               <option value="vencido">Curso vencido</option>
@@ -1034,6 +1182,38 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
         <table class="data-table">
           <thead><tr><th>Empresa / Contato</th><th>Serviço</th><th>Estimativa</th><th>Status</th><th></th></tr></thead>
           <tbody id="leadsTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- APPLICATIONS PANEL -->
+      <div class="admin-panel" id="panel-applications">
+        <div class="admin-topbar">
+          <div><h2>Candidaturas</h2><p>Currículos e cadastros enviados pela aba "Trabalhe Conosco" para vagas de porteiro, serviços gerais, recepção e tecnologia.</p></div>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <input type="text" class="search-input" id="appSearch" placeholder="Buscar por nome ou telefone...">
+            <select class="filter-select" id="appRoleFilter">
+              <option value="todos">Todas as funções</option>
+              <option value="Porteiro">Porteiro</option>
+              <option value="Serviços Gerais">Serviços Gerais</option>
+              <option value="Recepção">Recepção</option>
+              <option value="Profissional de Tecnologia (TI / Cibersegurança)">Tecnologia</option>
+              <option value="Outra">Outra</option>
+            </select>
+            <select class="filter-select" id="appStatusFilter">
+              <option value="todos">Todos os status</option>
+              <option value="novo">Novo</option>
+              <option value="em-analise">Em análise</option>
+              <option value="aprovado">Aprovado</option>
+              <option value="rejeitado">Rejeitado</option>
+            </select>
+          </div>
+          <span style="font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint);" id="appCount"></span>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Nome / Contato</th><th>Função</th><th>Endereço</th><th>Currículo</th><th>Status</th></tr></thead>
+          <tbody id="applicationsTableBody"></tbody>
         </table>
       </div>
     </main>
@@ -1095,6 +1275,9 @@ import {
 import {
   getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getStorage, ref as storageRef, uploadBytes, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDYMA_KyozhTs1axd6CE3NZzlg2JMNGLWY",
@@ -1110,8 +1293,10 @@ const firebaseApp = initializeApp(firebaseConfig);
 analyticsIsSupported().then(ok => { if (ok) { try { getAnalytics(firebaseApp); } catch (e) { /* analytics optional */ } } }).catch(()=>{});
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+const storage = getStorage(firebaseApp);
 const guardsCol = collection(db, "guards");
 const leadsCol = collection(db, "leads");
+const applicationsCol = collection(db, "applications");
 
 const AUTH_ERROR_MESSAGES = {
   "auth/invalid-credential": "E-mail ou senha incorretos.",
@@ -1128,8 +1313,10 @@ const AUTH_ERROR_MESSAGES = {
 
 let guards = [];
 let leads = [];
+let applications = [];
 let guardsUnsub = null;
 let leadsUnsub = null;
+let applicationsUnsub = null;
 let currentUser = null;
 let seedAttempted = false;
 
@@ -1144,16 +1331,17 @@ function daysFromNow(n){
 function seedGuards(){
   const now = new Date().toISOString();
   return [
-    {name:"Carlos Eduardo Souza", phone:"(27) 99811-2233", address:"Rua das Acácias, 120 - Jardim Camburi, Vitória/ES", role:"Vigilante patrimonial", admission:"2021-03-10", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-02-01", courseValidity: daysFromNow(420), notes:"", createdAt: now},
-    {name:"Marcos Vinícius Lima", phone:"(27) 99722-4455", address:"Av. Brasil, 880 - Laranjeiras, Serra/ES", role:"Vigilante de eventos", admission:"2022-06-15", hasCourse:true, courseName:"Curso de Vigilante — Academia Nacional", courseIssue:"2024-01-10", courseValidity: daysFromNow(18), notes:"Disponível para eventos de grande porte", createdAt: now},
-    {name:"Rafael Almeida Santos", phone:"(27) 99633-7788", address:"Rua XV de Novembro, 45 - Centro, Cariacica/ES", role:"Vigilante patrimonial", admission:"2020-11-02", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2022-09-01", courseValidity: daysFromNow(-40), notes:"Curso vencido, agendar reciclagem", createdAt: now},
-    {name:"Fernando Costa Oliveira", phone:"(27) 99544-9900", address:"Rua Bahia, 210 - Praia da Costa, Vila Velha/ES", role:"Auxiliar de portaria", admission:"2024-02-20", hasCourse:false, courseName:"", courseIssue:"", courseValidity:"", notes:"Em processo de matrícula no curso de formação", createdAt: now},
-    {name:"Diego Henrique Pereira", phone:"(27) 99455-3311", address:"Av. Champagnat, 500 - Enseada do Suá, Vitória/ES", role:"Vigilante patrimonial", admission:"2023-08-05", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-08-01", courseValidity: daysFromNow(210), notes:"", createdAt: now},
+    {name:"Carlos Eduardo Souza", phone:"(27) 99811-2233", address:"Rua das Acácias, 120 - Jardim Camburi, Vitória/ES", role:"Vigilante patrimonial", admission:"2021-03-10", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-02-01", courseValidity: daysFromNow(420), notes:"", source:"admin", approvalStatus:"aprovado", certificateUrl:"", certificateFileName:"", createdAt: now},
+    {name:"Marcos Vinícius Lima", phone:"(27) 99722-4455", address:"Av. Brasil, 880 - Laranjeiras, Serra/ES", role:"Vigilante de eventos", admission:"2022-06-15", hasCourse:true, courseName:"Curso de Vigilante — Academia Nacional", courseIssue:"2024-01-10", courseValidity: daysFromNow(18), notes:"Disponível para eventos de grande porte", source:"admin", approvalStatus:"aprovado", certificateUrl:"", certificateFileName:"", createdAt: now},
+    {name:"Rafael Almeida Santos", phone:"(27) 99633-7788", address:"Rua XV de Novembro, 45 - Centro, Cariacica/ES", role:"Vigilante patrimonial", admission:"2020-11-02", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2022-09-01", courseValidity: daysFromNow(-40), notes:"Curso vencido, agendar reciclagem", source:"admin", approvalStatus:"aprovado", certificateUrl:"", certificateFileName:"", createdAt: now},
+    {name:"Fernando Costa Oliveira", phone:"(27) 99544-9900", address:"Rua Bahia, 210 - Praia da Costa, Vila Velha/ES", role:"Auxiliar de portaria", admission:"2024-02-20", hasCourse:false, courseName:"", courseIssue:"", courseValidity:"", notes:"Em processo de matrícula no curso de formação", source:"admin", approvalStatus:"aprovado", certificateUrl:"", certificateFileName:"", createdAt: now},
+    {name:"Diego Henrique Pereira", phone:"(27) 99455-3311", address:"Av. Champagnat, 500 - Enseada do Suá, Vitória/ES", role:"Vigilante patrimonial", admission:"2023-08-05", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-08-01", courseValidity: daysFromNow(210), notes:"", source:"admin", approvalStatus:"aprovado", certificateUrl:"", certificateFileName:"", createdAt: now},
+    {name:"Juliana Ferreira Alves", phone:"(27) 99377-6620", address:"Rua Sete de Setembro, 88 - Centro, Vila Velha/ES", role:"Vigilante de eventos", admission:"", hasCourse:false, courseName:"", courseIssue:"", courseValidity:"", notes:"Cadastro enviado pelo próprio profissional pelo site. Exemplo de demonstração.", source:"self", approvalStatus:"pendente", certificateUrl:"", certificateFileName:"", createdAt: daysFromNow(-1)},
   ];
 }
 function seedLeads(){
   return [
-    {serviceType:"Evento Corporativo", details:"6 a 15 vigilantes · 12 a 24h", company:"Rede Vitória Shoppings", contact:"Ana Beatriz", phone:"(27) 99900-1122", email:"ana@vshoppings.com.br", notes:"Evento de inauguração de loja âncora", estimateMin:7500, estimateMax:13000, status:"contatado", createdAt: daysFromNow(-6)},
+    {serviceType:"Segurança para Eventos", details:"6 a 15 vigilantes · 12 a 24h", company:"Rede Vitória Shoppings", contact:"Ana Beatriz", phone:"(27) 99900-1122", email:"ana@vshoppings.com.br", notes:"Evento de inauguração de loja âncora", estimateMin:7500, estimateMax:13000, status:"contatado", createdAt: daysFromNow(-6)},
     {serviceType:"Pentest / Teste de Invasão", details:"Teste de Aplicação Web · escopo médio", company:"Indústria Metalcap", contact:"João Ricardo", phone:"(27) 99811-4321", email:"joao@metalcap.com.br", notes:"", estimateMin:6300, estimateMax:12600, status:"novo", createdAt: daysFromNow(-2)},
     {serviceType:"Portaria / Controle de Acesso", details:"3 a 5 postos · escala 12x36", company:"Condomínio Empresarial Horizonte", contact:"Patrícia Nunes", phone:"(27) 99622-8890", email:"patricia@horizonte.com.br", notes:"", estimateMin:9500, estimateMax:17500, status:"fechado", createdAt: daysFromNow(-14)},
   ];
@@ -1601,7 +1789,7 @@ function computeEstimate(){
 }
 
 const serviceTitleMap = {
-  evento:'Evento Corporativo', monitoramento:'Videomonitoramento', portaria:'Portaria / Controle de Acesso',
+  evento:'Segurança para Eventos', monitoramento:'Videomonitoramento', portaria:'Portaria / Controle de Acesso',
   pentest:'Pentest / Teste de Invasão', respostaincidentes:'Resposta e Recuperação de Incidentes', consultoria:'Consultoria'
 };
 
@@ -1694,6 +1882,218 @@ document.getElementById('contactSendBtn').addEventListener('click', async ()=>{
 });
 
 /* ============================================================
+   TRABALHE CONOSCO — cadastro de candidatos (segurança e vagas gerais)
+============================================================ */
+const VIGILANTE_ROLES = new Set(['Vigilante patrimonial','Vigilante de eventos','Portaria / Controle de acesso']);
+const DOC_SIGNATURES = [
+  {type:'PDF', bytes:[0x25,0x50,0x44,0x46]},
+  {type:'JPEG', bytes:[0xFF,0xD8,0xFF]},
+  {type:'PNG', bytes:[0x89,0x50,0x4E,0x47]},
+  {type:'WEBP', bytes:[0x52,0x49,0x46,0x46]},
+];
+const RESUME_SIGNATURES = [
+  ...DOC_SIGNATURES,
+  {type:'DOCX/ZIP', bytes:[0x50,0x4B,0x03,0x04]},
+  {type:'DOC', bytes:[0xD0,0xCF,0x11,0xE0]},
+];
+const MAX_FILE_MB = 8;
+
+function readFileHeader(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=> resolve(new Uint8Array(reader.result));
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file.slice(0, 12));
+  });
+}
+function matchesSignature(bytes, sig){
+  return sig.bytes.every((b,i)=> bytes[i] === b);
+}
+function sanitizeFileName(name){
+  return name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+}
+
+/** Sets up a self-contained file drop/validate widget. Returns accessors for the selected file and its validity. */
+function createFileWidget({dropId, inputId, nameId, signatures, invalidMsg}){
+  const dropEl = document.getElementById(dropId);
+  const inputEl = document.getElementById(inputId);
+  const nameEl = document.getElementById(nameId);
+  let selectedFile = null;
+  let isValid = false;
+
+  async function validate(file){
+    dropEl.classList.remove('has-file','file-invalid');
+    if(file.size > MAX_FILE_MB * 1024 * 1024){
+      nameEl.textContent = `Arquivo muito grande (máx. ${MAX_FILE_MB} MB).`;
+      dropEl.classList.add('file-invalid');
+      return false;
+    }
+    try{
+      const header = await readFileHeader(file);
+      const matched = signatures.some(sig => matchesSignature(header, sig));
+      if(!matched){
+        nameEl.textContent = invalidMsg;
+        dropEl.classList.add('file-invalid');
+        return false;
+      }
+      nameEl.textContent = `${file.name} — arquivo válido ✓`;
+      dropEl.classList.add('has-file');
+      return true;
+    }catch(e){
+      nameEl.textContent = "Não foi possível ler o arquivo. Tente novamente.";
+      dropEl.classList.add('file-invalid');
+      return false;
+    }
+  }
+
+  dropEl.addEventListener('click', ()=> inputEl.click());
+  inputEl.addEventListener('change', async ()=>{
+    const file = inputEl.files[0];
+    if(!file) return;
+    selectedFile = file;
+    isValid = await validate(file);
+  });
+  ['dragover','dragenter'].forEach(evt=> dropEl.addEventListener(evt, e=>{ e.preventDefault(); dropEl.classList.add('dragover'); }));
+  ['dragleave','drop'].forEach(evt=> dropEl.addEventListener(evt, e=>{ e.preventDefault(); dropEl.classList.remove('dragover'); }));
+  dropEl.addEventListener('drop', async e=>{
+    const file = e.dataTransfer.files[0];
+    if(!file) return;
+    inputEl.files = e.dataTransfer.files;
+    selectedFile = file;
+    isValid = await validate(file);
+  });
+
+  return {
+    getFile: ()=> selectedFile,
+    isValid: ()=> isValid,
+    reset: ()=>{ selectedFile = null; isValid = false; nameEl.textContent = ''; dropEl.classList.remove('has-file','file-invalid'); }
+  };
+}
+
+const courseFileWidget = createFileWidget({
+  dropId:'gsFileDrop', inputId:'gsFile', nameId:'gsFileName',
+  signatures: DOC_SIGNATURES, invalidMsg: "Este arquivo não parece ser um PDF ou imagem válida."
+});
+const resumeFileWidget = createFileWidget({
+  dropId:'gsResumeDrop', inputId:'gsResumeFile', nameId:'gsResumeFileName',
+  signatures: RESUME_SIGNATURES, invalidMsg: "Este arquivo não parece ser um PDF, Word ou imagem válida."
+});
+
+const gsRoleSelect = document.getElementById('gsRole');
+function updateGsRoleUI(){
+  const isVigilante = VIGILANTE_ROLES.has(gsRoleSelect.value);
+  document.getElementById('gsVigilanteBlock').style.display = isVigilante ? 'block' : 'none';
+  document.getElementById('gsResumeBlock').style.display = isVigilante ? 'none' : 'block';
+}
+gsRoleSelect.addEventListener('change', updateGsRoleUI);
+updateGsRoleUI();
+
+document.getElementById('gsHasCourse').addEventListener('change', ()=>{
+  document.getElementById('gsCourseFields').classList.toggle('show', document.getElementById('gsHasCourse').checked);
+});
+
+document.getElementById('gsSubmitBtn').addEventListener('click', async ()=>{
+  const errEl = document.getElementById('gsError');
+  errEl.style.display = 'none';
+  const name = document.getElementById('gsName').value.trim();
+  const phone = document.getElementById('gsPhone').value.trim();
+  const address = document.getElementById('gsAddress').value.trim();
+  const role = gsRoleSelect.value;
+  const isVigilante = VIGILANTE_ROLES.has(role);
+  const hasCourse = isVigilante && document.getElementById('gsHasCourse').checked;
+  const consent = document.getElementById('gsConsent').checked;
+
+  if(!name || !phone || !address){
+    errEl.textContent = "Preencha nome, telefone e endereço.";
+    errEl.style.display = 'inline';
+    return;
+  }
+  if(!consent){
+    errEl.textContent = "É preciso autorizar o uso dos seus dados para continuar.";
+    errEl.style.display = 'inline';
+    return;
+  }
+  if(hasCourse && courseFileWidget.getFile() && !courseFileWidget.isValid()){
+    errEl.textContent = "O comprovante anexado não é válido. Envie um PDF, JPG, PNG ou WEBP.";
+    errEl.style.display = 'inline';
+    return;
+  }
+  if(!isVigilante && resumeFileWidget.getFile() && !resumeFileWidget.isValid()){
+    errEl.textContent = "O currículo anexado não é válido. Envie um PDF, Word (.doc/.docx) ou imagem.";
+    errEl.style.display = 'inline';
+    return;
+  }
+
+  const btn = document.getElementById('gsSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  try{
+    if(isVigilante){
+      let certificateUrl = '', certificateFileName = '';
+      if(hasCourse && courseFileWidget.getFile() && courseFileWidget.isValid()){
+        const file = courseFileWidget.getFile();
+        const path = `certificates/${Date.now()}_${sanitizeFileName(file.name)}`;
+        const fileRef = storageRef(storage, path);
+        await uploadBytes(fileRef, file);
+        certificateUrl = await getDownloadURL(fileRef);
+        certificateFileName = file.name;
+      }
+      const data = {
+        name, phone, address, role,
+        admission: '',
+        hasCourse,
+        courseName: hasCourse ? document.getElementById('gsCourseName').value.trim() : '',
+        courseIssue: '',
+        courseValidity: hasCourse ? document.getElementById('gsCourseValidity').value : '',
+        certificateUrl, certificateFileName,
+        source: 'self',
+        approvalStatus: 'pendente',
+        notes: 'Cadastro enviado pelo próprio profissional pelo site.',
+        createdAt: new Date().toISOString()
+      };
+      await addDoc(guardsCol, data);
+    } else {
+      let resumeUrl = '', resumeFileName = '';
+      if(resumeFileWidget.getFile() && resumeFileWidget.isValid()){
+        const file = resumeFileWidget.getFile();
+        const path = `resumes/${Date.now()}_${sanitizeFileName(file.name)}`;
+        const fileRef = storageRef(storage, path);
+        await uploadBytes(fileRef, file);
+        resumeUrl = await getDownloadURL(fileRef);
+        resumeFileName = file.name;
+      }
+      const data = {
+        name, phone, address, role,
+        resumeUrl, resumeFileName,
+        status: 'novo',
+        notes: 'Candidatura enviada pelo site.',
+        createdAt: new Date().toISOString()
+      };
+      await addDoc(applicationsCol, data);
+    }
+
+    document.getElementById('guardSignupForm').querySelectorAll('input, select, textarea').forEach(el=>{
+      if(el.type === 'checkbox') el.checked = (el.id === 'gsHasCourse');
+      else if(el.tagName === 'SELECT') el.selectedIndex = 0;
+      else el.value = '';
+    });
+    courseFileWidget.reset();
+    resumeFileWidget.reset();
+    document.getElementById('gsCourseFields').classList.add('show');
+    updateGsRoleUI();
+    document.getElementById('gsSuccess').style.display = 'block';
+    document.getElementById('gsSuccess').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }catch(e){
+    console.error(e);
+    errEl.textContent = "Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.";
+    errEl.style.display = 'inline';
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "Enviar cadastro";
+  }
+});
+/* ============================================================
    ADMIN: ROUTING (Firebase Auth gate + view switching)
 ============================================================ */
 function openAdminView(){
@@ -1781,12 +2181,21 @@ function attachAdminListeners(){
       console.error(err);
       showToast("Erro ao carregar orçamentos.", true);
     });
+    const aq = query(applicationsCol, orderBy('createdAt','desc'));
+    applicationsUnsub = onSnapshot(aq, snap=>{
+      applications = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderAdmin();
+    }, err=>{
+      console.error(err);
+      showToast("Erro ao carregar candidaturas. Verifique as regras do Firestore.", true);
+    });
   }catch(e){ console.error(e); }
 }
 function detachAdminListeners(){
   if(guardsUnsub){ guardsUnsub(); guardsUnsub = null; }
   if(leadsUnsub){ leadsUnsub(); leadsUnsub = null; }
-  guards = []; leads = [];
+  if(applicationsUnsub){ applicationsUnsub(); applicationsUnsub = null; }
+  guards = []; leads = []; applications = [];
 }
 
 document.querySelectorAll('.admin-nav button').forEach(btn=>{
@@ -1806,13 +2215,16 @@ function renderAdmin(){
   renderExpiringTable();
   renderGuardsTable();
   renderLeadsTable();
+  renderApplicationsTable();
 }
 
 function renderKpis(){
   const counts = {valido:0, vencendo:0, vencido:0, 'sem-curso':0};
   guards.forEach(g=> counts[guardStatus(g)]++ );
+  const pendingCount = guards.filter(g=>g.approvalStatus==='pendente').length;
   const kpis = [
     {label:'Total de vigilantes', num:guards.length, cls:''},
+    {label:'Aguardando aprovação', num:pendingCount, cls:'k-amber'},
     {label:'Cursos válidos', num:counts.valido, cls:'k-green'},
     {label:'Vencendo em 30 dias', num:counts.vencendo, cls:'k-amber'},
     {label:'Cursos vencidos', num:counts.vencido, cls:'k-red'},
@@ -1843,7 +2255,7 @@ function renderGuardsTable(){
   const filter = document.getElementById('guardFilter').value;
   let rows = guards.filter(g=>{
     const matchSearch = !search || (g.name||'').toLowerCase().includes(search) || (g.phone||'').includes(search);
-    const matchFilter = filter === 'todos' || guardStatus(g) === filter;
+    const matchFilter = filter === 'todos' || (filter === 'pendente-aprovacao' ? g.approvalStatus === 'pendente' : guardStatus(g) === filter);
     return matchSearch && matchFilter;
   });
   document.getElementById('guardCount').textContent = `${rows.length} de ${guards.length} vigilantes`;
@@ -1852,15 +2264,25 @@ function renderGuardsTable(){
     tbody.innerHTML = `<tr><td colspan="6" class="empty-state">Nenhum vigilante encontrado com esses filtros.</td></tr>`;
     return;
   }
+  const APPROVAL_LABEL = {pendente:'Aguardando aprovação', aprovado:'Aprovado', rejeitado:'Rejeitado'};
+  const APPROVAL_CLASS = {pendente:'badge-pending', aprovado:'badge-approved', rejeitado:'badge-rejected'};
   tbody.innerHTML = rows.map(g=>{
     const st = guardStatus(g);
+    const isSelf = g.source === 'self';
+    const approvalBadge = isSelf ? `<div class="badge-pending ${APPROVAL_CLASS[g.approvalStatus]||''}">● Autocadastro · ${APPROVAL_LABEL[g.approvalStatus]||'Pendente'}</div>` : '';
+    const viewDocBtn = g.certificateUrl ? `<button class="icon-btn view-doc" data-url="${g.certificateUrl}" aria-label="Ver documento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></button>` : '';
+    const approveBtn = (isSelf && g.approvalStatus === 'pendente') ? `<button class="icon-btn approve-guard" data-id="${g.id}" aria-label="Aprovar" style="color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></button>` : '';
+    const rejectBtn = (isSelf && g.approvalStatus === 'pendente') ? `<button class="icon-btn reject-guard" data-id="${g.id}" aria-label="Rejeitar" style="color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>` : '';
     return `<tr>
-      <td>${g.name}<div class="cell-sub">${g.role||'—'}</div></td>
+      <td>${g.name}<div class="cell-sub">${g.role||'—'}</div>${approvalBadge}</td>
       <td>${g.phone||'—'}</td>
       <td>${g.address||'—'}</td>
       <td>${g.hasCourse ? (g.courseName||'Curso cadastrado') : 'Não possui curso'}${g.hasCourse ? `<div class="cell-sub">Validade: ${fmtDate(g.courseValidity)}</div>`:''}</td>
       <td>${pillHtml(st)}</td>
       <td><div class="row-actions">
+        ${approveBtn}
+        ${rejectBtn}
+        ${viewDocBtn}
         <button class="icon-btn edit-guard" data-id="${g.id}" aria-label="Editar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
         <button class="icon-btn del-guard" data-id="${g.id}" aria-label="Excluir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>
       </div></td>
@@ -1869,6 +2291,18 @@ function renderGuardsTable(){
 
   tbody.querySelectorAll('.edit-guard').forEach(b=> b.addEventListener('click', ()=>openGuardModal(b.dataset.id)) );
   tbody.querySelectorAll('.del-guard').forEach(b=> b.addEventListener('click', ()=>deleteGuard(b.dataset.id)) );
+  tbody.querySelectorAll('.view-doc').forEach(b=> b.addEventListener('click', ()=> window.open(b.dataset.url, '_blank')) );
+  tbody.querySelectorAll('.approve-guard').forEach(b=> b.addEventListener('click', ()=> setApproval(b.dataset.id, 'aprovado')) );
+  tbody.querySelectorAll('.reject-guard').forEach(b=> b.addEventListener('click', ()=> setApproval(b.dataset.id, 'rejeitado')) );
+}
+async function setApproval(id, status){
+  try{
+    await updateDoc(doc(db,'guards',id), {approvalStatus: status});
+    showToast(status === 'aprovado' ? "Cadastro aprovado." : "Cadastro rejeitado.");
+  }catch(e){
+    console.error(e);
+    showToast("Não foi possível atualizar o cadastro.", true);
+  }
 }
 document.getElementById('guardSearch').addEventListener('input', renderGuardsTable);
 document.getElementById('guardFilter').addEventListener('change', renderGuardsTable);
@@ -1909,6 +2343,57 @@ function renderLeadsTable(){
   });
 }
 document.getElementById('leadFilter').addEventListener('change', renderLeadsTable);
+
+function renderApplicationsTable(){
+  const search = document.getElementById('appSearch').value.trim().toLowerCase();
+  const roleFilter = document.getElementById('appRoleFilter').value;
+  const statusFilter = document.getElementById('appStatusFilter').value;
+  let rows = applications.filter(a=>{
+    const matchSearch = !search || (a.name||'').toLowerCase().includes(search) || (a.phone||'').includes(search);
+    const matchRole = roleFilter === 'todos' || a.role === roleFilter;
+    const matchStatus = statusFilter === 'todos' || a.status === statusFilter;
+    return matchSearch && matchRole && matchStatus;
+  });
+  document.getElementById('appCount').textContent = `${rows.length} de ${applications.length} candidaturas`;
+  const tbody = document.getElementById('applicationsTableBody');
+  if(rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="5" class="empty-state">Nenhuma candidatura recebida com esses filtros.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(a=>{
+    const resumeBtn = a.resumeUrl
+      ? `<a href="${a.resumeUrl}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Ver currículo</a>`
+      : `<span class="cell-sub">Sem anexo</span>`;
+    return `<tr>
+      <td>${a.name||'—'}<div class="cell-sub">${a.phone||''}</div></td>
+      <td>${a.role||'—'}</td>
+      <td>${a.address||'—'}</td>
+      <td>${resumeBtn}</td>
+      <td>
+        <select class="filter-select app-status" data-id="${a.id}" style="padding:6px 10px; font-size:12px;">
+          <option value="novo" ${a.status==='novo'?'selected':''}>Novo</option>
+          <option value="em-analise" ${a.status==='em-analise'?'selected':''}>Em análise</option>
+          <option value="aprovado" ${a.status==='aprovado'?'selected':''}>Aprovado</option>
+          <option value="rejeitado" ${a.status==='rejeitado'?'selected':''}>Rejeitado</option>
+        </select>
+      </td>
+    </tr>`;
+  }).join('');
+  tbody.querySelectorAll('.app-status').forEach(sel=>{
+    sel.addEventListener('change', async ()=>{
+      try{
+        await updateDoc(doc(db,'applications',sel.dataset.id), {status: sel.value});
+        showToast("Status da candidatura atualizado.");
+      }catch(e){
+        console.error(e);
+        showToast("Não foi possível atualizar o status.", true);
+      }
+    });
+  });
+}
+document.getElementById('appSearch').addEventListener('input', renderApplicationsTable);
+document.getElementById('appRoleFilter').addEventListener('change', renderApplicationsTable);
+document.getElementById('appStatusFilter').addEventListener('change', renderApplicationsTable);
 
 /* ============================================================
    ADMIN: GUARD MODAL
@@ -1978,6 +2463,10 @@ document.getElementById('saveGuardBtn').addEventListener('click', async ()=>{
       showToast("Cadastro atualizado com sucesso.");
     } else {
       data.createdAt = new Date().toISOString();
+      data.source = 'admin';
+      data.approvalStatus = 'aprovado';
+      data.certificateUrl = '';
+      data.certificateFileName = '';
       await addDoc(guardsCol, data);
       showToast("Vigilante cadastrado com sucesso.");
     }
