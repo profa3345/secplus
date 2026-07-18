@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área Interna | SecPlus</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="SecPlus"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" data-page="index.html">Início</a>
+      <div class="has-dropdown" onclick="toggleDropdown(this)">
+        <a href="#" style="cursor:default;">Serviços ▾</a>
+        <div class="dropdown">
+          <a href="servico-eventos.html">Segurança para Eventos</a>
+          <a href="servico-monitoramento.html">Monitoramento e Vigilância</a>
+          <a href="servico-pentest.html">Pentest</a>
+          <a href="servico-resposta-incidentes.html">Resposta a Incidentes</a>
+        </div>
+      </div>
+      <a href="orcamento.html" data-page="orcamento.html">Orçamento</a>
+      <a href="contato.html" data-page="contato.html">Contato</a>
+      <a href="sistema.html" data-page="sistema.html" class="active">Área Interna</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" id="logout-btn" style="display:none;" onclick="logoutSistema()">Sair</button>
+      <button class="mobile-toggle" onclick="toggleMobileNav()">☰</button>
+    </div>
+  </nav>
+</header>
+
+<div id="login-screen" class="login-shell">
+  <h2>Acesso restrito</h2>
+  <p>Cadastro de vigilantes e controle de validade dos cursos. Uso exclusivo da equipe SecPlus.</p>
+  <div class="field"><label>Senha de acesso</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+  <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="doLogin()">Entrar</button>
+  <p style="font-size:11.5px; color:#5b6577; margin-top:16px;">Senha de demonstração: <b class="mono">secplus2026</b>. Substitua por autenticação real antes de publicar o sistema em produção.</p>
+</div>
+
+<div id="dashboard-screen" class="sys-shell" style="display:none;">
+  <div class="hint-banner">
+    Este painel guarda os dados de vigilantes em armazenamento compartilhado do artefato (sem servidor próprio). Se este site for hospedado fora do Claude.ai, será necessário substituir por um backend com banco de dados e autenticação individual.
+  </div>
+  <div class="stat-cards" id="stat-cards"></div>
+  <div class="sys-toolbar">
+    <div class="search-box"><input type="text" id="search-guard" placeholder="Buscar por nome ou telefone..." oninput="renderGuards()"></div>
+    <button class="btn btn-primary btn-sm" onclick="openGuardModal()">+ Novo vigilante</button>
+  </div>
+  <div id="guards-table-wrap"></div>
+</div>
+
+<div class="modal-overlay" id="guard-modal">
+  <div class="modal">
+    <h3 id="guard-modal-title">Novo vigilante</h3>
+    <input type="hidden" id="g-id">
+    <div class="field"><label>Nome completo</label><input type="text" id="g-name"></div>
+    <div class="field"><label>Telefone</label><input type="text" id="g-phone" placeholder="(27) 9XXXX-XXXX"></div>
+    <div class="field"><label>Endereço</label><input type="text" id="g-address"></div>
+    <div class="check-row"><input type="checkbox" id="g-has-course" onchange="toggleCourseField()"><label for="g-has-course">Possui curso de vigilante válido</label></div>
+    <div class="field" id="g-course-date-field"><label>Validade do curso</label><input type="date" id="g-course-date"></div>
+    <p id="g-no-course-note" style="display:none; font-size:12px; color:var(--warning); margin-top:-8px;">Este vigilante será identificado como <b>sem curso</b> no sistema até que o documento seja apresentado.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeGuardModal()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" onclick="saveGuard()">Salvar cadastro</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/main.js"></script>
+<script src="assets/sistema.js"></script>
+</body>
+</html>
