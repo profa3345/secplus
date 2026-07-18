@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SecPlus — Segurança para Eventos, Videomonitoramento e Cibersegurança</title>
-<meta name="description" content="SecPlus: segurança para eventos, videomonitoramento 24h, pentest, resposta a incidentes e portaria para grandes empresas. Orçamento automatizado e atendimento imediato.">
+<meta name="description" content="SecPlus: segurança para eventos, videomonitoramento 24h, pentest, resposta a incidentes e portaria para grandes empresas. Atendimento imediato por WhatsApp e chat.">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,8 +234,7 @@ nav.main-nav a:hover::after{right:0;}
 .step-card h4{font-family:var(--ff-body); font-weight:700; font-size:16px; text-transform:none; color:var(--silver-bright); margin:14px 0 8px;}
 .step-card p{color:var(--text-muted); font-size:14.5px;}
 
-/* ============ QUOTE WIZARD ============ */
-#quote{background:var(--panel);}
+/* ============ SHARED FORM SHELL (Trabalhe Conosco) ============ */
 .quote-shell{display:grid; grid-template-columns:.85fr 1.15fr; gap:0; border:1px solid var(--border-strong); background:var(--bg-1); border-radius:var(--radius); overflow:hidden; box-shadow:0 24px 56px rgba(0,0,0,.3);}
 .quote-side{background:var(--panel-3); padding:44px 36px; display:flex; flex-direction:column; justify-content:space-between;}
 .quote-side-top h3{font-family:var(--ff-display); font-size:26px; color:var(--silver-bright); text-transform:uppercase;}
@@ -248,16 +247,6 @@ nav.main-nav a:hover::after{right:0;}
 .qp-item.active{color:var(--silver-bright);}
 .qp-item.done{color:var(--text-muted);}
 .quote-body{padding:44px; min-height:420px; display:flex; flex-direction:column;}
-.qstep{display:none; flex:1; flex-direction:column;}
-.qstep.active{display:flex;}
-.qstep h4{font-family:var(--ff-body); font-weight:700; font-size:18px; text-transform:none; color:var(--silver-bright); margin-bottom:22px;}
-.option-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-.opt-card{border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:18px; cursor:pointer; transition:all .15s; background:var(--panel-2); position:relative;}
-.opt-card:hover{border-color:var(--blue-light); transform:translateY(-1px);}
-.opt-card.selected{border-color:var(--blue-light); background:rgba(92,134,224,.1); box-shadow:inset 0 0 0 1px var(--blue-light), 0 8px 20px rgba(47,95,199,.18);}
-.opt-card.selected::after{content:'✓'; position:absolute; top:12px; right:12px; width:18px; height:18px; border-radius:50%; background:var(--blue-light); color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center;}
-.opt-card .opt-title{font-weight:600; font-size:14.5px; color:var(--silver-bright);}
-.opt-card .opt-sub{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint); margin-top:4px;}
 .field{margin-bottom:18px;}
 .field label{display:block; font-family:var(--ff-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:8px;}
 .field input, .field textarea, .field select{
@@ -482,7 +471,6 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
   .admin-shell{grid-template-columns:1fr;}
   .admin-sidebar{display:none;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
-  .option-grid{grid-template-columns:1fr;}
   .field-row{grid-template-columns:1fr;}
   .carousel-caption{flex-direction:column; align-items:flex-start;}
 }
@@ -513,12 +501,11 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <a href="#services">Serviços</a>
       <a href="#differentials">Diferenciais</a>
       <a href="#how">Como Funciona</a>
-      <a href="#quote">Orçamento</a>
       <a href="#cadastro-vigilante">Trabalhe Conosco</a>
       <a href="#contact">Contato</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-primary" href="#quote">Solicitar Orçamento</a>
+      <a class="btn btn-primary" href="#contact">Solicitar Orçamento</a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -528,7 +515,6 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
     <a href="#services">Serviços</a>
     <a href="#differentials">Diferenciais</a>
     <a href="#how">Como Funciona</a>
-    <a href="#quote">Orçamento</a>
     <a href="#cadastro-vigilante">Trabalhe Conosco</a>
     <a href="#contact">Contato</a>
     <a href="#" style="color:var(--text-faint); font-family:var(--ff-mono); font-size:12px;" id="mobileAdminLink">Área Restrita</a>
@@ -559,28 +545,28 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
           <img src="assets/bannerdesastres.jpg" alt="Resposta e Recuperação de Incidentes" loading="lazy">
           <div class="carousel-caption">
             <div><h4>Resposta e Recuperação de Incidentes</h4><p>Atuamos rapidamente para conter, neutralizar e recuperar sua operação após ataques ou incidentes de segurança.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="respostaincidentes">Solicitar Orçamento</button>
+            <button class="btn btn-primary btn-sm carousel-cta" data-label="Resposta e Recuperação de Incidentes">Solicitar Orçamento</button>
           </div>
         </div>
         <div class="carousel-slide">
           <img src="assets/bannerepentest.jpg" alt="Pentest — Teste de Invasão" loading="lazy">
           <div class="carousel-caption">
             <div><h4>Pentest — Teste de Invasão</h4><p>Descubra vulnerabilidades antes que os atacantes descubram, com simulações reais de ataque.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="pentest">Solicitar Orçamento</button>
+            <button class="btn btn-primary btn-sm carousel-cta" data-label="Pentest — Teste de Invasão">Solicitar Orçamento</button>
           </div>
         </div>
         <div class="carousel-slide">
           <img src="assets/bannereventos.jpg" alt="Segurança para Eventos" loading="lazy">
           <div class="carousel-caption">
             <div><h4>Segurança para Eventos</h4><p>Planejamento, prevenção e execução para eventos seguros e bem-sucedidos do início ao fim.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="evento">Solicitar Orçamento</button>
+            <button class="btn btn-primary btn-sm carousel-cta" data-label="Segurança para Eventos">Solicitar Orçamento</button>
           </div>
         </div>
         <div class="carousel-slide">
           <img src="assets/bannermonitoramentoevigilancia.jpg" alt="Monitoramento e Vigilância" loading="lazy">
           <div class="carousel-caption">
             <div><h4>Monitoramento e Vigilância</h4><p>Monitoramos 24h por dia, 7 dias por semana. Ao identificar ocorrência suspeita, acionamos a polícia imediatamente.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="monitoramento">Solicitar Orçamento</button>
+            <button class="btn btn-primary btn-sm carousel-cta" data-label="Monitoramento e Vigilância">Solicitar Orçamento</button>
           </div>
         </div>
       </div>
@@ -600,7 +586,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <h1>Proteção em tempo integral.<br><span class="accent">Visão em tempo real.</span></h1>
       <p class="hero-lead">A SecPlus planeja e opera a segurança de eventos, o videomonitoramento e a cibersegurança de grandes empresas, com equipes certificadas, central de operações própria e atendimento ativo 24 horas por dia, todos os dias.</p>
       <div class="hero-cta">
-        <a href="#quote" class="btn btn-primary">Solicitar Orçamento</a>
+        <a href="#contact" class="btn btn-primary">Solicitar Orçamento</a>
         <a href="https://wa.me/5527999243874?text=Ol%C3%A1%2C%20SecPlus!%20Gostaria%20de%20falar%20sobre%20seguran%C3%A7a%20para%20minha%20empresa." target="_blank" rel="noopener" class="btn btn-wa">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.94.94-3.05-.2-.32a8.15 8.15 0 0 1-1.26-4.38c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.41a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
           Falar no WhatsApp
@@ -716,7 +702,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
           </div>
           <div class="diff-row">
             <span class="diff-num">04</span>
-            <div><h4>Atendimento e orçamento ágeis</h4><p>Resposta imediata por WhatsApp, chat automatizado no site e orçamento gerado em minutos.</p></div>
+            <div><h4>Atendimento ágil</h4><p>Resposta imediata por WhatsApp e chat automatizado no site, com proposta enviada rapidamente pela nossa equipe.</p></div>
           </div>
         </div>
       </div>
@@ -741,7 +727,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <h2>Do primeiro contato à operação ativa</h2>
     </div>
     <div class="steps-grid">
-      <div class="step-card"><div class="step-num">01</div><h4>Contato inicial</h4><p>Você fala com a gente pelo WhatsApp, chat do site ou formulário de orçamento — em poucos minutos, uma resposta.</p></div>
+      <div class="step-card"><div class="step-num">01</div><h4>Contato inicial</h4><p>Você fala com a gente pelo WhatsApp, chat do site ou formulário de contato — em poucos minutos, uma resposta.</p></div>
       <div class="step-card"><div class="step-num">02</div><h4>Diagnóstico técnico</h4><p>Entendemos o porte da operação, local, riscos e necessidades específicas do seu evento ou empresa.</p></div>
       <div class="step-card"><div class="step-num">03</div><h4>Proposta e orçamento</h4><p>Você recebe uma proposta objetiva, com escopo, equipe dimensionada e valores claros.</p></div>
       <div class="step-card"><div class="step-num">04</div><h4>Operação e monitoramento</h4><p>Equipe mobilizada e/ou monitoramento ativo, com acompanhamento contínuo da central SecPlus.</p></div>
@@ -749,96 +735,6 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
   </div>
 </section>
 
-<!-- QUOTE WIZARD -->
-<section id="quote" class="section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Orçamento automatizado</div>
-      <h2>Monte sua estimativa agora mesmo</h2>
-      <p class="lead">Responda algumas perguntas rápidas e receba uma faixa de investimento referencial. Sem compromisso — depois disso, um especialista confirma os detalhes com você.</p>
-    </div>
-
-    <div class="quote-shell">
-      <div class="quote-side">
-        <div class="quote-side-top">
-          <h3>Simulador SecPlus</h3>
-          <p>Leva menos de 1 minuto. Ao final, você pode enviar sua solicitação direto para nossa equipe ou continuar a conversa no WhatsApp.</p>
-        </div>
-        <div class="quote-progress" id="quoteProgress">
-          <div class="qp-item active" data-step="1"><span class="qp-dot">1</span> Tipo de serviço</div>
-          <div class="qp-item" data-step="2"><span class="qp-dot">2</span> Detalhes da operação</div>
-          <div class="qp-item" data-step="3"><span class="qp-dot">3</span> Seus dados</div>
-          <div class="qp-item" data-step="4"><span class="qp-dot">4</span> Estimativa</div>
-        </div>
-      </div>
-
-      <div class="quote-body">
-        <!-- STEP 1 -->
-        <div class="qstep active" data-step="1">
-          <h4>Qual serviço você precisa?</h4>
-          <div class="option-grid" id="serviceOptions">
-            <div class="opt-card" data-value="evento"><div class="opt-title">Segurança para Eventos</div><div class="opt-sub">Congressos, feiras, lançamentos</div></div>
-            <div class="opt-card" data-value="monitoramento"><div class="opt-title">Videomonitoramento</div><div class="opt-sub">Câmeras + central 24h</div></div>
-            <div class="opt-card" data-value="portaria"><div class="opt-title">Portaria / Controle de Acesso</div><div class="opt-sub">Recepção e catracas</div></div>
-            <div class="opt-card" data-value="pentest"><div class="opt-title">Pentest</div><div class="opt-sub">Teste de invasão</div></div>
-            <div class="opt-card" data-value="respostaincidentes"><div class="opt-title">Resposta a Incidentes</div><div class="opt-sub">Contenção e recuperação</div></div>
-            <div class="opt-card" data-value="consultoria"><div class="opt-title">Consultoria</div><div class="opt-sub">Diagnóstico de riscos</div></div>
-          </div>
-          <div class="qstep-actions">
-            <span></span>
-            <button class="btn btn-primary" id="toStep2" disabled>Continuar</button>
-          </div>
-        </div>
-
-        <!-- STEP 2 (dynamic) -->
-        <div class="qstep" data-step="2">
-          <h4 id="step2Title">Detalhes da operação</h4>
-          <div id="step2Content"></div>
-          <div class="qstep-actions">
-            <button class="btn btn-ghost" data-back="1">Voltar</button>
-            <button class="btn btn-primary" id="toStep3" disabled>Continuar</button>
-          </div>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="qstep" data-step="3">
-          <h4>Para enviarmos sua estimativa</h4>
-          <div class="field-row">
-            <div class="field"><label for="qCompany">Empresa</label><input id="qCompany" type="text" placeholder="Nome da empresa"></div>
-            <div class="field"><label for="qContact">Responsável</label><input id="qContact" type="text" placeholder="Seu nome"></div>
-          </div>
-          <div class="field-row">
-            <div class="field"><label for="qPhone">Telefone / WhatsApp</label><input id="qPhone" type="tel" placeholder="(27) 90000-0000"></div>
-            <div class="field"><label for="qEmail">E-mail</label><input id="qEmail" type="email" placeholder="voce@empresa.com"></div>
-          </div>
-          <div class="field"><label for="qNotes">Observações (opcional)</label><textarea id="qNotes" rows="3" placeholder="Data do evento, endereço, particularidades..."></textarea></div>
-          <div class="qstep-actions">
-            <button class="btn btn-ghost" data-back="2">Voltar</button>
-            <button class="btn btn-primary" id="toStep4" disabled>Ver estimativa</button>
-          </div>
-        </div>
-
-        <!-- STEP 4 -->
-        <div class="qstep" data-step="4">
-          <h4>Sua estimativa está pronta</h4>
-          <div class="result-box">
-            <div class="eyebrow" style="margin-bottom:10px;">Faixa de investimento referencial</div>
-            <div class="result-range" id="resultRange">R$ 0 – R$ 0</div>
-            <div class="result-note" id="resultNote">Valor estimado. A proposta final é confirmada após diagnóstico técnico.</div>
-          </div>
-          <div class="result-actions">
-            <button class="btn btn-primary" id="sendLeadBtn">Enviar solicitação</button>
-            <a class="btn btn-wa" id="waResultBtn" href="#" target="_blank" rel="noopener">Continuar no WhatsApp</a>
-          </div>
-          <div class="qstep-actions">
-            <button class="btn btn-ghost" data-back="3">Voltar</button>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TESTIMONIALS -->
 <section class="section">
@@ -1025,7 +921,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <div class="footer-links">
         <a href="#services">Serviços</a>
         <a href="#differentials">Diferenciais</a>
-        <a href="#quote">Orçamento</a>
+        <a href="#cadastro-vigilante">Trabalhe Conosco</a>
         <a href="#contact">Contato</a>
         <a href="https://wa.me/5527999243874" target="_blank" rel="noopener">WhatsApp</a>
         <a href="#" id="adminLinkFooter">Área Restrita</a>
@@ -1076,7 +972,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
     <div class="login-card">
       <img class="brand-mark" src="assets/logo.png" alt="SecPlus">
       <h3>Área restrita</h3>
-      <p class="sub">Painel interno SecPlus — gestão de vigilantes e orçamentos recebidos.</p>
+      <p class="sub">Painel interno SecPlus — gestão de vigilantes, candidaturas e contatos recebidos.</p>
       <div class="field"><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" placeholder="voce@secplus.com.br"></div>
       <div class="field"><label for="loginPass">Senha</label><input id="loginPass" type="password" placeholder="••••••••"></div>
       <button class="btn btn-primary btn-block" id="loginBtn">Entrar</button>
@@ -1107,7 +1003,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
         </button>
         <button data-panel="leads">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H8l-4 4z"/></svg>
-          Orçamentos
+          Contatos
         </button>
         <button data-panel="applications">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h3"/></svg>
@@ -1166,7 +1062,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <!-- LEADS PANEL -->
       <div class="admin-panel" id="panel-leads">
         <div class="admin-topbar">
-          <div><h2>Orçamentos Recebidos</h2><p>Solicitações enviadas pelo simulador de orçamento automatizado do site.</p></div>
+          <div><h2>Mensagens de Contato</h2><p>Solicitações enviadas pelo formulário de contato do site.</p></div>
         </div>
         <div class="toolbar">
           <div class="toolbar-left">
@@ -1180,7 +1076,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
           <span style="font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint);" id="leadCount"></span>
         </div>
         <table class="data-table">
-          <thead><tr><th>Empresa / Contato</th><th>Serviço</th><th>Estimativa</th><th>Status</th><th></th></tr></thead>
+          <thead><tr><th>Empresa / Contato</th><th>Mensagem</th><th>Status</th></tr></thead>
           <tbody id="leadsTableBody"></tbody>
         </table>
       </div>
@@ -1452,7 +1348,10 @@ carouselEl.addEventListener('touchend', e=>{
   touchStartX = null;
 });
 document.querySelectorAll('.carousel-cta').forEach(btn=>{
-  btn.addEventListener('click', ()=> jumpToQuoteWithService(btn.dataset.service));
+  btn.addEventListener('click', ()=>{
+    const msg = encodeURIComponent(`Olá, SecPlus! Tenho interesse em ${btn.dataset.label}. Gostaria de solicitar um orçamento.`);
+    window.open(`https://wa.me/5527999243874?text=${msg}`, '_blank');
+  });
 });
 
 /* ============================================================
@@ -1473,16 +1372,16 @@ const CHAT_FLOWS = {
     ]
   },
   servicos: {
-    bot: "Trabalhamos com 6 frentes: Segurança para Eventos, Videomonitoramento 24h, Portaria/Controle de Acesso, Pentest, Resposta a Incidentes e Consultoria em Segurança. Quer simular um orçamento para alguma delas?",
+    bot: "Trabalhamos com 6 frentes: Segurança para Eventos, Videomonitoramento 24h, Portaria/Controle de Acesso, Pentest, Resposta a Incidentes e Consultoria em Segurança. Posso te colocar em contato com nossa equipe para um orçamento.",
     options: [
-      {label:"Sim, simular orçamento", action:"goto-quote"},
+      {label:"Falar com a equipe", action:"goto-wa"},
       {label:"Voltar ao início", next:"root"},
     ]
   },
   orcamento: {
-    bot: "É simples: você responde 3 rapidinhas no nosso simulador (tipo de serviço, porte da operação e seus dados de contato) e recebemos uma estimativa na hora. Depois, um especialista confirma os detalhes com você.",
+    bot: "É simples: você fala com a gente pelo WhatsApp ou pelo formulário de contato do site contando um pouco sobre a sua necessidade, e nossa equipe já te responde com uma proposta.",
     options: [
-      {label:"Abrir simulador de orçamento", action:"goto-quote"},
+      {label:"Abrir formulário de contato", action:"goto-contact"},
       {label:"Prefiro falar no WhatsApp", action:"goto-wa"},
       {label:"Voltar ao início", next:"root"},
     ]
@@ -1490,7 +1389,6 @@ const CHAT_FLOWS = {
   ciber: {
     bot: "Sim! Fazemos pentest (red team, blue team e purple team) e resposta e recuperação de incidentes cibernéticos, com análise forense e plano de prevenção — além da segurança física.",
     options: [
-      {label:"Simular orçamento de pentest", action:"goto-quote"},
       {label:"Falar com um especialista", action:"goto-wa"},
       {label:"Voltar ao início", next:"root"},
     ]
@@ -1521,11 +1419,11 @@ function renderChatOptions(node){
     btn.addEventListener('click', ()=>{
       addChatMsg(opt.label, 'user');
       wrap.remove();
-      if(opt.action === 'goto-quote'){
-        addChatMsg("Perfeito, abrindo o simulador de orçamento para você.", 'bot');
+      if(opt.action === 'goto-contact'){
+        addChatMsg("Perfeito, abrindo o formulário de contato para você.", 'bot');
         setTimeout(()=>{
           chatPanel.classList.remove('open');
-          document.getElementById('quote').scrollIntoView({behavior:'smooth'});
+          document.getElementById('contact').scrollIntoView({behavior:'smooth'});
         }, 500);
       } else if(opt.action === 'goto-wa'){
         addChatMsg("Te chamando no WhatsApp agora.", 'bot');
@@ -1554,306 +1452,6 @@ document.getElementById('chatToggle').addEventListener('click', ()=>{
 });
 document.getElementById('chatClose').addEventListener('click', ()=>chatPanel.classList.remove('open'));
 
-/* ============================================================
-   QUOTE WIZARD
-============================================================ */
-let quoteState = {service:null, step2:{}, estimateMin:0, estimateMax:0, detailsLabel:"", note:""};
-
-document.querySelectorAll('#serviceOptions .opt-card').forEach(card=>{
-  card.addEventListener('click', ()=> selectServiceCard(card));
-});
-function selectServiceCard(card){
-  document.querySelectorAll('#serviceOptions .opt-card').forEach(c=>c.classList.remove('selected'));
-  card.classList.add('selected');
-  quoteState.service = card.dataset.value;
-  document.getElementById('toStep2').disabled = false;
-}
-function jumpToQuoteWithService(service){
-  document.getElementById('quote').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{
-    const card = document.querySelector(`#serviceOptions .opt-card[data-value="${service}"]`);
-    if(card){ selectServiceCard(card); goToQuoteStep(2); }
-  }, 550);
-}
-
-const STEP2_CONFIG = {
-  evento: {
-    title: "Detalhes do evento",
-    groups: [
-      {key:"team", label:"Quantos profissionais você imagina precisar?", options:[
-        {v:"2-5", t:"2 a 5 vigilantes", s:"Eventos pequenos"},
-        {v:"6-15", t:"6 a 15 vigilantes", s:"Eventos médios"},
-        {v:"16-40", t:"16 a 40 vigilantes", s:"Eventos grandes"},
-        {v:"40+", t:"Mais de 40 vigilantes", s:"Grande porte / múltiplos dias"},
-      ]},
-      {key:"duration", label:"Qual a duração da operação?", options:[
-        {v:"ate6", t:"Até 6 horas", s:"Evento de um turno"},
-        {v:"6-12", t:"6 a 12 horas", s:"Dia inteiro"},
-        {v:"12-24", t:"12 a 24 horas", s:"Virada / diária completa"},
-        {v:"mais24", t:"Mais de 24h", s:"Múltiplos dias"},
-      ]},
-    ]
-  },
-  monitoramento: {
-    title: "Detalhes do monitoramento",
-    groups: [
-      {key:"cameras", label:"Quantas câmeras aproximadamente?", options:[
-        {v:"1-4", t:"1 a 4 câmeras", s:"Ponto único"},
-        {v:"5-10", t:"5 a 10 câmeras", s:"Estabelecimento médio"},
-        {v:"11-25", t:"11 a 25 câmeras", s:"Instalação grande"},
-        {v:"25+", t:"Mais de 25 câmeras", s:"Múltiplas unidades"},
-      ]},
-      {key:"mode", label:"Qual modalidade?", options:[
-        {v:"remoto", t:"Monitoramento remoto 24h", s:"Central acompanha em tempo real"},
-        {v:"gravacao", t:"Gravação e armazenamento", s:"Consulta sob demanda"},
-      ]},
-    ]
-  },
-  portaria: {
-    title: "Detalhes da portaria",
-    groups: [
-      {key:"postos", label:"Quantos postos de trabalho?", options:[
-        {v:"1-2", t:"1 a 2 postos", s:""},
-        {v:"3-5", t:"3 a 5 postos", s:""},
-        {v:"6+", t:"6 ou mais postos", s:""},
-      ]},
-      {key:"regime", label:"Qual o regime de cobertura?", options:[
-        {v:"comercial", t:"Horário comercial", s:""},
-        {v:"12x36", t:"Escala 12x36", s:""},
-        {v:"24h", t:"Cobertura 24 horas", s:""},
-      ]},
-    ]
-  },
-  pentest: {
-    title: "Detalhes do pentest",
-    groups: [
-      {key:"escopo", label:"Qual o foco do teste?", options:[
-        {v:"redteam", t:"Red Team", s:"Simulação de ataque real"},
-        {v:"blueteam", t:"Blue Team", s:"Defesa e monitoramento"},
-        {v:"purpleteam", t:"Purple Team", s:"Ataque e defesa colaborativos"},
-        {v:"webapp", t:"Teste de Aplicação Web", s:"Foco em sistemas web"},
-      ]},
-      {key:"porte", label:"Quantos sistemas/ativos serão testados?", options:[
-        {v:"pequena", t:"Escopo pequeno", s:"1 a 5 ativos"},
-        {v:"media", t:"Escopo médio", s:"6 a 20 ativos"},
-        {v:"grande", t:"Escopo grande", s:"Mais de 20 ativos"},
-      ]},
-    ]
-  },
-  respostaincidentes: {
-    title: "Detalhes do atendimento",
-    groups: [
-      {key:"urgencia", label:"Qual a urgência?", options:[
-        {v:"emergencial", t:"Emergencial — sob ataque agora", s:"Atendimento imediato"},
-        {v:"preventivo", t:"Plano preventivo", s:"Preparar antes que aconteça"},
-      ]},
-      {key:"porte", label:"Qual o porte da sua empresa?", options:[
-        {v:"pequena", t:"Pequena empresa", s:""},
-        {v:"media", t:"Média empresa", s:""},
-        {v:"grande", t:"Grande empresa / indústria", s:""},
-      ]},
-    ]
-  },
-  consultoria: {
-    title: "Detalhes da consultoria",
-    groups: [
-      {key:"porte", label:"Qual o porte da sua empresa?", options:[
-        {v:"pequena", t:"Pequena empresa", s:""},
-        {v:"media", t:"Média empresa", s:""},
-        {v:"grande", t:"Grande empresa / indústria", s:""},
-      ]},
-      {key:"escopo", label:"Qual o escopo desejado?", options:[
-        {v:"pontual", t:"Diagnóstico pontual", s:"Avaliação de riscos"},
-        {v:"completo", t:"Plano completo", s:"Diagnóstico + implementação + treinamento"},
-      ]},
-    ]
-  }
-};
-
-function renderStep2(){
-  const cfg = STEP2_CONFIG[quoteState.service];
-  document.getElementById('step2Title').textContent = cfg.title;
-  const container = document.getElementById('step2Content');
-  container.innerHTML = "";
-  quoteState.step2 = {};
-  cfg.groups.forEach(group=>{
-    const label = document.createElement('div');
-    label.className = 'field';
-    label.style.marginBottom = "24px";
-    label.innerHTML = `<label>${group.label}</label>`;
-    const grid = document.createElement('div');
-    grid.className = 'option-grid';
-    group.options.forEach(opt=>{
-      const card = document.createElement('div');
-      card.className = 'opt-card';
-      card.dataset.group = group.key;
-      card.dataset.value = opt.v;
-      card.innerHTML = `<div class="opt-title">${opt.t}</div>${opt.s ? `<div class="opt-sub">${opt.s}</div>`:""}`;
-      card.addEventListener('click', ()=>{
-        container.querySelectorAll(`.opt-card[data-group="${group.key}"]`).forEach(c=>c.classList.remove('selected'));
-        card.classList.add('selected');
-        quoteState.step2[group.key] = opt.v;
-        checkStep2Complete(cfg);
-      });
-      grid.appendChild(card);
-    });
-    label.appendChild(grid);
-    container.appendChild(label);
-  });
-}
-function checkStep2Complete(cfg){
-  const complete = cfg.groups.every(g => quoteState.step2[g.key]);
-  document.getElementById('toStep3').disabled = !complete;
-}
-
-function computeEstimate(){
-  const s = quoteState.service;
-  const d = quoteState.step2;
-  let min=0, max=0, note="Valor estimado. A proposta final é confirmada após diagnóstico técnico.", detailsLabel="";
-
-  if(s === 'evento'){
-    const teamMap = {'2-5':[800,1500],'6-15':[2200,4200],'16-40':[6000,11000],'40+':[15000,28000]};
-    const durMult = {ate6:1, '6-12':1.8, '12-24':2.8, mais24:4.5};
-    const base = teamMap[d.team];
-    const mult = durMult[d.duration];
-    min = Math.round(base[0]*mult/50)*50;
-    max = Math.round(base[1]*mult/50)*50;
-    const teamLabels = {'2-5':'2 a 5 vigilantes','6-15':'6 a 15 vigilantes','16-40':'16 a 40 vigilantes','40+':'mais de 40 vigilantes'};
-    const durLabels = {ate6:'até 6h', '6-12':'6 a 12h', '12-24':'12 a 24h', mais24:'mais de 24h / múltiplos dias'};
-    detailsLabel = `${teamLabels[d.team]} · ${durLabels[d.duration]}`;
-    if(d.team === '40+') note = "Projeto de grande porte — nossa equipe fará uma proposta dedicada. " + note;
-  }
-  else if(s === 'monitoramento'){
-    const camMap = {'1-4':[600,1200],'5-10':[1400,2600],'11-25':[3000,5400],'25+':[6000,11000]};
-    const modeMult = {remoto:1, gravacao:0.6};
-    const base = camMap[d.cameras];
-    const mult = modeMult[d.mode];
-    min = Math.round(base[0]*mult/50)*50;
-    max = Math.round(base[1]*mult/50)*50;
-    note = "Valor mensal estimado. " + note;
-    const camLabels = {'1-4':'1 a 4 câmeras','5-10':'5 a 10 câmeras','11-25':'11 a 25 câmeras','25+':'mais de 25 câmeras'};
-    const modeLabels = {remoto:'monitoramento remoto 24h', gravacao:'gravação e armazenamento'};
-    detailsLabel = `${camLabels[d.cameras]} · ${modeLabels[d.mode]}`;
-  }
-  else if(s === 'portaria'){
-    const postoMap = {'1-2':[3800,7200],'3-5':[9500,17500],'6+':[19000,34000]};
-    const regimeMult = {comercial:0.6, '12x36':1, '24h':1.7};
-    const base = postoMap[d.postos];
-    const mult = regimeMult[d.regime];
-    min = Math.round(base[0]*mult/50)*50;
-    max = Math.round(base[1]*mult/50)*50;
-    note = "Valor mensal estimado. " + note;
-    const postoLabels = {'1-2':'1 a 2 postos','3-5':'3 a 5 postos','6+':'6 ou mais postos'};
-    const regimeLabels = {comercial:'horário comercial', '12x36':'escala 12x36', '24h':'cobertura 24h'};
-    detailsLabel = `${postoLabels[d.postos]} · ${regimeLabels[d.regime]}`;
-  }
-  else if(s === 'pentest'){
-    const escopoBase = {redteam:[8000,18000], blueteam:[6000,14000], purpleteam:[10000,22000], webapp:[3500,7000]};
-    const porteMult = {pequena:1, media:1.8, grande:3};
-    const base = escopoBase[d.escopo];
-    const mult = porteMult[d.porte];
-    min = Math.round(base[0]*mult/50)*50;
-    max = Math.round(base[1]*mult/50)*50;
-    const escopoLabels = {redteam:'Red Team', blueteam:'Blue Team', purpleteam:'Purple Team', webapp:'Teste de Aplicação Web'};
-    const porteLabels = {pequena:'escopo pequeno', media:'escopo médio', grande:'escopo grande'};
-    detailsLabel = `${escopoLabels[d.escopo]} · ${porteLabels[d.porte]}`;
-  }
-  else if(s === 'respostaincidentes'){
-    if(d.urgencia === 'emergencial'){
-      const emergMap = {pequena:[4000,9000], media:[9000,20000], grande:[20000,45000]};
-      [min,max] = emergMap[d.porte];
-      note = "Atendimento emergencial — nossa equipe entra em contato imediatamente. " + note;
-    } else {
-      const prevMap = {pequena:[2500,5000], media:[5000,11000], grande:[11000,25000]};
-      [min,max] = prevMap[d.porte];
-    }
-    const urgLabels = {emergencial:'emergencial', preventivo:'plano preventivo'};
-    const porteLabels = {pequena:'pequena empresa', media:'média empresa', grande:'grande empresa / indústria'};
-    detailsLabel = `${urgLabels[d.urgencia]} · ${porteLabels[d.porte]}`;
-  }
-  else if(s === 'consultoria'){
-    const porteMap = {pequena:1, media:1.8, grande:3.2};
-    const escopoMap = {pontual:1, completo:2.4};
-    const base = 3200;
-    const val = base*porteMap[d.porte]*escopoMap[d.escopo];
-    min = Math.round(val*0.85/50)*50;
-    max = Math.round(val*1.25/50)*50;
-    const porteLabels = {pequena:'pequena empresa', media:'média empresa', grande:'grande empresa / indústria'};
-    const escopoLabels = {pontual:'diagnóstico pontual', completo:'plano completo'};
-    detailsLabel = `${porteLabels[d.porte]} · ${escopoLabels[d.escopo]}`;
-  }
-  quoteState.estimateMin = min;
-  quoteState.estimateMax = max;
-  quoteState.detailsLabel = detailsLabel;
-  quoteState.note = note;
-}
-
-const serviceTitleMap = {
-  evento:'Segurança para Eventos', monitoramento:'Videomonitoramento', portaria:'Portaria / Controle de Acesso',
-  pentest:'Pentest / Teste de Invasão', respostaincidentes:'Resposta e Recuperação de Incidentes', consultoria:'Consultoria'
-};
-
-function goToQuoteStep(n){
-  document.querySelectorAll('.qstep').forEach(s=> s.classList.toggle('active', s.dataset.step === String(n)));
-  document.querySelectorAll('.qp-item').forEach(item=>{
-    const step = Number(item.dataset.step);
-    item.classList.remove('active','done');
-    if(step < n) item.classList.add('done');
-    else if(step === n) item.classList.add('active');
-  });
-  if(n === 2) renderStep2();
-  if(n === 4){
-    computeEstimate();
-    document.getElementById('resultRange').textContent = `${fmtBRL(quoteState.estimateMin)} – ${fmtBRL(quoteState.estimateMax)}`;
-    document.getElementById('resultNote').textContent = quoteState.note;
-    document.getElementById('sendLeadBtn').disabled = false;
-    document.getElementById('sendLeadBtn').textContent = "Enviar solicitação";
-    const msg = `Olá, SecPlus! Fiz uma simulação no site:%0A- Serviço: ${serviceTitleMap[quoteState.service]}%0A- Detalhes: ${quoteState.detailsLabel}%0A- Estimativa: ${fmtBRL(quoteState.estimateMin)} a ${fmtBRL(quoteState.estimateMax)}%0AGostaria de confirmar um orçamento oficial.`;
-    document.getElementById('waResultBtn').href = `https://wa.me/5527999243874?text=${msg}`;
-  }
-}
-document.getElementById('toStep2').addEventListener('click', ()=>goToQuoteStep(2));
-document.getElementById('toStep3').addEventListener('click', ()=>goToQuoteStep(3));
-document.getElementById('toStep4').addEventListener('click', ()=>goToQuoteStep(4));
-document.querySelectorAll('[data-back]').forEach(btn=>{
-  btn.addEventListener('click', ()=>goToQuoteStep(Number(btn.dataset.back)));
-});
-
-['qCompany','qContact','qPhone','qEmail'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', ()=>{
-    const filled = ['qCompany','qContact','qPhone'].every(i=>document.getElementById(i).value.trim().length>1);
-    document.getElementById('toStep4').disabled = !filled;
-  });
-});
-
-document.getElementById('sendLeadBtn').addEventListener('click', async ()=>{
-  const btn = document.getElementById('sendLeadBtn');
-  btn.disabled = true;
-  btn.textContent = "Enviando...";
-  const lead = {
-    serviceType: serviceTitleMap[quoteState.service],
-    details: quoteState.detailsLabel,
-    company: document.getElementById('qCompany').value.trim(),
-    contact: document.getElementById('qContact').value.trim(),
-    phone: document.getElementById('qPhone').value.trim(),
-    email: document.getElementById('qEmail').value.trim(),
-    notes: document.getElementById('qNotes').value.trim(),
-    estimateMin: quoteState.estimateMin,
-    estimateMax: quoteState.estimateMax,
-    status: 'novo',
-    createdAt: new Date().toISOString()
-  };
-  try{
-    await addDoc(leadsCol, lead);
-    showToast("Solicitação enviada! Nossa equipe entrará em contato em breve.");
-    btn.textContent = "Solicitação enviada ✓";
-  }catch(e){
-    console.error(e);
-    btn.disabled = false;
-    btn.textContent = "Enviar solicitação";
-    showToast("Não foi possível enviar agora. Tente pelo WhatsApp.", true);
-  }
-});
 
 document.getElementById('contactSendBtn').addEventListener('click', async ()=>{
   const name = document.getElementById('cName').value.trim();
@@ -2179,7 +1777,7 @@ function attachAdminListeners(){
       renderAdmin();
     }, err=>{
       console.error(err);
-      showToast("Erro ao carregar orçamentos.", true);
+      showToast("Erro ao carregar mensagens de contato.", true);
     });
     const aq = query(applicationsCol, orderBy('createdAt','desc'));
     applicationsUnsub = onSnapshot(aq, snap=>{
@@ -2310,17 +1908,16 @@ document.getElementById('guardFilter').addEventListener('change', renderGuardsTa
 function renderLeadsTable(){
   const filter = document.getElementById('leadFilter').value;
   let rows = leads.filter(l=> filter === 'todos' || l.status === filter);
-  document.getElementById('leadCount').textContent = `${rows.length} de ${leads.length} orçamentos`;
+  document.getElementById('leadCount').textContent = `${rows.length} de ${leads.length} mensagens`;
   const tbody = document.getElementById('leadsTableBody');
   if(rows.length === 0){
-    tbody.innerHTML = `<tr><td colspan="4" class="empty-state">Nenhuma solicitação de orçamento recebida ainda.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="3" class="empty-state">Nenhuma mensagem de contato recebida ainda.</td></tr>`;
     return;
   }
   tbody.innerHTML = rows.map(l=>`
     <tr>
-      <td>${l.company||'—'}<div class="cell-sub">${l.contact||''} · ${l.phone||''}</div></td>
-      <td>${l.serviceType}<div class="cell-sub">${l.details||''}</div></td>
-      <td>${l.estimateMax ? `${fmtBRL(l.estimateMin)} – ${fmtBRL(l.estimateMax)}` : '—'}</td>
+      <td>${l.company||l.contact||'—'}<div class="cell-sub">${l.contact||''} · ${l.phone||''}</div></td>
+      <td>${l.details||'—'}</td>
       <td>
         <select class="filter-select lead-status" data-id="${l.id}" style="padding:6px 10px; font-size:12px;">
           <option value="novo" ${l.status==='novo'?'selected':''}>Novo</option>
@@ -2334,7 +1931,7 @@ function renderLeadsTable(){
     sel.addEventListener('change', async ()=>{
       try{
         await updateDoc(doc(db,'leads',sel.dataset.id), {status: sel.value});
-        showToast("Status do orçamento atualizado.");
+        showToast("Status atualizado.");
       }catch(e){
         console.error(e);
         showToast("Não foi possível atualizar o status.", true);
