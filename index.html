@@ -3,205 +3,2012 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SecPlus | Segurança Corporativa, Eventos, Monitoramento e Cibersegurança</title>
-<meta name="description" content="Segurança para eventos, monitoramento 24h, pentest e resposta a incidentes para empresas de grande porte.">
+<title>SecPlus — Segurança para Eventos, Videomonitoramento e Cibersegurança</title>
+<meta name="description" content="SecPlus: segurança para eventos, videomonitoramento 24h, pentest, resposta a incidentes e portaria para grandes empresas. Orçamento automatizado e atendimento imediato.">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#080b12;
+  --bg-1:#0c1019;
+  --panel:#10141f;
+  --panel-2:#161c2b;
+  --panel-3:#1c2338;
+  --border:rgba(255,255,255,.08);
+  --border-strong:rgba(255,255,255,.16);
+  --blue:#2f5fc7;
+  --blue-light:#5c86e0;
+  --blue-dark:#16234a;
+  --silver:#c3cad6;
+  --silver-bright:#eef1f6;
+  --text:#eef1f6;
+  --text-muted:#93a0b8;
+  --text-faint:#5c6780;
+  --green:#3fae6a;
+  --amber:#d9a441;
+  --red:#c9463c;
+  --radius-sm:3px;
+  --radius:6px;
+  --wa-green:#25D366;
+  --ff-display:'Big Shoulders Display', sans-serif;
+  --ff-body:'IBM Plex Sans', sans-serif;
+  --ff-mono:'IBM Plex Mono', monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--ff-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--blue-light); outline-offset:2px;}
+.container{max-width:1180px; margin:0 auto; padding:0 24px;}
+.eyebrow{
+  font-family:var(--ff-mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--blue-light);
+  display:flex; align-items:center; gap:8px;
+  margin:0 0 14px;
+}
+.eyebrow::before{content:''; width:18px; height:1px; background:var(--blue-light);}
+h1,h2,h3,h4{
+  font-family:var(--ff-display);
+  font-weight:800;
+  line-height:.98;
+  margin:0;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+}
+p{margin:0;}
+.section{padding:96px 0;}
+.section-head{max-width:640px; margin-bottom:56px;}
+.section-head h2{font-size:clamp(32px,4.2vw,48px); color:var(--silver-bright);}
+.section-head .lead{margin-top:16px; color:var(--text-muted); font-size:17px; line-height:1.7;}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--ff-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase;
+  padding:15px 26px; border-radius:var(--radius-sm); border:1px solid transparent;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn-sm{padding:10px 18px; font-size:11.5px;}
+.btn-primary{background:var(--blue); color:#fff; border-color:var(--blue);}
+.btn-primary:hover{background:var(--blue-light); border-color:var(--blue-light);}
+.btn-ghost{background:transparent; color:var(--silver-bright); border-color:var(--border-strong);}
+.btn-ghost:hover{border-color:var(--blue-light); color:var(--blue-light);}
+.btn-wa{background:var(--wa-green); color:#04220f; border-color:var(--wa-green); font-weight:600;}
+.btn-wa:hover{background:#2fe077; border-color:#2fe077;}
+.btn-block{width:100%;}
+.btn:disabled{opacity:.4; cursor:not-allowed; transform:none;}
+
+/* ============ SCANLINE / TEXTURE ============ */
+.bg-grid{
+  position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(92,134,224,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92,134,224,.05) 1px, transparent 1px);
+  background-size:42px 42px;
+  mask-image:radial-gradient(ellipse 80% 60% at 60% 30%, black 20%, transparent 75%);
+}
+
+/* ============ BRAND / LOGO ============ */
+.brand-mark{height:40px; width:auto; object-fit:contain; flex:none;}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand-word{font-family:var(--ff-display); font-weight:800; font-size:22px; letter-spacing:.02em; text-transform:uppercase; line-height:1;}
+.brand-word b{color:var(--blue-light); font-weight:800;}
+.brand-tag{font-family:var(--ff-mono); font-size:9px; letter-spacing:.16em; color:var(--text-faint); text-transform:uppercase; margin-top:2px;}
+
+/* ============ HEADER ============ */
+#site-header{
+  position:sticky; top:0; z-index:200;
+  background:rgba(8,11,18,.86); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header-row{display:flex; align-items:center; justify-content:space-between; height:78px; gap:24px;}
+nav.main-nav{display:flex; align-items:center; gap:30px;}
+nav.main-nav a{font-size:14px; color:var(--text-muted); font-weight:500; transition:color .15s;}
+nav.main-nav a:hover{color:var(--silver-bright);}
+.header-actions{display:flex; align-items:center; gap:12px;}
+.header-phone{display:flex; flex-direction:column; align-items:flex-end; font-family:var(--ff-mono); font-size:12px; color:var(--text-muted); margin-right:4px;}
+.header-phone b{color:var(--silver-bright); font-size:14px;}
+.nav-toggle{display:none; background:none; border:1px solid var(--border-strong); border-radius:var(--radius-sm); width:42px; height:42px; align-items:center; justify-content:center; color:var(--silver-bright);}
+
+/* ============ STATUS STRIP ============ */
+#status-strip{
+  background:var(--panel); border-bottom:1px solid var(--border);
+  overflow:hidden; white-space:nowrap;
+}
+.status-track{display:flex; gap:48px; padding:9px 0; animation:ticker 28s linear infinite;}
+.status-track span{
+  font-family:var(--ff-mono); font-size:11.5px; letter-spacing:.08em; color:var(--text-muted);
+  display:inline-flex; align-items:center; gap:8px; text-transform:uppercase;
+}
+.status-dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(63,174,106,.18); flex:none;
+  animation:pulse-dot 2s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;} 50%{opacity:.4;}}
+@keyframes ticker{0%{transform:translateX(0);} 100%{transform:translateX(-50%);}}
+
+/* ============ HERO ============ */
+#hero{position:relative; padding:96px 0 84px; overflow:hidden; border-bottom:1px solid var(--border);}
+.hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; position:relative; z-index:2;}
+#hero h1{font-size:clamp(40px,5.6vw,68px); color:var(--silver-bright);}
+#hero h1 .accent{color:var(--blue-light);}
+.hero-lead{margin-top:22px; color:var(--text-muted); font-size:18px; max-width:520px; line-height:1.75;}
+.hero-cta{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+.hero-note{margin-top:22px; display:flex; align-items:center; gap:10px; font-family:var(--ff-mono); font-size:12px; color:var(--text-faint); letter-spacing:.04em;}
+.hero-visual{position:relative; display:flex; align-items:center; justify-content:center;}
+.logo-stage{position:relative; width:100%; max-width:360px; display:flex; align-items:center; justify-content:center;}
+.logo-glow{position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(47,95,199,.35), transparent 70%); filter:blur(10px); animation:glow-pulse 3.5s ease-in-out infinite;}
+@keyframes glow-pulse{0%,100%{opacity:.6; transform:scale(1);} 50%{opacity:1; transform:scale(1.06);}}
+.logo-stage img{position:relative; z-index:2; width:100%; max-width:320px; filter:drop-shadow(0 20px 40px rgba(0,0,0,.5)); opacity:0; animation:logo-in 1s ease forwards .2s;}
+@keyframes logo-in{from{opacity:0; transform:translateY(14px) scale(.96);} to{opacity:1; transform:translateY(0) scale(1);}}
+.scan-line{
+  position:absolute; left:10%; right:10%; height:2px; z-index:3;
+  background:linear-gradient(90deg, transparent, rgba(92,134,224,.9), transparent);
+  animation:scan 3.6s ease-in-out infinite; filter:blur(.3px);
+}
+@keyframes scan{0%{top:8%; opacity:0;} 10%{opacity:1;} 90%{opacity:1;} 100%{top:92%; opacity:0;}}
+
+/* ============ TRUST BAR ============ */
+#trust{padding:52px 0; border-bottom:1px solid var(--border); background:var(--panel);}
+.trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px;}
+.trust-item{border-left:1px solid var(--border-strong); padding-left:20px;}
+.trust-num{font-family:var(--ff-display); font-weight:800; font-size:38px; color:var(--silver-bright); display:flex; align-items:baseline; gap:4px;}
+.trust-num .unit{font-size:18px; color:var(--blue-light);}
+.trust-label{font-family:var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:6px;}
+
+/* ============ CAROUSEL ============ */
+#carousel-section{padding:90px 0 100px;}
+.carousel{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border-strong); background:var(--bg-1);}
+.carousel-track{display:flex; transition:transform .55s cubic-bezier(.65,0,.35,1);}
+.carousel-slide{flex:0 0 100%; position:relative;}
+.carousel-slide img{width:100%; display:block; aspect-ratio:1774/887; object-fit:cover;}
+.carousel-caption{position:absolute; left:0; right:0; bottom:0; padding:26px 32px; background:linear-gradient(0deg, rgba(4,6,10,.92) 5%, rgba(4,6,10,.4) 60%, transparent); display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;}
+.carousel-caption h4{font-family:var(--ff-body); font-weight:700; font-size:17px; text-transform:none; color:var(--silver-bright);}
+.carousel-caption p{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-muted); margin-top:4px; max-width:440px;}
+.carousel-arrow{position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(8,11,18,.7); border:1px solid var(--border-strong); color:var(--silver-bright); display:flex; align-items:center; justify-content:center; z-index:5; backdrop-filter:blur(4px);}
+.carousel-arrow:hover{border-color:var(--blue-light); color:var(--blue-light);}
+.carousel-arrow.prev{left:16px;} .carousel-arrow.next{right:16px;}
+.carousel-dots{display:flex; justify-content:center; gap:8px; margin-top:20px;}
+.carousel-dot{width:8px; height:8px; border-radius:50%; background:var(--border-strong); border:none; padding:0;}
+.carousel-dot.active{background:var(--blue-light); width:24px; border-radius:5px; transition:all .25s;}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);}
+.service-card{background:var(--bg-1); padding:34px 28px; display:flex; flex-direction:column; gap:16px; transition:background .2s;}
+.service-card:hover{background:var(--panel-2);}
+.service-icon{width:44px; height:44px; color:var(--blue-light);}
+.service-card h3{font-family:var(--ff-body); font-weight:700; font-size:17px; text-transform:none; letter-spacing:0; color:var(--silver-bright);}
+.service-card p{color:var(--text-muted); font-size:14.5px; line-height:1.65;}
+.service-tag{font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint); letter-spacing:.08em; text-transform:uppercase;}
+
+/* ============ DIFFERENTIALS ============ */
+#differentials{background:var(--panel);}
+.diff-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:start;}
+.diff-list{display:flex; flex-direction:column;}
+.diff-row{display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);}
+.diff-row:last-child{border-bottom:1px solid var(--border);}
+.diff-num{font-family:var(--ff-mono); font-size:12px; color:var(--blue-light); padding-top:3px; flex:none; width:28px;}
+.diff-row h4{font-family:var(--ff-body); font-weight:700; font-size:16px; text-transform:none; color:var(--silver-bright); margin-bottom:6px;}
+.diff-row p{color:var(--text-muted); font-size:14.5px;}
+.diff-panel{background:var(--bg-1); border:1px solid var(--border); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden;}
+.diff-panel::before{content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg, var(--blue), transparent);}
+.diff-panel .eyebrow{margin-bottom:20px;}
+.metric-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--border); font-family:var(--ff-mono); font-size:13px;}
+.metric-row:last-child{border-bottom:none;}
+.metric-row .val{color:var(--silver-bright); font-weight:600;}
+.metric-row .val.ok{color:var(--green);}
+
+/* ============ HOW IT WORKS ============ */
+.steps-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:28px;}
+.step-card{position:relative; padding-top:8px;}
+.step-num{font-family:var(--ff-display); font-weight:900; font-size:52px; color:transparent; -webkit-text-stroke:1.5px var(--border-strong); line-height:1;}
+.step-card h4{font-family:var(--ff-body); font-weight:700; font-size:16px; text-transform:none; color:var(--silver-bright); margin:14px 0 8px;}
+.step-card p{color:var(--text-muted); font-size:14.5px;}
+
+/* ============ QUOTE WIZARD ============ */
+#quote{background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+.quote-shell{display:grid; grid-template-columns:.85fr 1.15fr; gap:0; border:1px solid var(--border-strong); background:var(--bg-1); border-radius:var(--radius); overflow:hidden;}
+.quote-side{background:var(--panel-3); padding:44px 36px; display:flex; flex-direction:column; justify-content:space-between;}
+.quote-side-top h3{font-family:var(--ff-display); font-size:26px; color:var(--silver-bright); text-transform:uppercase;}
+.quote-side-top p{color:var(--text-muted); font-size:14.5px; margin-top:14px; line-height:1.7;}
+.quote-progress{display:flex; flex-direction:column; gap:14px; margin-top:32px;}
+.qp-item{display:flex; align-items:center; gap:12px; font-family:var(--ff-mono); font-size:12.5px; color:var(--text-faint);}
+.qp-dot{width:22px; height:22px; border-radius:50%; border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:11px; flex:none; transition:all .2s;}
+.qp-item.active .qp-dot{background:var(--blue); border-color:var(--blue); color:#fff;}
+.qp-item.done .qp-dot{background:var(--green); border-color:var(--green); color:#04220f;}
+.qp-item.active{color:var(--silver-bright);}
+.qp-item.done{color:var(--text-muted);}
+.quote-body{padding:44px; min-height:420px; display:flex; flex-direction:column;}
+.qstep{display:none; flex:1; flex-direction:column;}
+.qstep.active{display:flex;}
+.qstep h4{font-family:var(--ff-body); font-weight:700; font-size:18px; text-transform:none; color:var(--silver-bright); margin-bottom:22px;}
+.option-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.opt-card{border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:18px; cursor:pointer; transition:all .15s; background:var(--panel-2);}
+.opt-card:hover{border-color:var(--blue-light);}
+.opt-card.selected{border-color:var(--blue-light); background:rgba(92,134,224,.1); box-shadow:inset 0 0 0 1px var(--blue-light);}
+.opt-card .opt-title{font-weight:600; font-size:14.5px; color:var(--silver-bright);}
+.opt-card .opt-sub{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint); margin-top:4px;}
+.field{margin-bottom:18px;}
+.field label{display:block; font-family:var(--ff-mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-faint); margin-bottom:8px;}
+.field input, .field textarea, .field select{
+  width:100%; background:var(--panel-2); border:1px solid var(--border-strong); border-radius:var(--radius-sm);
+  color:var(--silver-bright); padding:12px 14px; font-family:var(--ff-body); font-size:14.5px;
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--blue-light);}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.qstep-actions{display:flex; justify-content:space-between; margin-top:auto; padding-top:28px;}
+.result-box{background:var(--panel-2); border:1px solid var(--border-strong); border-radius:var(--radius); padding:26px; margin-bottom:20px;}
+.result-range{font-family:var(--ff-display); font-weight:800; font-size:34px; color:var(--silver-bright);}
+.result-note{font-family:var(--ff-mono); font-size:12px; color:var(--text-faint); margin-top:10px; line-height:1.6;}
+.result-actions{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap;}
+
+/* ============ TESTIMONIALS ============ */
+.test-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.test-card{border:1px solid var(--border); border-radius:var(--radius); padding:28px; background:var(--bg-1);}
+.test-quote{color:var(--silver); font-size:15px; line-height:1.75; font-style:normal;}
+.test-quote::before{content:'“'; color:var(--blue-light); font-family:var(--ff-display); font-size:28px;}
+.test-foot{display:flex; align-items:center; gap:12px; margin-top:20px; padding-top:16px; border-top:1px solid var(--border);}
+.test-avatar{width:38px; height:38px; border-radius:50%; background:var(--blue-dark); display:flex; align-items:center; justify-content:center; font-family:var(--ff-mono); font-size:13px; color:var(--blue-light); flex:none;}
+.test-name{font-size:13.5px; font-weight:600; color:var(--silver-bright);}
+.test-role{font-family:var(--ff-mono); font-size:11px; color:var(--text-faint);}
+
+/* ============ CONTACT ============ */
+#contact{background:var(--panel);}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+.contact-list{display:flex; flex-direction:column; gap:0;}
+.contact-item{display:flex; gap:16px; padding:20px 0; border-top:1px solid var(--border);}
+.contact-item:last-child{border-bottom:1px solid var(--border);}
+.contact-item .ic{width:22px; height:22px; color:var(--blue-light); flex:none; margin-top:2px;}
+.contact-item h5{font-family:var(--ff-body); font-size:14px; font-weight:700; text-transform:none; color:var(--silver-bright); margin-bottom:4px;}
+.contact-item p{color:var(--text-muted); font-size:14px;}
+.contact-item a{color:var(--blue-light);}
+.contact-form{background:var(--bg-1); border:1px solid var(--border-strong); border-radius:var(--radius); padding:36px;}
+
+/* ============ FOOTER ============ */
+footer{padding:48px 0 34px; border-top:1px solid var(--border);}
+.footer-row{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
+.footer-brand{display:flex; align-items:center; gap:10px;}
+.footer-brand .brand-mark{height:28px;}
+.footer-links{display:flex; gap:26px; flex-wrap:wrap;}
+.footer-links a{font-size:13px; color:var(--text-muted);}
+.footer-links a:hover{color:var(--silver-bright);}
+.footer-bottom{margin-top:34px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--ff-mono); font-size:11px; color:var(--text-faint);}
+.footer-bottom a{color:var(--text-faint);}
+.footer-bottom a:hover{color:var(--blue-light);}
+
+/* ============ FLOATING BUTTONS ============ */
+#float-stack{position:fixed; right:22px; bottom:22px; z-index:500; display:flex; flex-direction:column; align-items:flex-end; gap:14px;}
+.fab{
+  width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.4); border:none; position:relative;
+}
+.fab-wa{background:var(--wa-green); color:#04220f;}
+.fab-wa::after{content:''; position:absolute; inset:-4px; border-radius:50%; border:2px solid var(--wa-green); opacity:.5; animation:ring 2.2s ease-out infinite;}
+@keyframes ring{0%{transform:scale(.9); opacity:.6;} 100%{transform:scale(1.35); opacity:0;}}
+.fab-chat{background:var(--blue); color:#fff;}
+.fab svg{width:26px; height:26px;}
+
+/* ============ CHAT WIDGET ============ */
+#chat-panel{
+  position:fixed; right:22px; bottom:96px; z-index:499; width:340px; max-width:calc(100vw - 44px);
+  background:var(--panel-3); border:1px solid var(--border-strong); border-radius:var(--radius);
+  box-shadow:0 20px 50px rgba(0,0,0,.5); display:none; flex-direction:column; overflow:hidden; max-height:70vh;
+}
+#chat-panel.open{display:flex;}
+.chat-head{background:var(--blue-dark); padding:16px 18px; display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--border);}
+.chat-head-dot{width:8px; height:8px; border-radius:50%; background:var(--green);}
+.chat-head b{font-size:13.5px; color:var(--silver-bright);}
+.chat-head span{display:block; font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint);}
+.chat-close{margin-left:auto; background:none; border:none; color:var(--text-muted); width:26px; height:26px;}
+.chat-body{padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; flex:1;}
+.chat-msg{max-width:85%; padding:10px 13px; border-radius:10px; font-size:13.5px; line-height:1.55;}
+.chat-msg.bot{background:var(--panel-2); color:var(--silver); align-self:flex-start; border-bottom-left-radius:2px;}
+.chat-msg.user{background:var(--blue); color:#fff; align-self:flex-end; border-bottom-right-radius:2px;}
+.chat-options{display:flex; flex-direction:column; gap:8px; margin-top:4px;}
+.chat-opt-btn{
+  text-align:left; background:var(--panel-2); border:1px solid var(--border-strong); color:var(--silver-bright);
+  border-radius:var(--radius-sm); padding:10px 12px; font-size:13px;
+}
+.chat-opt-btn:hover{border-color:var(--blue-light); color:var(--blue-light);}
+.chat-foot{padding:12px 16px; border-top:1px solid var(--border);}
+
+/* ============ ADMIN SYSTEM ============ */
+#admin-view{display:none; min-height:100vh; background:var(--bg);}
+#admin-view.open{display:block;}
+#public-view.hidden{display:none;}
+.admin-login{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;}
+.login-card{width:100%; max-width:400px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); padding:40px;}
+.login-card .brand-mark{height:44px;}
+.login-card h3{font-size:22px; margin:22px 0 6px; color:var(--silver-bright);}
+.login-card p.sub{color:var(--text-muted); font-size:13.5px; margin-bottom:26px;}
+.login-error{color:var(--red); font-family:var(--ff-mono); font-size:12px; margin-top:10px; display:none;}
+.login-hint{margin-top:18px; font-family:var(--ff-mono); font-size:11px; color:var(--text-faint); line-height:1.7; border-top:1px solid var(--border); padding-top:16px;}
+
+.admin-shell{display:grid; grid-template-columns:240px 1fr; min-height:100vh;}
+.admin-sidebar{background:var(--panel); border-right:1px solid var(--border); padding:26px 0; display:flex; flex-direction:column;}
+.admin-sidebar .brand{padding:0 22px 24px; border-bottom:1px solid var(--border); margin-bottom:18px;}
+.admin-sidebar .brand-mark{height:32px;}
+.admin-nav{display:flex; flex-direction:column; gap:2px; padding:0 12px;}
+.admin-nav button{
+  display:flex; align-items:center; gap:12px; text-align:left; background:none; border:none; color:var(--text-muted);
+  padding:12px 14px; border-radius:var(--radius-sm); font-size:14px; font-weight:500;
+}
+.admin-nav button svg{width:18px; height:18px; flex:none;}
+.admin-nav button:hover{background:var(--panel-2); color:var(--silver-bright);}
+.admin-nav button.active{background:var(--blue-dark); color:var(--silver-bright);}
+.admin-sidebar-foot{margin-top:auto; padding:0 22px;}
+.admin-sidebar-foot .who{font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint); margin-bottom:10px; word-break:break-all;}
+.admin-sidebar-foot button{color:var(--text-faint); font-family:var(--ff-mono); font-size:12px; display:flex; align-items:center; gap:8px; background:none; border:none; padding:10px 0;}
+.admin-sidebar-foot button:hover{color:var(--red);}
+.admin-main{padding:34px 40px; overflow-x:hidden;}
+.admin-topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:30px; flex-wrap:wrap; gap:16px;}
+.admin-topbar h2{font-size:26px; color:var(--silver-bright); text-transform:uppercase;}
+.admin-topbar p{color:var(--text-muted); font-size:13.5px; margin-top:6px;}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+
+.kpi-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:32px;}
+.kpi-card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px;}
+.kpi-num{font-family:var(--ff-display); font-weight:800; font-size:30px; color:var(--silver-bright);}
+.kpi-label{font-family:var(--ff-mono); font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-top:6px;}
+.kpi-card.k-green .kpi-num{color:var(--green);}
+.kpi-card.k-amber .kpi-num{color:var(--amber);}
+.kpi-card.k-red .kpi-num{color:var(--red);}
+
+.toolbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:12px; flex-wrap:wrap;}
+.toolbar-left{display:flex; gap:10px; flex-wrap:wrap;}
+.search-input{background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:10px 14px; color:var(--silver-bright); font-size:13.5px; min-width:220px;}
+.filter-select{background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:10px 14px; color:var(--silver-bright); font-size:13.5px;}
+
+.data-table{width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+.data-table th{
+  text-align:left; font-family:var(--ff-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--text-faint); padding:14px 16px; border-bottom:1px solid var(--border-strong); background:var(--panel-2);
+}
+.data-table td{padding:14px 16px; border-bottom:1px solid var(--border); font-size:13.5px; color:var(--silver-bright); vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(92,134,224,.04);}
+.cell-sub{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint); margin-top:3px;}
+.pill{display:inline-flex; align-items:center; gap:6px; font-family:var(--ff-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; padding:5px 10px; border-radius:20px; border:1px solid transparent;}
+.pill-dot{width:6px; height:6px; border-radius:50%;}
+.pill-valido{background:rgba(63,174,106,.12); color:var(--green); border-color:rgba(63,174,106,.3);}
+.pill-valido .pill-dot{background:var(--green);}
+.pill-vencendo{background:rgba(217,164,65,.12); color:var(--amber); border-color:rgba(217,164,65,.3);}
+.pill-vencendo .pill-dot{background:var(--amber);}
+.pill-vencido{background:rgba(201,70,60,.12); color:var(--red); border-color:rgba(201,70,60,.3);}
+.pill-vencido .pill-dot{background:var(--red);}
+.pill-sem{background:rgba(92,134,224,.1); color:var(--blue-light); border-color:rgba(92,134,224,.28);}
+.pill-sem .pill-dot{background:var(--blue-light);}
+.row-actions{display:flex; gap:8px;}
+.icon-btn{background:none; border:1px solid var(--border-strong); border-radius:var(--radius-sm); width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:var(--text-muted);}
+.icon-btn:hover{color:var(--silver-bright); border-color:var(--blue-light);}
+.icon-btn svg{width:14px; height:14px;}
+.empty-state{padding:60px 20px; text-align:center; color:var(--text-faint); font-family:var(--ff-mono); font-size:13px;}
+
+/* Modal */
+.modal-overlay{position:fixed; inset:0; background:rgba(5,7,12,.7); backdrop-filter:blur(3px); z-index:600; display:none; align-items:center; justify-content:center; padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{width:100%; max-width:560px; background:var(--panel); border:1px solid var(--border-strong); border-radius:var(--radius); max-height:90vh; overflow-y:auto;}
+.modal-head{display:flex; justify-content:space-between; align-items:center; padding:22px 26px; border-bottom:1px solid var(--border);}
+.modal-head h3{font-size:18px; text-transform:uppercase; color:var(--silver-bright);}
+.modal-body{padding:26px;}
+.toggle-row{display:flex; align-items:center; justify-content:space-between; background:var(--panel-2); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:14px 16px; margin-bottom:18px;}
+.toggle-row span{font-size:14px; color:var(--silver-bright); font-weight:500;}
+.switch{position:relative; width:44px; height:24px; flex:none;}
+.switch input{opacity:0; width:0; height:0;}
+.switch .slider{position:absolute; inset:0; background:var(--border-strong); border-radius:20px; transition:.2s; cursor:pointer;}
+.switch .slider::before{content:''; position:absolute; width:18px; height:18px; left:3px; top:3px; background:var(--text); border-radius:50%; transition:.2s;}
+.switch input:checked + .slider{background:var(--blue);}
+.switch input:checked + .slider::before{transform:translateX(20px); background:#fff;}
+.course-fields{display:none; flex-direction:column; gap:0;}
+.course-fields.show{display:flex;}
+.modal-foot{display:flex; justify-content:flex-end; gap:12px; padding:20px 26px; border-top:1px solid var(--border);}
+.status-preview{margin-top:4px;}
+
+.toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--panel-3); border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:14px 22px; font-size:13.5px; color:var(--silver-bright); z-index:700; transition:transform .3s ease; display:flex; align-items:center; gap:10px; box-shadow:0 10px 30px rgba(0,0,0,.4); max-width:90vw;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast .dot{width:8px; height:8px; border-radius:50%; background:var(--green); flex:none;}
+.toast.error .dot{background:var(--red);}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 980px){
+  nav.main-nav{display:none;}
+  .nav-toggle{display:flex;}
+  .header-phone{display:none;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{order:-1; max-width:260px; margin:0 auto;}
+  .trust-grid{grid-template-columns:repeat(2,1fr); row-gap:24px;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .diff-grid{grid-template-columns:1fr; gap:36px;}
+  .steps-grid{grid-template-columns:repeat(2,1fr); row-gap:32px;}
+  .quote-shell{grid-template-columns:1fr;}
+  .quote-side{padding:32px 26px;}
+  .quote-body{padding:28px 22px;}
+  .test-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr; gap:36px;}
+  .admin-shell{grid-template-columns:1fr;}
+  .admin-sidebar{display:none;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .option-grid{grid-template-columns:1fr;}
+  .field-row{grid-template-columns:1fr;}
+  .carousel-caption{flex-direction:column; align-items:flex-start;}
+}
+@media (max-width:560px){
+  .section{padding:64px 0;}
+  .services-grid{grid-template-columns:1fr;}
+  .trust-grid{grid-template-columns:1fr;}
+  .data-table{font-size:12px;}
+  .carousel-slide img{aspect-ratio:4/5; object-position:top;}
+}
+</style>
 </head>
 <body>
 
-<header>
-  <nav class="wrap">
-    <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="SecPlus"></a>
-    <div class="nav-links" id="nav-links">
-      <a href="index.html" data-page="index.html">Início</a>
-      <div class="has-dropdown" onclick="toggleDropdown(this)">
-        <a href="#" style="cursor:default;">Serviços ▾</a>
-        <div class="dropdown">
-          <a href="servico-eventos.html">Segurança para Eventos</a>
-          <a href="servico-monitoramento.html">Monitoramento e Vigilância</a>
-          <a href="servico-pentest.html">Pentest</a>
-          <a href="servico-resposta-incidentes.html">Resposta a Incidentes</a>
-        </div>
+<!-- ============================================================ PUBLIC SITE ============================================================ -->
+<div id="public-view">
+
+<header id="site-header">
+  <div class="container header-row">
+    <a href="#hero" class="brand" aria-label="SecPlus — início">
+      <img class="brand-mark" src="assets/logo.png" alt="SecPlus">
+      <div>
+        <div class="brand-word">Sec<b>Plus</b></div>
+        <div class="brand-tag">Inteligência · Proteção</div>
       </div>
-      <a href="orcamento.html" data-page="orcamento.html">Orçamento</a>
-      <a href="contato.html" data-page="contato.html">Contato</a>
-      <a href="sistema.html" data-page="sistema.html">Área Interna</a>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#services">Serviços</a>
+      <a href="#differentials">Diferenciais</a>
+      <a href="#how">Como Funciona</a>
+      <a href="#quote">Orçamento</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <div class="header-phone">
+        <span>Central de atendimento</span>
+        <b>(27) 99924-3874</b>
+      </div>
+      <a class="btn btn-primary" href="#quote">Solicitar Orçamento</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
-    <div class="nav-cta">
-      <a href="https://wa.me/5527999243874" target="_blank" class="btn btn-wa btn-sm">WhatsApp</a>
-      <a href="orcamento.html" class="btn btn-primary btn-sm">Solicitar orçamento</a>
-      <button class="mobile-toggle" onclick="toggleMobileNav()">☰</button>
-    </div>
-  </nav>
+  </div>
+  <div id="mobileNav" style="display:none; border-top:1px solid var(--border); padding:16px 24px; flex-direction:column; gap:14px;">
+    <a href="#services">Serviços</a>
+    <a href="#differentials">Diferenciais</a>
+    <a href="#how">Como Funciona</a>
+    <a href="#quote">Orçamento</a>
+    <a href="#contact">Contato</a>
+    <a href="#" style="color:var(--text-faint); font-family:var(--ff-mono); font-size:12px;" id="mobileAdminLink">Área Restrita</a>
+  </div>
 </header>
 
-<section class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <div class="carousel-slide"><a href="servico-resposta-incidentes.html"><img src="assets/banner-resposta.png" alt="Resposta e Recuperação de Incidentes"></a></div>
-    <div class="carousel-slide"><a href="servico-pentest.html"><img src="assets/banner-pentest.png" alt="Pentest — Teste de Invasão"></a></div>
-    <div class="carousel-slide"><a href="servico-eventos.html"><img src="assets/banner-eventos.png" alt="Segurança para Eventos"></a></div>
-    <div class="carousel-slide"><a href="servico-monitoramento.html"><img src="assets/banner-monitoramento.png" alt="Monitoramento e Vigilância"></a></div>
+<div id="status-strip">
+  <div class="status-track">
+    <span><span class="status-dot"></span>OPERAÇÃO ATIVA</span>
+    <span>MONITORAMENTO 24H / 7D</span>
+    <span>TEMPO MÉDIO DE RESPOSTA: 12 MIN</span>
+    <span>EQUIPES CERTIFICADAS EM CAMPO</span>
+    <span>SEGURANÇA FÍSICA + CIBERSEGURANÇA</span>
+    <span><span class="status-dot"></span>OPERAÇÃO ATIVA</span>
+    <span>MONITORAMENTO 24H / 7D</span>
+    <span>TEMPO MÉDIO DE RESPOSTA: 12 MIN</span>
+    <span>EQUIPES CERTIFICADAS EM CAMPO</span>
+    <span>SEGURANÇA FÍSICA + CIBERSEGURANÇA</span>
   </div>
-  <button class="carousel-arrow prev" onclick="carouselMove(-1)" aria-label="Anterior">‹</button>
-  <button class="carousel-arrow next" onclick="carouselMove(1)" aria-label="Próximo">›</button>
-  <div class="carousel-nav" id="carousel-nav"></div>
-</section>
+</div>
 
-<section class="hero-strip">
-  <div class="wrap">
+<!-- HERO -->
+<section id="hero">
+  <div class="bg-grid"></div>
+  <div class="container hero-grid">
     <div>
-      <h1>Segurança de nível corporativo, do evento à infraestrutura digital.</h1>
-      <p>A SecPlus reúne em uma só empresa a segurança física — eventos, monitoramento e portaria — e a segurança digital — pentest e resposta a incidentes — para empresas que não podem parar.</p>
-      <div class="hero-actions" style="margin-top:22px;">
-        <a href="orcamento.html" class="btn btn-primary">Solicitar orçamento automatizado</a>
-        <a href="https://wa.me/5527999243874" target="_blank" class="btn btn-wa">Falar agora no WhatsApp</a>
+      <div class="eyebrow">Segurança corporativa, eventos &amp; cibersegurança</div>
+      <h1>Proteção em tempo integral.<br><span class="accent">Visão em tempo real.</span></h1>
+      <p class="hero-lead">A SecPlus planeja e opera a segurança de eventos, o videomonitoramento e a cibersegurança de grandes empresas, com equipes certificadas, central de operações própria e atendimento ativo 24 horas por dia, todos os dias.</p>
+      <div class="hero-cta">
+        <a href="#quote" class="btn btn-primary">Solicitar Orçamento</a>
+        <a href="https://wa.me/5527999243874?text=Ol%C3%A1%2C%20SecPlus!%20Gostaria%20de%20falar%20sobre%20seguran%C3%A7a%20para%20minha%20empresa." target="_blank" rel="noopener" class="btn btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.94.94-3.05-.2-.32a8.15 8.15 0 0 1-1.26-4.38c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.41a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="hero-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Resposta a solicitações em até 15 minutos, inclusive fora do horário comercial
       </div>
     </div>
-    <div class="hero-stats" style="border-top:none; margin-top:0; padding-top:0;">
-      <div class="hero-stat"><b>12+</b><span>Anos de operação</span></div>
-      <div class="hero-stat"><b>180+</b><span>Vigilantes certificados</span></div>
-      <div class="hero-stat"><b>500+</b><span>Eventos protegidos</span></div>
-      <div class="hero-stat"><b>24/7</b><span>Central de monitoramento</span></div>
+    <div class="hero-visual">
+      <div class="logo-stage">
+        <div class="logo-glow"></div>
+        <img src="assets/logo.png" alt="SecPlus — Inteligência, Proteção, Tecnologia">
+        <div class="scan-line"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="circuit"><svg viewBox="0 0 1200 26" preserveAspectRatio="none"><path d="M0 13 H200 L220 3 H400 L420 23 H700 L720 13 H900 L920 3 H1200" stroke="#38d0f0" stroke-width="1.5" fill="none"/><circle cx="220" cy="3" r="3" fill="#38d0f0"/><circle cx="420" cy="23" r="3" fill="#38d0f0"/><circle cx="920" cy="3" r="3" fill="#38d0f0"/></svg></div>
+<!-- TRUST BAR -->
+<section id="trust">
+  <div class="container trust-grid">
+    <div class="trust-item">
+      <div class="trust-num">12<span class="unit">anos</span></div>
+      <div class="trust-label">De atuação no mercado</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">400<span class="unit">+</span></div>
+      <div class="trust-label">Eventos corporativos protegidos</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">24<span class="unit">/7</span></div>
+      <div class="trust-label">Central de operações ativa</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">98<span class="unit">%</span></div>
+      <div class="trust-label">Contratos renovados ano a ano</div>
+    </div>
+  </div>
+</section>
 
-<section class="section" id="servicos">
-  <div class="wrap">
+<!-- CAROUSEL -->
+<section id="carousel-section">
+  <div class="container">
     <div class="section-head">
-      <div class="eyebrow">Nossas frentes</div>
-      <h2>Quatro operações, um único parceiro</h2>
-      <p>Escolha a frente de proteção que sua empresa precisa agora — cada uma com equipe, protocolo e orçamento próprios.</p>
+      <div class="eyebrow">Soluções em destaque</div>
+      <h2>Cada frente, uma operação dedicada</h2>
+      <p class="lead">Da proteção física à cibersegurança, cada solução SecPlus é conduzida por uma equipe especializada nesse tema.</p>
     </div>
+    <div class="carousel" id="carousel" tabindex="0" aria-label="Carrossel de soluções SecPlus">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide">
+          <img src="assets/bannerdesastres.jpg" alt="Resposta e Recuperação de Incidentes" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Resposta e Recuperação de Incidentes</h4><p>Atuamos rapidamente para conter, neutralizar e recuperar sua operação após ataques ou incidentes de segurança.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="respostaincidentes">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannerepentest.jpg" alt="Pentest — Teste de Invasão" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Pentest — Teste de Invasão</h4><p>Descubra vulnerabilidades antes que os atacantes descubram, com simulações reais de ataque.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="pentest">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannereventos.jpg" alt="Segurança para Eventos" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Segurança para Eventos</h4><p>Planejamento, prevenção e execução para eventos seguros e bem-sucedidos do início ao fim.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="evento">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannermonitoramentoevigilancia.jpg" alt="Monitoramento e Vigilância" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Monitoramento e Vigilância</h4><p>Monitoramos 24h por dia, 7 dias por semana. Ao identificar ocorrência suspeita, acionamos a polícia imediatamente.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="monitoramento">Solicitar Orçamento</button>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Slide anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button class="carousel-arrow next" id="carouselNext" aria-label="Próximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">O que fazemos</div>
+      <h2>Segurança pensada para operações de grande porte</h2>
+      <p class="lead">Da portaria ao centro de operações, e da proteção física à cibersegurança — cada frente é planejada, documentada e auditável.</p>
+    </div>
+  </div>
+  <div class="container" style="padding:0 24px;">
     <div class="services-grid">
-      <a class="service-card" href="servico-eventos.html">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2 20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z"/></svg>
-        <h3>Segurança para Eventos</h3>
-        <p>Planejamento, controle de acesso e equipe treinada para eventos corporativos de qualquer porte.</p>
-        <span class="card-link">Ver detalhes →</span>
-      </a>
-      <a class="service-card" href="servico-monitoramento.html">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="14" height="10" rx="1"/><path d="M17 9 L21 6 V16 L17 13"/></svg>
-        <h3>Monitoramento e Vigilância</h3>
-        <p>Central própria 24h com câmeras inteligentes, análise com IA e acionamento imediato da polícia.</p>
-        <span class="card-link">Ver detalhes →</span>
-      </a>
-      <a class="service-card" href="servico-pentest.html">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15 14"/></svg>
-        <h3>Pentest</h3>
-        <p>Testes de invasão em aplicações, redes, nuvem e mobilidade para encontrar falhas antes dos atacantes.</p>
-        <span class="card-link">Ver detalhes →</span>
-      </a>
-      <a class="service-card" href="servico-resposta-incidentes.html">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 21 V9 L12 3 L20 9 V21 Z"/><path d="M9 21 V13 H15 V21"/></svg>
-        <h3>Resposta a Incidentes</h3>
-        <p>Contenção, recuperação e análise forense para quando cada segundo conta após um ataque.</p>
-        <span class="card-link">Ver detalhes →</span>
-      </a>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 20 6v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="service-tag">Eventos</span>
+        <h3>Segurança para Eventos Corporativos</h3>
+        <p>Planejamento, dimensionamento de equipe e operação completa para congressos, feiras, lançamentos e grandes públicos.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="m16 9 5-3v12l-5-3z"/></svg>
+        <span class="service-tag">Monitoramento</span>
+        <h3>Videomonitoramento 24 Horas</h3>
+        <p>Central própria acompanhando câmeras em tempo real, com alertas inteligentes e acionamento imediato da polícia.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>
+        <span class="service-tag">Acesso</span>
+        <h3>Portaria e Controle de Acesso</h3>
+        <p>Recepção, credenciamento de visitantes e fornecedores, controle de catracas e integração com sua política de segurança.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 9 4v6c0 5.5-3.8 9.7-9 11-5.2-1.3-9-5.5-9-11V6z"/><path d="m9.5 12.5 1.8 1.8 3.7-4.1"/></svg>
+        <span class="service-tag">Cibersegurança</span>
+        <h3>Pentest — Teste de Invasão</h3>
+        <p>Red team, blue team e purple team para identificar vulnerabilidades em redes, aplicações e ambientes cloud antes dos atacantes.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <span class="service-tag">Cibersegurança</span>
+        <h3>Resposta e Recuperação de Incidentes</h3>
+        <p>Contenção, neutralização e recuperação de operações após ataques cibernéticos, com análise forense e plano de prevenção.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11H3v10h6z"/><path d="M21 3h-6a2 2 0 0 0-2 2v16h8V5a2 2 0 0 0-2-2z"/></svg>
+        <span class="service-tag">Consultoria</span>
+        <h3>Consultoria em Segurança Corporativa</h3>
+        <p>Diagnóstico de riscos, plano de contingência e capacitação de equipes internas para elevar seu padrão de segurança.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<section class="section" id="diferenciais">
-  <div class="wrap diff-wrap">
-    <div>
-      <div class="section-head" style="margin-bottom:36px;">
+<!-- DIFFERENTIALS -->
+<section id="differentials" class="section">
+  <div class="container">
+    <div class="diff-grid">
+      <div>
         <div class="eyebrow">Por que a SecPlus</div>
-        <h2>Feito para empresas que exigem rastreabilidade</h2>
+        <h2 style="font-size:clamp(28px,3.6vw,38px); color:var(--silver-bright); margin-bottom:28px;">O padrão que grandes empresas exigem</h2>
+        <div class="diff-list">
+          <div class="diff-row">
+            <span class="diff-num">01</span>
+            <div><h4>Equipe verificada e com curso em dia</h4><p>Todo vigilante é cadastrado em nosso sistema interno, com validade de curso monitorada — sem surpresas em auditoria.</p></div>
+          </div>
+          <div class="diff-row">
+            <span class="diff-num">02</span>
+            <div><h4>Central de operações própria</h4><p>Monitoramento e despacho feitos por equipe SecPlus, sem terceirização da inteligência da operação.</p></div>
+          </div>
+          <div class="diff-row">
+            <span class="diff-num">03</span>
+            <div><h4>Segurança física e digital sob o mesmo teto</h4><p>Da portaria ao pentest, sua operação é protegida de ponta a ponta por um único parceiro.</p></div>
+          </div>
+          <div class="diff-row">
+            <span class="diff-num">04</span>
+            <div><h4>Atendimento e orçamento ágeis</h4><p>Resposta imediata por WhatsApp, chat automatizado no site e orçamento gerado em minutos.</p></div>
+          </div>
+        </div>
       </div>
-      <div class="diff-list">
-        <div class="diff-item"><span class="num">01</span><div><h4>Equipe 100% documentada</h4><p>Cada vigilante alocado é cadastrado no nosso sistema interno com dados pessoais, contato e situação do curso de formação.</p></div></div>
-        <div class="diff-item"><span class="num">02</span><div><h4>Curso de vigilante monitorado</h4><p>Acompanhamos a validade do curso de cada profissional e sinalizamos com antecedência qualquer vencimento.</p></div></div>
-        <div class="diff-item"><span class="num">03</span><div><h4>Segurança física e digital juntas</h4><p>Da portaria do seu evento ao pentest da sua aplicação, um único parceiro cobre a operação inteira.</p></div></div>
-        <div class="diff-item"><span class="num">04</span><div><h4>Orçamento e atendimento em minutos</h4><p>Simulador de orçamento e atendimento automatizado no próprio site, com encaminhamento direto para um especialista via WhatsApp.</p></div></div>
+      <div class="diff-panel">
+        <div class="eyebrow" style="margin-bottom:18px;">Painel de operação — amostra</div>
+        <div class="metric-row"><span>Vigilantes com curso válido</span><span class="val ok">Monitorado em tempo real</span></div>
+        <div class="metric-row"><span>Alertas de curso a vencer</span><span class="val">Aviso automático em 30 dias</span></div>
+        <div class="metric-row"><span>Cadastro completo do profissional</span><span class="val">Nome, telefone, endereço, função</span></div>
+        <div class="metric-row"><span>Profissionais sem curso</span><span class="val">Identificados e sinalizados</span></div>
+        <div class="metric-row"><span>Central de operações</span><span class="val ok">Ativa 24h / 7d</span></div>
+        <p style="margin-top:22px; color:var(--text-muted); font-size:13px; line-height:1.7;">Todo o quadro de vigilantes da SecPlus é gerido por um sistema próprio de controle de escala e conformidade, com dados protegidos em nuvem.</p>
       </div>
     </div>
-    <div class="diff-panel">
-      <h3>Indicadores de operação</h3>
-      <ul>
-        <li>Vigilantes com curso válido <b>92%</b></li>
-        <li>Tempo médio de resposta a alerta <b>&lt; 3 min</b></li>
-        <li>Uptime da central de monitoramento <b>99.9%</b></li>
-        <li>Clientes corporativos ativos <b>40+</b></li>
-        <li>Eventos de grande porte por ano <b>60+</b></li>
-      </ul>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Processo</div>
+      <h2>Do primeiro contato à operação ativa</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><h4>Contato inicial</h4><p>Você fala com a gente pelo WhatsApp, chat do site ou formulário de orçamento — em poucos minutos, uma resposta.</p></div>
+      <div class="step-card"><div class="step-num">02</div><h4>Diagnóstico técnico</h4><p>Entendemos o porte da operação, local, riscos e necessidades específicas do seu evento ou empresa.</p></div>
+      <div class="step-card"><div class="step-num">03</div><h4>Proposta e orçamento</h4><p>Você recebe uma proposta objetiva, com escopo, equipe dimensionada e valores claros.</p></div>
+      <div class="step-card"><div class="step-num">04</div><h4>Operação e monitoramento</h4><p>Equipe mobilizada e/ou monitoramento ativo, com acompanhamento contínuo da central SecPlus.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE WIZARD -->
+<section id="quote" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Orçamento automatizado</div>
+      <h2>Monte sua estimativa agora mesmo</h2>
+      <p class="lead">Responda algumas perguntas rápidas e receba uma faixa de investimento referencial. Sem compromisso — depois disso, um especialista confirma os detalhes com você.</p>
+    </div>
+
+    <div class="quote-shell">
+      <div class="quote-side">
+        <div class="quote-side-top">
+          <h3>Simulador SecPlus</h3>
+          <p>Leva menos de 1 minuto. Ao final, você pode enviar sua solicitação direto para nossa equipe ou continuar a conversa no WhatsApp.</p>
+        </div>
+        <div class="quote-progress" id="quoteProgress">
+          <div class="qp-item active" data-step="1"><span class="qp-dot">1</span> Tipo de serviço</div>
+          <div class="qp-item" data-step="2"><span class="qp-dot">2</span> Detalhes da operação</div>
+          <div class="qp-item" data-step="3"><span class="qp-dot">3</span> Seus dados</div>
+          <div class="qp-item" data-step="4"><span class="qp-dot">4</span> Estimativa</div>
+        </div>
+      </div>
+
+      <div class="quote-body">
+        <!-- STEP 1 -->
+        <div class="qstep active" data-step="1">
+          <h4>Qual serviço você precisa?</h4>
+          <div class="option-grid" id="serviceOptions">
+            <div class="opt-card" data-value="evento"><div class="opt-title">Evento Corporativo</div><div class="opt-sub">Congressos, feiras, lançamentos</div></div>
+            <div class="opt-card" data-value="monitoramento"><div class="opt-title">Videomonitoramento</div><div class="opt-sub">Câmeras + central 24h</div></div>
+            <div class="opt-card" data-value="portaria"><div class="opt-title">Portaria / Controle de Acesso</div><div class="opt-sub">Recepção e catracas</div></div>
+            <div class="opt-card" data-value="pentest"><div class="opt-title">Pentest</div><div class="opt-sub">Teste de invasão</div></div>
+            <div class="opt-card" data-value="respostaincidentes"><div class="opt-title">Resposta a Incidentes</div><div class="opt-sub">Contenção e recuperação</div></div>
+            <div class="opt-card" data-value="consultoria"><div class="opt-title">Consultoria</div><div class="opt-sub">Diagnóstico de riscos</div></div>
+          </div>
+          <div class="qstep-actions">
+            <span></span>
+            <button class="btn btn-primary" id="toStep2" disabled>Continuar</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 (dynamic) -->
+        <div class="qstep" data-step="2">
+          <h4 id="step2Title">Detalhes da operação</h4>
+          <div id="step2Content"></div>
+          <div class="qstep-actions">
+            <button class="btn btn-ghost" data-back="1">Voltar</button>
+            <button class="btn btn-primary" id="toStep3" disabled>Continuar</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="qstep" data-step="3">
+          <h4>Para enviarmos sua estimativa</h4>
+          <div class="field-row">
+            <div class="field"><label for="qCompany">Empresa</label><input id="qCompany" type="text" placeholder="Nome da empresa"></div>
+            <div class="field"><label for="qContact">Responsável</label><input id="qContact" type="text" placeholder="Seu nome"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="qPhone">Telefone / WhatsApp</label><input id="qPhone" type="tel" placeholder="(27) 90000-0000"></div>
+            <div class="field"><label for="qEmail">E-mail</label><input id="qEmail" type="email" placeholder="voce@empresa.com"></div>
+          </div>
+          <div class="field"><label for="qNotes">Observações (opcional)</label><textarea id="qNotes" rows="3" placeholder="Data do evento, endereço, particularidades..."></textarea></div>
+          <div class="qstep-actions">
+            <button class="btn btn-ghost" data-back="2">Voltar</button>
+            <button class="btn btn-primary" id="toStep4" disabled>Ver estimativa</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="qstep" data-step="4">
+          <h4>Sua estimativa está pronta</h4>
+          <div class="result-box">
+            <div class="eyebrow" style="margin-bottom:10px;">Faixa de investimento referencial</div>
+            <div class="result-range" id="resultRange">R$ 0 – R$ 0</div>
+            <div class="result-note" id="resultNote">Valor estimado. A proposta final é confirmada após diagnóstico técnico.</div>
+          </div>
+          <div class="result-actions">
+            <button class="btn btn-primary" id="sendLeadBtn">Enviar solicitação</button>
+            <a class="btn btn-wa" id="waResultBtn" href="#" target="_blank" rel="noopener">Continuar no WhatsApp</a>
+          </div>
+          <div class="qstep-actions">
+            <button class="btn btn-ghost" data-back="3">Voltar</button>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Confiança</div>
+      <h2>Empresas que operam com a SecPlus</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="test-quote">Contratamos a SecPlus para um congresso com mais de 2 mil participantes. Organização, pontualidade e uma equipe visivelmente treinada — sem sustos.</p>
+        <div class="test-foot"><div class="test-avatar">DR</div><div><div class="test-name">Diretora de Eventos</div><div class="test-role">Centro de convenções · Vitória/ES</div></div></div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">O pentest da SecPlus encontrou falhas que nossa equipe interna não tinha visto. O relatório foi objetivo e as correções, rápidas.</p>
+        <div class="test-foot"><div class="test-avatar">GS</div><div><div class="test-name">Gerente de TI</div><div class="test-role">Indústria · Serra/ES</div></div></div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">O videomonitoramento 24h da SecPlus reduziu nossas ocorrências no pátio praticamente a zero no primeiro trimestre.</p>
+        <div class="test-foot"><div class="test-avatar">CO</div><div><div class="test-name">Coordenador de Operações</div><div class="test-role">Centro de distribuição · Cariacica/ES</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container contact-grid">
+    <div>
+      <div class="eyebrow">Fale com a gente</div>
+      <h2 style="font-size:clamp(28px,3.6vw,38px); color:var(--silver-bright); margin-bottom:24px;">Sua empresa merece atendimento imediato</h2>
+      <div class="contact-list">
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2z" opacity=".15"/><path d="M17.47 14.38c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+          <div><h5>WhatsApp direto</h5><p><a href="https://wa.me/5527999243874" target="_blank" rel="noopener">(27) 99924-3874</a> — dúvidas, orçamentos e emergências</p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <div><h5>E-mail comercial</h5><p><a href="mailto:contato@secplus.com.br">contato@secplus.com.br</a></p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><h5>Área de cobertura</h5><p>Grande Vitória e região metropolitana — ES</p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div><h5>Atendimento</h5><p>Central 24h por WhatsApp · assistente virtual no site a qualquer hora</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="eyebrow">Envie uma mensagem</div>
+      <div class="field"><label for="cName">Nome</label><input id="cName" type="text" placeholder="Seu nome completo"></div>
+      <div class="field"><label for="cCompany">Empresa</label><input id="cCompany" type="text" placeholder="Nome da empresa"></div>
+      <div class="field-row">
+        <div class="field"><label for="cPhone">Telefone</label><input id="cPhone" type="tel" placeholder="(27) 90000-0000"></div>
+        <div class="field"><label for="cEmail">E-mail</label><input id="cEmail" type="email" placeholder="voce@empresa.com"></div>
+      </div>
+      <div class="field"><label for="cMsg">Mensagem</label><textarea id="cMsg" rows="4" placeholder="Conte um pouco sobre sua necessidade..."></textarea></div>
+      <button class="btn btn-primary btn-block" id="contactSendBtn">Enviar mensagem</button>
+      <p style="margin-top:14px; font-family:var(--ff-mono); font-size:11px; color:var(--text-faint);">Prefere falar agora? <a href="https://wa.me/5527999243874" target="_blank" rel="noopener" style="color:var(--blue-light);">Chame no WhatsApp</a>.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="footer-wrap">
-      <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="SecPlus"></a>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h4>Serviços</h4>
-          <a href="servico-eventos.html">Segurança para Eventos</a>
-          <a href="servico-monitoramento.html">Monitoramento e Vigilância</a>
-          <a href="servico-pentest.html">Pentest</a>
-          <a href="servico-resposta-incidentes.html">Resposta a Incidentes</a>
-        </div>
-        <div class="footer-col">
-          <h4>Empresa</h4>
-          <a href="orcamento.html">Orçamento</a>
-          <a href="contato.html">Contato</a>
-          <a href="sistema.html">Área interna</a>
-        </div>
-        <div class="footer-col">
-          <h4>Fale conosco</h4>
-          <a href="https://wa.me/5527999243874" target="_blank">(27) 99924-3874</a>
-          <a href="mailto:comercial@secplus.com.br">comercial@secplus.com.br</a>
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <img class="brand-mark" src="assets/logo.png" alt="SecPlus">
+        <div>
+          <div class="brand-word" style="font-size:17px;">Sec<b>Plus</b></div>
+          <div class="brand-tag">Inteligência · Proteção · Tecnologia</div>
         </div>
       </div>
+      <div class="footer-links">
+        <a href="#services">Serviços</a>
+        <a href="#differentials">Diferenciais</a>
+        <a href="#quote">Orçamento</a>
+        <a href="#contact">Contato</a>
+        <a href="https://wa.me/5527999243874" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" id="adminLinkFooter">Área Restrita</a>
+      </div>
     </div>
-    <div class="footer-copy">SECPLUS SEGURANÇA · INTELIGÊNCIA · PROTEÇÃO · TECNOLOGIA · © 2026</div>
+    <div class="footer-bottom">
+      <span>© 2026 SecPlus Segurança Empresarial. Todos os direitos reservados.</span>
+      <span>CNPJ 00.000.000/0001-00 · Vitória/ES</span>
+    </div>
   </div>
 </footer>
 
-<div class="float-stack">
-  <button class="fab fab-chat" onclick="toggleChat()" aria-label="Atendimento automatizado">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 5 H20 V16 H9 L5 20 V16 H4 Z"/></svg>
+</div><!-- /public-view -->
+
+<!-- FLOATING BUTTONS -->
+<div id="float-stack">
+  <button class="fab fab-chat" id="chatToggle" aria-label="Abrir assistente virtual">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
   </button>
-  <a class="fab fab-wa" href="https://wa.me/5527999243874" target="_blank" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5.1-1.3C8.6 21.5 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm5.6 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-3.3-.7-2.8-1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.6.7 1.9.8 2 .1.2.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.4-.4.5-.1.1-.3.3-.1.6.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.4.2.5.3.1.2.1.9-.2 1.5z"/></svg>
+  <a class="fab fab-wa" href="https://wa.me/5527999243874?text=Ol%C3%A1%2C%20SecPlus!%20Preciso%20de%20ajuda." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.94.94-3.05-.2-.32a8.15 8.15 0 0 1-1.26-4.38c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.41a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
   </a>
 </div>
 
-<div class="chat-panel" id="chat-panel">
-  <div class="chat-head"><b>Atendimento SecPlus</b><span>assistente automático</span><button class="close-x" onclick="toggleChat()">×</button></div>
-  <div class="chat-body" id="chat-body"></div>
-  <div class="chat-options" id="chat-options"></div>
+<!-- CHAT WIDGET -->
+<div id="chat-panel">
+  <div class="chat-head">
+    <span class="chat-head-dot"></span>
+    <div>
+      <b>Assistente Virtual SecPlus</b>
+      <span>Normalmente responde em segundos</span>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-foot">
+    <a href="https://wa.me/5527999243874" target="_blank" rel="noopener" class="btn btn-wa btn-block">Falar com atendente humano</a>
+  </div>
 </div>
 
-<script src="assets/main.js"></script>
-<script>
-/* home banner carousel */
+<!-- ============================================================ ADMIN SYSTEM ============================================================ -->
+<div id="admin-view">
+
+  <!-- LOGIN -->
+  <div class="admin-login" id="adminLogin">
+    <div class="login-card">
+      <img class="brand-mark" src="assets/logo.png" alt="SecPlus">
+      <h3>Área restrita</h3>
+      <p class="sub">Painel interno SecPlus — gestão de vigilantes e orçamentos recebidos.</p>
+      <div class="field"><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" placeholder="voce@secplus.com.br"></div>
+      <div class="field"><label for="loginPass">Senha</label><input id="loginPass" type="password" placeholder="••••••••"></div>
+      <button class="btn btn-primary btn-block" id="loginBtn">Entrar</button>
+      <div class="login-error" id="loginError">Não foi possível entrar.</div>
+      <div class="login-hint">Acesso protegido por Firebase Authentication.<br>Para criar usuários administrativos, acesse o Firebase Console → Authentication → Users.</div>
+      <p style="margin-top:16px;"><a href="#" id="backToSiteFromLogin" style="font-family:var(--ff-mono); font-size:12px; color:var(--text-faint);">← Voltar ao site</a></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="admin-shell" id="adminShell" style="display:none;">
+    <aside class="admin-sidebar">
+      <div class="brand">
+        <img class="brand-mark" src="assets/logo.png" alt="SecPlus">
+        <div>
+          <div class="brand-word" style="font-size:18px;">Sec<b>Plus</b></div>
+          <div class="brand-tag">Painel Interno</div>
+        </div>
+      </div>
+      <nav class="admin-nav">
+        <button data-panel="dashboard" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Dashboard
+        </button>
+        <button data-panel="guards">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 20 6v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/></svg>
+          Vigilantes
+        </button>
+        <button data-panel="leads">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H8l-4 4z"/></svg>
+          Orçamentos
+        </button>
+      </nav>
+      <div class="admin-sidebar-foot">
+        <div class="who" id="adminWho"></div>
+        <button id="logoutBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+          Sair e voltar ao site
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <!-- DASHBOARD PANEL -->
+      <div class="admin-panel active" id="panel-dashboard">
+        <div class="admin-topbar">
+          <div><h2>Dashboard</h2><p>Visão geral do quadro de vigilantes e das solicitações recebidas.</p></div>
+        </div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+        <div class="toolbar"><h3 style="font-size:15px; color:var(--silver-bright); text-transform:uppercase; font-family:var(--ff-mono); letter-spacing:.05em;">Cursos vencendo nos próximos 30 dias</h3></div>
+        <table class="data-table" id="expiringTable">
+          <thead><tr><th>Vigilante</th><th>Curso</th><th>Validade</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- GUARDS PANEL -->
+      <div class="admin-panel" id="panel-guards">
+        <div class="admin-topbar">
+          <div><h2>Vigilantes</h2><p>Cadastro completo da equipe, com controle de validade do curso de vigilante.</p></div>
+          <button class="btn btn-primary" id="newGuardBtn">+ Cadastrar Vigilante</button>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <input type="text" class="search-input" id="guardSearch" placeholder="Buscar por nome ou telefone...">
+            <select class="filter-select" id="guardFilter">
+              <option value="todos">Todos os status</option>
+              <option value="valido">Curso válido</option>
+              <option value="vencendo">Vencendo em 30 dias</option>
+              <option value="vencido">Curso vencido</option>
+              <option value="sem-curso">Sem curso</option>
+            </select>
+          </div>
+          <span style="font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint);" id="guardCount"></span>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Nome</th><th>Contato</th><th>Endereço</th><th>Curso</th><th>Status</th><th></th></tr></thead>
+          <tbody id="guardsTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- LEADS PANEL -->
+      <div class="admin-panel" id="panel-leads">
+        <div class="admin-topbar">
+          <div><h2>Orçamentos Recebidos</h2><p>Solicitações enviadas pelo simulador de orçamento automatizado do site.</p></div>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <select class="filter-select" id="leadFilter">
+              <option value="todos">Todos os status</option>
+              <option value="novo">Novo</option>
+              <option value="contatado">Contatado</option>
+              <option value="fechado">Fechado</option>
+            </select>
+          </div>
+          <span style="font-family:var(--ff-mono); font-size:11.5px; color:var(--text-faint);" id="leadCount"></span>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Empresa / Contato</th><th>Serviço</th><th>Estimativa</th><th>Status</th><th></th></tr></thead>
+          <tbody id="leadsTableBody"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- GUARD MODAL -->
+<div class="modal-overlay" id="guardModalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="guardModalTitle">Cadastrar Vigilante</h3>
+      <button class="icon-btn" id="closeGuardModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="guardId">
+      <div class="field"><label for="guardName">Nome completo</label><input id="guardName" type="text" placeholder="Nome do vigilante"></div>
+      <div class="field-row">
+        <div class="field"><label for="guardPhone">Telefone</label><input id="guardPhone" type="tel" placeholder="(27) 90000-0000"></div>
+        <div class="field"><label for="guardRole">Função</label><input id="guardRole" type="text" placeholder="Ex: Vigilante patrimonial"></div>
+      </div>
+      <div class="field"><label for="guardAddress">Endereço</label><input id="guardAddress" type="text" placeholder="Rua, número, bairro, cidade"></div>
+      <div class="field"><label for="guardAdmission">Data de admissão</label><input id="guardAdmission" type="date"></div>
+
+      <div class="toggle-row">
+        <span>Possui curso de vigilante?</span>
+        <label class="switch"><input type="checkbox" id="guardHasCourse"><span class="slider"></span></label>
+      </div>
+
+      <div class="course-fields" id="courseFields">
+        <div class="field"><label for="guardCourseName">Nome do curso / instituição</label><input id="guardCourseName" type="text" placeholder="Ex: Formação de Vigilante — CFP"></div>
+        <div class="field-row">
+          <div class="field"><label for="guardCourseIssue">Data de emissão</label><input id="guardCourseIssue" type="date"></div>
+          <div class="field"><label for="guardCourseValidity">Data de validade</label><input id="guardCourseValidity" type="date"></div>
+        </div>
+        <div class="status-preview" id="statusPreview"></div>
+      </div>
+
+      <div class="field"><label for="guardNotes">Observações</label><textarea id="guardNotes" rows="2" placeholder="Opcional"></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="cancelGuardModal">Cancelar</button>
+      <button class="btn btn-primary" id="saveGuardBtn">Salvar cadastro</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastMsg">Salvo com sucesso.</span></div>
+
+<script type="module">
+/* ============================================================
+   FIREBASE SETUP
+============================================================ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics, isSupported as analyticsIsSupported } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import {
+  getFirestore, collection, addDoc, doc, updateDoc, deleteDoc,
+  onSnapshot, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDYMA_KyozhTs1axd6CE3NZzlg2JMNGLWY",
+  authDomain: "secplus-e8a51.firebaseapp.com",
+  projectId: "secplus-e8a51",
+  storageBucket: "secplus-e8a51.firebasestorage.app",
+  messagingSenderId: "202015978589",
+  appId: "1:202015978589:web:34d3d759d7838a8faa89b4",
+  measurementId: "G-8HYVX69GBR"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+analyticsIsSupported().then(ok => { if (ok) { try { getAnalytics(firebaseApp); } catch (e) { /* analytics optional */ } } }).catch(()=>{});
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
+const guardsCol = collection(db, "guards");
+const leadsCol = collection(db, "leads");
+
+const AUTH_ERROR_MESSAGES = {
+  "auth/invalid-credential": "E-mail ou senha incorretos.",
+  "auth/invalid-email": "E-mail inválido.",
+  "auth/user-not-found": "Usuário não encontrado.",
+  "auth/wrong-password": "Senha incorreta.",
+  "auth/too-many-requests": "Muitas tentativas. Tente novamente em instantes.",
+  "auth/operation-not-allowed": "Login por e-mail/senha não está habilitado no Firebase. Ative em Authentication → Sign-in method.",
+  "auth/network-request-failed": "Falha de conexão. Verifique sua internet e tente novamente.",
+};
+
+(function(){
+"use strict";
+
+let guards = [];
+let leads = [];
+let guardsUnsub = null;
+let leadsUnsub = null;
+let currentUser = null;
+let seedAttempted = false;
+
+/* ============================================================
+   DEMO SEED DATA (only used to populate an empty database)
+============================================================ */
+function daysFromNow(n){
+  const d = new Date();
+  d.setDate(d.getDate()+n);
+  return d.toISOString().slice(0,10);
+}
+function seedGuards(){
+  const now = new Date().toISOString();
+  return [
+    {name:"Carlos Eduardo Souza", phone:"(27) 99811-2233", address:"Rua das Acácias, 120 - Jardim Camburi, Vitória/ES", role:"Vigilante patrimonial", admission:"2021-03-10", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-02-01", courseValidity: daysFromNow(420), notes:"", createdAt: now},
+    {name:"Marcos Vinícius Lima", phone:"(27) 99722-4455", address:"Av. Brasil, 880 - Laranjeiras, Serra/ES", role:"Vigilante de eventos", admission:"2022-06-15", hasCourse:true, courseName:"Curso de Vigilante — Academia Nacional", courseIssue:"2024-01-10", courseValidity: daysFromNow(18), notes:"Disponível para eventos de grande porte", createdAt: now},
+    {name:"Rafael Almeida Santos", phone:"(27) 99633-7788", address:"Rua XV de Novembro, 45 - Centro, Cariacica/ES", role:"Vigilante patrimonial", admission:"2020-11-02", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2022-09-01", courseValidity: daysFromNow(-40), notes:"Curso vencido, agendar reciclagem", createdAt: now},
+    {name:"Fernando Costa Oliveira", phone:"(27) 99544-9900", address:"Rua Bahia, 210 - Praia da Costa, Vila Velha/ES", role:"Auxiliar de portaria", admission:"2024-02-20", hasCourse:false, courseName:"", courseIssue:"", courseValidity:"", notes:"Em processo de matrícula no curso de formação", createdAt: now},
+    {name:"Diego Henrique Pereira", phone:"(27) 99455-3311", address:"Av. Champagnat, 500 - Enseada do Suá, Vitória/ES", role:"Vigilante patrimonial", admission:"2023-08-05", hasCourse:true, courseName:"Formação de Vigilante — CFP Vitória", courseIssue:"2023-08-01", courseValidity: daysFromNow(210), notes:"", createdAt: now},
+  ];
+}
+function seedLeads(){
+  return [
+    {serviceType:"Evento Corporativo", details:"6 a 15 vigilantes · 12 a 24h", company:"Rede Vitória Shoppings", contact:"Ana Beatriz", phone:"(27) 99900-1122", email:"ana@vshoppings.com.br", notes:"Evento de inauguração de loja âncora", estimateMin:7500, estimateMax:13000, status:"contatado", createdAt: daysFromNow(-6)},
+    {serviceType:"Pentest / Teste de Invasão", details:"Teste de Aplicação Web · escopo médio", company:"Indústria Metalcap", contact:"João Ricardo", phone:"(27) 99811-4321", email:"joao@metalcap.com.br", notes:"", estimateMin:6300, estimateMax:12600, status:"novo", createdAt: daysFromNow(-2)},
+    {serviceType:"Portaria / Controle de Acesso", details:"3 a 5 postos · escala 12x36", company:"Condomínio Empresarial Horizonte", contact:"Patrícia Nunes", phone:"(27) 99622-8890", email:"patricia@horizonte.com.br", notes:"", estimateMin:9500, estimateMax:17500, status:"fechado", createdAt: daysFromNow(-14)},
+  ];
+}
+async function maybeSeed(){
+  if(seedAttempted) return;
+  seedAttempted = true;
+  try{
+    if(guards.length === 0){
+      for(const g of seedGuards()){ await addDoc(guardsCol, g); }
+    }
+    if(leads.length === 0){
+      for(const l of seedLeads()){ await addDoc(leadsCol, l); }
+    }
+  }catch(e){ console.error("seed failed", e); }
+}
+
+/* ============================================================
+   STATUS LOGIC
+============================================================ */
+function guardStatus(g){
+  if(!g.hasCourse) return "sem-curso";
+  if(!g.courseValidity) return "sem-curso";
+  const today = new Date(); today.setHours(0,0,0,0);
+  const val = new Date(g.courseValidity+"T00:00:00");
+  const diffDays = Math.round((val-today)/86400000);
+  if(diffDays < 0) return "vencido";
+  if(diffDays <= 30) return "vencendo";
+  return "valido";
+}
+const STATUS_LABEL = {valido:"Curso válido", vencendo:"Vencendo em breve", vencido:"Curso vencido", "sem-curso":"Sem curso"};
+function pillHtml(status){
+  return `<span class="pill pill-${status}"><span class="pill-dot"></span>${STATUS_LABEL[status]}</span>`;
+}
+function fmtDate(iso){
+  if(!iso) return "—";
+  const [y,m,d] = iso.split("-");
+  return `${d}/${m}/${y}`;
+}
+function fmtBRL(n){
+  return n.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+let toastTimer;
+function showToast(msg, isError){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.toggle('error', !!isError);
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3600);
+}
+
+/* ============================================================
+   MOBILE NAV
+============================================================ */
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  const nav = document.getElementById('mobileNav');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+});
+document.querySelectorAll('#mobileNav a').forEach(a=>{
+  a.addEventListener('click', ()=>{ document.getElementById('mobileNav').style.display='none'; });
+});
+
+/* ============================================================
+   CAROUSEL
+============================================================ */
+const carouselTrack = document.getElementById('carouselTrack');
+const carouselSlides = Array.from(carouselTrack.children);
+const carouselDots = document.getElementById('carouselDots');
 let carouselIndex = 0;
-const slidesCount = document.querySelectorAll('.carousel-slide').length;
-const navWrap = document.getElementById('carousel-nav');
-for(let i=0;i<slidesCount;i++){
+let carouselTimer;
+
+carouselSlides.forEach((_, i)=>{
   const dot = document.createElement('button');
   dot.className = 'carousel-dot' + (i===0 ? ' active' : '');
-  dot.onclick = () => { carouselIndex = i; updateCarousel(); };
-  navWrap.appendChild(dot);
+  dot.setAttribute('aria-label', `Ir para slide ${i+1}`);
+  dot.addEventListener('click', ()=> goToSlide(i));
+  carouselDots.appendChild(dot);
+});
+function goToSlide(i){
+  carouselIndex = (i + carouselSlides.length) % carouselSlides.length;
+  carouselTrack.style.transform = `translateX(-${carouselIndex*100}%)`;
+  Array.from(carouselDots.children).forEach((d,idx)=> d.classList.toggle('active', idx===carouselIndex));
 }
-function updateCarousel(){
-  document.getElementById('carousel-track').style.transform = `translateX(-${carouselIndex*100}%)`;
-  document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===carouselIndex));
+function nextSlide(){ goToSlide(carouselIndex+1); }
+function prevSlide(){ goToSlide(carouselIndex-1); }
+document.getElementById('carouselNext').addEventListener('click', ()=>{ nextSlide(); restartAutoplay(); });
+document.getElementById('carouselPrev').addEventListener('click', ()=>{ prevSlide(); restartAutoplay(); });
+function restartAutoplay(){ clearInterval(carouselTimer); carouselTimer = setInterval(nextSlide, 5500); }
+restartAutoplay();
+const carouselEl = document.getElementById('carousel');
+carouselEl.addEventListener('mouseenter', ()=> clearInterval(carouselTimer));
+carouselEl.addEventListener('mouseleave', restartAutoplay);
+carouselEl.addEventListener('keydown', e=>{
+  if(e.key === 'ArrowRight'){ nextSlide(); restartAutoplay(); }
+  if(e.key === 'ArrowLeft'){ prevSlide(); restartAutoplay(); }
+});
+let touchStartX = null;
+carouselEl.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; }, {passive:true});
+carouselEl.addEventListener('touchend', e=>{
+  if(touchStartX === null) return;
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if(Math.abs(dx) > 40){ dx > 0 ? prevSlide() : nextSlide(); restartAutoplay(); }
+  touchStartX = null;
+});
+document.querySelectorAll('.carousel-cta').forEach(btn=>{
+  btn.addEventListener('click', ()=> jumpToQuoteWithService(btn.dataset.service));
+});
+
+/* ============================================================
+   CHAT WIDGET (rule-based virtual assistant)
+============================================================ */
+const chatPanel = document.getElementById('chat-panel');
+const chatBody = document.getElementById('chatBody');
+const WA_LINK = "https://wa.me/5527999243874";
+
+const CHAT_FLOWS = {
+  root: {
+    bot: "Olá! Eu sou o assistente virtual da SecPlus 👋 Como posso ajudar?",
+    options: [
+      {label:"Quais serviços vocês oferecem?", next:"servicos"},
+      {label:"Como funciona o orçamento?", next:"orcamento"},
+      {label:"Fazem pentest e segurança digital?", next:"ciber"},
+      {label:"Quero falar com um atendente", next:"humano"},
+    ]
+  },
+  servicos: {
+    bot: "Trabalhamos com 6 frentes: Segurança para Eventos, Videomonitoramento 24h, Portaria/Controle de Acesso, Pentest, Resposta a Incidentes e Consultoria em Segurança. Quer simular um orçamento para alguma delas?",
+    options: [
+      {label:"Sim, simular orçamento", action:"goto-quote"},
+      {label:"Voltar ao início", next:"root"},
+    ]
+  },
+  orcamento: {
+    bot: "É simples: você responde 3 rapidinhas no nosso simulador (tipo de serviço, porte da operação e seus dados de contato) e recebemos uma estimativa na hora. Depois, um especialista confirma os detalhes com você.",
+    options: [
+      {label:"Abrir simulador de orçamento", action:"goto-quote"},
+      {label:"Prefiro falar no WhatsApp", action:"goto-wa"},
+      {label:"Voltar ao início", next:"root"},
+    ]
+  },
+  ciber: {
+    bot: "Sim! Fazemos pentest (red team, blue team e purple team) e resposta e recuperação de incidentes cibernéticos, com análise forense e plano de prevenção — além da segurança física.",
+    options: [
+      {label:"Simular orçamento de pentest", action:"goto-quote"},
+      {label:"Falar com um especialista", action:"goto-wa"},
+      {label:"Voltar ao início", next:"root"},
+    ]
+  },
+  humano: {
+    bot: "Sem problema! Você pode falar direto com nossa equipe pelo WhatsApp — normalmente respondemos em poucos minutos, 24 horas por dia.",
+    options: [
+      {label:"Abrir WhatsApp", action:"goto-wa"},
+      {label:"Voltar ao início", next:"root"},
+    ]
+  }
+};
+
+function addChatMsg(text, who){
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + who;
+  div.textContent = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
-function carouselMove(dir){
-  carouselIndex = (carouselIndex + dir + slidesCount) % slidesCount;
-  updateCarousel();
+function renderChatOptions(node){
+  const wrap = document.createElement('div');
+  wrap.className = 'chat-options';
+  node.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'chat-opt-btn';
+    btn.textContent = opt.label;
+    btn.addEventListener('click', ()=>{
+      addChatMsg(opt.label, 'user');
+      wrap.remove();
+      if(opt.action === 'goto-quote'){
+        addChatMsg("Perfeito, abrindo o simulador de orçamento para você.", 'bot');
+        setTimeout(()=>{
+          chatPanel.classList.remove('open');
+          document.getElementById('quote').scrollIntoView({behavior:'smooth'});
+        }, 500);
+      } else if(opt.action === 'goto-wa'){
+        addChatMsg("Te chamando no WhatsApp agora.", 'bot');
+        setTimeout(()=>window.open(WA_LINK, '_blank'), 400);
+      } else if(opt.next){
+        showChatNode(opt.next);
+      }
+    });
+    wrap.appendChild(btn);
+  });
+  chatBody.appendChild(wrap);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
-setInterval(() => carouselMove(1), 6000);
+function showChatNode(key){
+  const node = CHAT_FLOWS[key];
+  addChatMsg(node.bot, 'bot');
+  renderChatOptions(node);
+}
+let chatStarted = false;
+document.getElementById('chatToggle').addEventListener('click', ()=>{
+  chatPanel.classList.toggle('open');
+  if(chatPanel.classList.contains('open') && !chatStarted){
+    chatStarted = true;
+    showChatNode('root');
+  }
+});
+document.getElementById('chatClose').addEventListener('click', ()=>chatPanel.classList.remove('open'));
+
+/* ============================================================
+   QUOTE WIZARD
+============================================================ */
+let quoteState = {service:null, step2:{}, estimateMin:0, estimateMax:0, detailsLabel:"", note:""};
+
+document.querySelectorAll('#serviceOptions .opt-card').forEach(card=>{
+  card.addEventListener('click', ()=> selectServiceCard(card));
+});
+function selectServiceCard(card){
+  document.querySelectorAll('#serviceOptions .opt-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  quoteState.service = card.dataset.value;
+  document.getElementById('toStep2').disabled = false;
+}
+function jumpToQuoteWithService(service){
+  document.getElementById('quote').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    const card = document.querySelector(`#serviceOptions .opt-card[data-value="${service}"]`);
+    if(card){ selectServiceCard(card); goToQuoteStep(2); }
+  }, 550);
+}
+
+const STEP2_CONFIG = {
+  evento: {
+    title: "Detalhes do evento",
+    groups: [
+      {key:"team", label:"Quantos profissionais você imagina precisar?", options:[
+        {v:"2-5", t:"2 a 5 vigilantes", s:"Eventos pequenos"},
+        {v:"6-15", t:"6 a 15 vigilantes", s:"Eventos médios"},
+        {v:"16-40", t:"16 a 40 vigilantes", s:"Eventos grandes"},
+        {v:"40+", t:"Mais de 40 vigilantes", s:"Grande porte / múltiplos dias"},
+      ]},
+      {key:"duration", label:"Qual a duração da operação?", options:[
+        {v:"ate6", t:"Até 6 horas", s:"Evento de um turno"},
+        {v:"6-12", t:"6 a 12 horas", s:"Dia inteiro"},
+        {v:"12-24", t:"12 a 24 horas", s:"Virada / diária completa"},
+        {v:"mais24", t:"Mais de 24h", s:"Múltiplos dias"},
+      ]},
+    ]
+  },
+  monitoramento: {
+    title: "Detalhes do monitoramento",
+    groups: [
+      {key:"cameras", label:"Quantas câmeras aproximadamente?", options:[
+        {v:"1-4", t:"1 a 4 câmeras", s:"Ponto único"},
+        {v:"5-10", t:"5 a 10 câmeras", s:"Estabelecimento médio"},
+        {v:"11-25", t:"11 a 25 câmeras", s:"Instalação grande"},
+        {v:"25+", t:"Mais de 25 câmeras", s:"Múltiplas unidades"},
+      ]},
+      {key:"mode", label:"Qual modalidade?", options:[
+        {v:"remoto", t:"Monitoramento remoto 24h", s:"Central acompanha em tempo real"},
+        {v:"gravacao", t:"Gravação e armazenamento", s:"Consulta sob demanda"},
+      ]},
+    ]
+  },
+  portaria: {
+    title: "Detalhes da portaria",
+    groups: [
+      {key:"postos", label:"Quantos postos de trabalho?", options:[
+        {v:"1-2", t:"1 a 2 postos", s:""},
+        {v:"3-5", t:"3 a 5 postos", s:""},
+        {v:"6+", t:"6 ou mais postos", s:""},
+      ]},
+      {key:"regime", label:"Qual o regime de cobertura?", options:[
+        {v:"comercial", t:"Horário comercial", s:""},
+        {v:"12x36", t:"Escala 12x36", s:""},
+        {v:"24h", t:"Cobertura 24 horas", s:""},
+      ]},
+    ]
+  },
+  pentest: {
+    title: "Detalhes do pentest",
+    groups: [
+      {key:"escopo", label:"Qual o foco do teste?", options:[
+        {v:"redteam", t:"Red Team", s:"Simulação de ataque real"},
+        {v:"blueteam", t:"Blue Team", s:"Defesa e monitoramento"},
+        {v:"purpleteam", t:"Purple Team", s:"Ataque e defesa colaborativos"},
+        {v:"webapp", t:"Teste de Aplicação Web", s:"Foco em sistemas web"},
+      ]},
+      {key:"porte", label:"Quantos sistemas/ativos serão testados?", options:[
+        {v:"pequena", t:"Escopo pequeno", s:"1 a 5 ativos"},
+        {v:"media", t:"Escopo médio", s:"6 a 20 ativos"},
+        {v:"grande", t:"Escopo grande", s:"Mais de 20 ativos"},
+      ]},
+    ]
+  },
+  respostaincidentes: {
+    title: "Detalhes do atendimento",
+    groups: [
+      {key:"urgencia", label:"Qual a urgência?", options:[
+        {v:"emergencial", t:"Emergencial — sob ataque agora", s:"Atendimento imediato"},
+        {v:"preventivo", t:"Plano preventivo", s:"Preparar antes que aconteça"},
+      ]},
+      {key:"porte", label:"Qual o porte da sua empresa?", options:[
+        {v:"pequena", t:"Pequena empresa", s:""},
+        {v:"media", t:"Média empresa", s:""},
+        {v:"grande", t:"Grande empresa / indústria", s:""},
+      ]},
+    ]
+  },
+  consultoria: {
+    title: "Detalhes da consultoria",
+    groups: [
+      {key:"porte", label:"Qual o porte da sua empresa?", options:[
+        {v:"pequena", t:"Pequena empresa", s:""},
+        {v:"media", t:"Média empresa", s:""},
+        {v:"grande", t:"Grande empresa / indústria", s:""},
+      ]},
+      {key:"escopo", label:"Qual o escopo desejado?", options:[
+        {v:"pontual", t:"Diagnóstico pontual", s:"Avaliação de riscos"},
+        {v:"completo", t:"Plano completo", s:"Diagnóstico + implementação + treinamento"},
+      ]},
+    ]
+  }
+};
+
+function renderStep2(){
+  const cfg = STEP2_CONFIG[quoteState.service];
+  document.getElementById('step2Title').textContent = cfg.title;
+  const container = document.getElementById('step2Content');
+  container.innerHTML = "";
+  quoteState.step2 = {};
+  cfg.groups.forEach(group=>{
+    const label = document.createElement('div');
+    label.className = 'field';
+    label.style.marginBottom = "24px";
+    label.innerHTML = `<label>${group.label}</label>`;
+    const grid = document.createElement('div');
+    grid.className = 'option-grid';
+    group.options.forEach(opt=>{
+      const card = document.createElement('div');
+      card.className = 'opt-card';
+      card.dataset.group = group.key;
+      card.dataset.value = opt.v;
+      card.innerHTML = `<div class="opt-title">${opt.t}</div>${opt.s ? `<div class="opt-sub">${opt.s}</div>`:""}`;
+      card.addEventListener('click', ()=>{
+        container.querySelectorAll(`.opt-card[data-group="${group.key}"]`).forEach(c=>c.classList.remove('selected'));
+        card.classList.add('selected');
+        quoteState.step2[group.key] = opt.v;
+        checkStep2Complete(cfg);
+      });
+      grid.appendChild(card);
+    });
+    label.appendChild(grid);
+    container.appendChild(label);
+  });
+}
+function checkStep2Complete(cfg){
+  const complete = cfg.groups.every(g => quoteState.step2[g.key]);
+  document.getElementById('toStep3').disabled = !complete;
+}
+
+function computeEstimate(){
+  const s = quoteState.service;
+  const d = quoteState.step2;
+  let min=0, max=0, note="Valor estimado. A proposta final é confirmada após diagnóstico técnico.", detailsLabel="";
+
+  if(s === 'evento'){
+    const teamMap = {'2-5':[800,1500],'6-15':[2200,4200],'16-40':[6000,11000],'40+':[15000,28000]};
+    const durMult = {ate6:1, '6-12':1.8, '12-24':2.8, mais24:4.5};
+    const base = teamMap[d.team];
+    const mult = durMult[d.duration];
+    min = Math.round(base[0]*mult/50)*50;
+    max = Math.round(base[1]*mult/50)*50;
+    const teamLabels = {'2-5':'2 a 5 vigilantes','6-15':'6 a 15 vigilantes','16-40':'16 a 40 vigilantes','40+':'mais de 40 vigilantes'};
+    const durLabels = {ate6:'até 6h', '6-12':'6 a 12h', '12-24':'12 a 24h', mais24:'mais de 24h / múltiplos dias'};
+    detailsLabel = `${teamLabels[d.team]} · ${durLabels[d.duration]}`;
+    if(d.team === '40+') note = "Projeto de grande porte — nossa equipe fará uma proposta dedicada. " + note;
+  }
+  else if(s === 'monitoramento'){
+    const camMap = {'1-4':[600,1200],'5-10':[1400,2600],'11-25':[3000,5400],'25+':[6000,11000]};
+    const modeMult = {remoto:1, gravacao:0.6};
+    const base = camMap[d.cameras];
+    const mult = modeMult[d.mode];
+    min = Math.round(base[0]*mult/50)*50;
+    max = Math.round(base[1]*mult/50)*50;
+    note = "Valor mensal estimado. " + note;
+    const camLabels = {'1-4':'1 a 4 câmeras','5-10':'5 a 10 câmeras','11-25':'11 a 25 câmeras','25+':'mais de 25 câmeras'};
+    const modeLabels = {remoto:'monitoramento remoto 24h', gravacao:'gravação e armazenamento'};
+    detailsLabel = `${camLabels[d.cameras]} · ${modeLabels[d.mode]}`;
+  }
+  else if(s === 'portaria'){
+    const postoMap = {'1-2':[3800,7200],'3-5':[9500,17500],'6+':[19000,34000]};
+    const regimeMult = {comercial:0.6, '12x36':1, '24h':1.7};
+    const base = postoMap[d.postos];
+    const mult = regimeMult[d.regime];
+    min = Math.round(base[0]*mult/50)*50;
+    max = Math.round(base[1]*mult/50)*50;
+    note = "Valor mensal estimado. " + note;
+    const postoLabels = {'1-2':'1 a 2 postos','3-5':'3 a 5 postos','6+':'6 ou mais postos'};
+    const regimeLabels = {comercial:'horário comercial', '12x36':'escala 12x36', '24h':'cobertura 24h'};
+    detailsLabel = `${postoLabels[d.postos]} · ${regimeLabels[d.regime]}`;
+  }
+  else if(s === 'pentest'){
+    const escopoBase = {redteam:[8000,18000], blueteam:[6000,14000], purpleteam:[10000,22000], webapp:[3500,7000]};
+    const porteMult = {pequena:1, media:1.8, grande:3};
+    const base = escopoBase[d.escopo];
+    const mult = porteMult[d.porte];
+    min = Math.round(base[0]*mult/50)*50;
+    max = Math.round(base[1]*mult/50)*50;
+    const escopoLabels = {redteam:'Red Team', blueteam:'Blue Team', purpleteam:'Purple Team', webapp:'Teste de Aplicação Web'};
+    const porteLabels = {pequena:'escopo pequeno', media:'escopo médio', grande:'escopo grande'};
+    detailsLabel = `${escopoLabels[d.escopo]} · ${porteLabels[d.porte]}`;
+  }
+  else if(s === 'respostaincidentes'){
+    if(d.urgencia === 'emergencial'){
+      const emergMap = {pequena:[4000,9000], media:[9000,20000], grande:[20000,45000]};
+      [min,max] = emergMap[d.porte];
+      note = "Atendimento emergencial — nossa equipe entra em contato imediatamente. " + note;
+    } else {
+      const prevMap = {pequena:[2500,5000], media:[5000,11000], grande:[11000,25000]};
+      [min,max] = prevMap[d.porte];
+    }
+    const urgLabels = {emergencial:'emergencial', preventivo:'plano preventivo'};
+    const porteLabels = {pequena:'pequena empresa', media:'média empresa', grande:'grande empresa / indústria'};
+    detailsLabel = `${urgLabels[d.urgencia]} · ${porteLabels[d.porte]}`;
+  }
+  else if(s === 'consultoria'){
+    const porteMap = {pequena:1, media:1.8, grande:3.2};
+    const escopoMap = {pontual:1, completo:2.4};
+    const base = 3200;
+    const val = base*porteMap[d.porte]*escopoMap[d.escopo];
+    min = Math.round(val*0.85/50)*50;
+    max = Math.round(val*1.25/50)*50;
+    const porteLabels = {pequena:'pequena empresa', media:'média empresa', grande:'grande empresa / indústria'};
+    const escopoLabels = {pontual:'diagnóstico pontual', completo:'plano completo'};
+    detailsLabel = `${porteLabels[d.porte]} · ${escopoLabels[d.escopo]}`;
+  }
+  quoteState.estimateMin = min;
+  quoteState.estimateMax = max;
+  quoteState.detailsLabel = detailsLabel;
+  quoteState.note = note;
+}
+
+const serviceTitleMap = {
+  evento:'Evento Corporativo', monitoramento:'Videomonitoramento', portaria:'Portaria / Controle de Acesso',
+  pentest:'Pentest / Teste de Invasão', respostaincidentes:'Resposta e Recuperação de Incidentes', consultoria:'Consultoria'
+};
+
+function goToQuoteStep(n){
+  document.querySelectorAll('.qstep').forEach(s=> s.classList.toggle('active', s.dataset.step === String(n)));
+  document.querySelectorAll('.qp-item').forEach(item=>{
+    const step = Number(item.dataset.step);
+    item.classList.remove('active','done');
+    if(step < n) item.classList.add('done');
+    else if(step === n) item.classList.add('active');
+  });
+  if(n === 2) renderStep2();
+  if(n === 4){
+    computeEstimate();
+    document.getElementById('resultRange').textContent = `${fmtBRL(quoteState.estimateMin)} – ${fmtBRL(quoteState.estimateMax)}`;
+    document.getElementById('resultNote').textContent = quoteState.note;
+    document.getElementById('sendLeadBtn').disabled = false;
+    document.getElementById('sendLeadBtn').textContent = "Enviar solicitação";
+    const msg = `Olá, SecPlus! Fiz uma simulação no site:%0A- Serviço: ${serviceTitleMap[quoteState.service]}%0A- Detalhes: ${quoteState.detailsLabel}%0A- Estimativa: ${fmtBRL(quoteState.estimateMin)} a ${fmtBRL(quoteState.estimateMax)}%0AGostaria de confirmar um orçamento oficial.`;
+    document.getElementById('waResultBtn').href = `https://wa.me/5527999243874?text=${msg}`;
+  }
+}
+document.getElementById('toStep2').addEventListener('click', ()=>goToQuoteStep(2));
+document.getElementById('toStep3').addEventListener('click', ()=>goToQuoteStep(3));
+document.getElementById('toStep4').addEventListener('click', ()=>goToQuoteStep(4));
+document.querySelectorAll('[data-back]').forEach(btn=>{
+  btn.addEventListener('click', ()=>goToQuoteStep(Number(btn.dataset.back)));
+});
+
+['qCompany','qContact','qPhone','qEmail'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', ()=>{
+    const filled = ['qCompany','qContact','qPhone'].every(i=>document.getElementById(i).value.trim().length>1);
+    document.getElementById('toStep4').disabled = !filled;
+  });
+});
+
+document.getElementById('sendLeadBtn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('sendLeadBtn');
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+  const lead = {
+    serviceType: serviceTitleMap[quoteState.service],
+    details: quoteState.detailsLabel,
+    company: document.getElementById('qCompany').value.trim(),
+    contact: document.getElementById('qContact').value.trim(),
+    phone: document.getElementById('qPhone').value.trim(),
+    email: document.getElementById('qEmail').value.trim(),
+    notes: document.getElementById('qNotes').value.trim(),
+    estimateMin: quoteState.estimateMin,
+    estimateMax: quoteState.estimateMax,
+    status: 'novo',
+    createdAt: new Date().toISOString()
+  };
+  try{
+    await addDoc(leadsCol, lead);
+    showToast("Solicitação enviada! Nossa equipe entrará em contato em breve.");
+    btn.textContent = "Solicitação enviada ✓";
+  }catch(e){
+    console.error(e);
+    btn.disabled = false;
+    btn.textContent = "Enviar solicitação";
+    showToast("Não foi possível enviar agora. Tente pelo WhatsApp.", true);
+  }
+});
+
+document.getElementById('contactSendBtn').addEventListener('click', async ()=>{
+  const name = document.getElementById('cName').value.trim();
+  if(!name){ showToast("Preencha ao menos seu nome antes de enviar.", true); return; }
+  const lead = {
+    serviceType: "Contato geral (formulário)",
+    details: document.getElementById('cMsg').value.trim(),
+    company: document.getElementById('cCompany').value.trim(),
+    contact: name,
+    phone: document.getElementById('cPhone').value.trim(),
+    email: document.getElementById('cEmail').value.trim(),
+    notes: "",
+    estimateMin: 0,
+    estimateMax: 0,
+    status: 'novo',
+    createdAt: new Date().toISOString()
+  };
+  try{
+    await addDoc(leadsCol, lead);
+    showToast("Mensagem enviada! Em breve nossa equipe entra em contato.");
+    ['cName','cCompany','cPhone','cEmail','cMsg'].forEach(id=>document.getElementById(id).value='');
+  }catch(e){
+    console.error(e);
+    showToast("Não foi possível enviar agora. Tente pelo WhatsApp.", true);
+  }
+});
+
+/* ============================================================
+   ADMIN: ROUTING (Firebase Auth gate + view switching)
+============================================================ */
+function openAdminView(){
+  document.getElementById('public-view').classList.add('hidden');
+  document.getElementById('admin-view').classList.add('open');
+  window.scrollTo(0,0);
+  updateAdminUI();
+}
+function closeAdminView(){
+  document.getElementById('admin-view').classList.remove('open');
+  document.getElementById('public-view').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+function updateAdminUI(){
+  if(!document.getElementById('admin-view').classList.contains('open')) return;
+  if(currentUser){
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminShell').style.display = 'grid';
+    document.getElementById('adminWho').textContent = currentUser.email || '';
+    renderAdmin();
+  } else {
+    document.getElementById('adminLogin').style.display = 'flex';
+    document.getElementById('adminShell').style.display = 'none';
+  }
+}
+document.getElementById('adminLinkFooter').addEventListener('click', e=>{ e.preventDefault(); openAdminView(); });
+document.getElementById('mobileAdminLink').addEventListener('click', e=>{ e.preventDefault(); openAdminView(); });
+document.getElementById('backToSiteFromLogin').addEventListener('click', e=>{ e.preventDefault(); closeAdminView(); });
+document.getElementById('logoutBtn').addEventListener('click', async ()=>{
+  try{ await signOut(auth); }catch(e){ console.error(e); }
+  closeAdminView();
+});
+
+document.getElementById('loginBtn').addEventListener('click', tryLogin);
+document.getElementById('loginPass').addEventListener('keydown', e=>{ if(e.key === 'Enter') tryLogin(); });
+document.getElementById('loginEmail').addEventListener('keydown', e=>{ if(e.key === 'Enter') tryLogin(); });
+async function tryLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const btn = document.getElementById('loginBtn');
+  const errBox = document.getElementById('loginError');
+  errBox.style.display = 'none';
+  if(!email || !pass){ errBox.textContent = "Informe e-mail e senha."; errBox.style.display='block'; return; }
+  btn.disabled = true;
+  btn.textContent = "Entrando...";
+  try{
+    await signInWithEmailAndPassword(auth, email, pass);
+    document.getElementById('loginPass').value = '';
+  }catch(e){
+    errBox.textContent = AUTH_ERROR_MESSAGES[e.code] || "Não foi possível entrar. Verifique os dados e tente novamente.";
+    errBox.style.display = 'block';
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "Entrar";
+  }
+}
+
+onAuthStateChanged(auth, user=>{
+  currentUser = user;
+  if(user){
+    attachAdminListeners();
+  } else {
+    detachAdminListeners();
+  }
+  updateAdminUI();
+});
+
+function attachAdminListeners(){
+  detachAdminListeners();
+  try{
+    const gq = query(guardsCol, orderBy('createdAt','desc'));
+    guardsUnsub = onSnapshot(gq, snap=>{
+      guards = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      if(guards.length === 0 && leads.length === 0) maybeSeed();
+      renderAdmin();
+    }, err=>{
+      console.error(err);
+      showToast("Erro ao carregar vigilantes. Verifique se o Firestore está ativo e as regras de segurança.", true);
+    });
+    const lq = query(leadsCol, orderBy('createdAt','desc'));
+    leadsUnsub = onSnapshot(lq, snap=>{
+      leads = snap.docs.map(d=>({id:d.id, ...d.data()}));
+      renderAdmin();
+    }, err=>{
+      console.error(err);
+      showToast("Erro ao carregar orçamentos.", true);
+    });
+  }catch(e){ console.error(e); }
+}
+function detachAdminListeners(){
+  if(guardsUnsub){ guardsUnsub(); guardsUnsub = null; }
+  if(leadsUnsub){ leadsUnsub(); leadsUnsub = null; }
+  guards = []; leads = [];
+}
+
+document.querySelectorAll('.admin-nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.admin-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  });
+});
+
+/* ============================================================
+   ADMIN: RENDER
+============================================================ */
+function renderAdmin(){
+  renderKpis();
+  renderExpiringTable();
+  renderGuardsTable();
+  renderLeadsTable();
+}
+
+function renderKpis(){
+  const counts = {valido:0, vencendo:0, vencido:0, 'sem-curso':0};
+  guards.forEach(g=> counts[guardStatus(g)]++ );
+  const kpis = [
+    {label:'Total de vigilantes', num:guards.length, cls:''},
+    {label:'Cursos válidos', num:counts.valido, cls:'k-green'},
+    {label:'Vencendo em 30 dias', num:counts.vencendo, cls:'k-amber'},
+    {label:'Cursos vencidos', num:counts.vencido, cls:'k-red'},
+    {label:'Sem curso cadastrado', num:counts['sem-curso'], cls:''},
+  ];
+  document.getElementById('kpiGrid').innerHTML = kpis.map(k=>`
+    <div class="kpi-card ${k.cls}"><div class="kpi-num">${k.num}</div><div class="kpi-label">${k.label}</div></div>
+  `).join('');
+}
+
+function renderExpiringTable(){
+  const rows = guards.filter(g=>{
+    const st = guardStatus(g);
+    return st === 'vencendo' || st === 'vencido';
+  }).sort((a,b)=> (a.courseValidity||'').localeCompare(b.courseValidity||''));
+  const tbody = document.querySelector('#expiringTable tbody');
+  if(rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="4" class="empty-state">Nenhum curso vencendo no momento. Tudo em dia.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(g=>`
+    <tr><td>${g.name}</td><td>${g.courseName||'—'}</td><td>${fmtDate(g.courseValidity)}</td><td>${pillHtml(guardStatus(g))}</td></tr>
+  `).join('');
+}
+
+function renderGuardsTable(){
+  const search = document.getElementById('guardSearch').value.trim().toLowerCase();
+  const filter = document.getElementById('guardFilter').value;
+  let rows = guards.filter(g=>{
+    const matchSearch = !search || (g.name||'').toLowerCase().includes(search) || (g.phone||'').includes(search);
+    const matchFilter = filter === 'todos' || guardStatus(g) === filter;
+    return matchSearch && matchFilter;
+  });
+  document.getElementById('guardCount').textContent = `${rows.length} de ${guards.length} vigilantes`;
+  const tbody = document.getElementById('guardsTableBody');
+  if(rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="6" class="empty-state">Nenhum vigilante encontrado com esses filtros.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(g=>{
+    const st = guardStatus(g);
+    return `<tr>
+      <td>${g.name}<div class="cell-sub">${g.role||'—'}</div></td>
+      <td>${g.phone||'—'}</td>
+      <td>${g.address||'—'}</td>
+      <td>${g.hasCourse ? (g.courseName||'Curso cadastrado') : 'Não possui curso'}${g.hasCourse ? `<div class="cell-sub">Validade: ${fmtDate(g.courseValidity)}</div>`:''}</td>
+      <td>${pillHtml(st)}</td>
+      <td><div class="row-actions">
+        <button class="icon-btn edit-guard" data-id="${g.id}" aria-label="Editar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+        <button class="icon-btn del-guard" data-id="${g.id}" aria-label="Excluir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg></button>
+      </div></td>
+    </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('.edit-guard').forEach(b=> b.addEventListener('click', ()=>openGuardModal(b.dataset.id)) );
+  tbody.querySelectorAll('.del-guard').forEach(b=> b.addEventListener('click', ()=>deleteGuard(b.dataset.id)) );
+}
+document.getElementById('guardSearch').addEventListener('input', renderGuardsTable);
+document.getElementById('guardFilter').addEventListener('change', renderGuardsTable);
+
+function renderLeadsTable(){
+  const filter = document.getElementById('leadFilter').value;
+  let rows = leads.filter(l=> filter === 'todos' || l.status === filter);
+  document.getElementById('leadCount').textContent = `${rows.length} de ${leads.length} orçamentos`;
+  const tbody = document.getElementById('leadsTableBody');
+  if(rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="4" class="empty-state">Nenhuma solicitação de orçamento recebida ainda.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(l=>`
+    <tr>
+      <td>${l.company||'—'}<div class="cell-sub">${l.contact||''} · ${l.phone||''}</div></td>
+      <td>${l.serviceType}<div class="cell-sub">${l.details||''}</div></td>
+      <td>${l.estimateMax ? `${fmtBRL(l.estimateMin)} – ${fmtBRL(l.estimateMax)}` : '—'}</td>
+      <td>
+        <select class="filter-select lead-status" data-id="${l.id}" style="padding:6px 10px; font-size:12px;">
+          <option value="novo" ${l.status==='novo'?'selected':''}>Novo</option>
+          <option value="contatado" ${l.status==='contatado'?'selected':''}>Contatado</option>
+          <option value="fechado" ${l.status==='fechado'?'selected':''}>Fechado</option>
+        </select>
+      </td>
+    </tr>
+  `).join('');
+  tbody.querySelectorAll('.lead-status').forEach(sel=>{
+    sel.addEventListener('change', async ()=>{
+      try{
+        await updateDoc(doc(db,'leads',sel.dataset.id), {status: sel.value});
+        showToast("Status do orçamento atualizado.");
+      }catch(e){
+        console.error(e);
+        showToast("Não foi possível atualizar o status.", true);
+      }
+    });
+  });
+}
+document.getElementById('leadFilter').addEventListener('change', renderLeadsTable);
+
+/* ============================================================
+   ADMIN: GUARD MODAL
+============================================================ */
+const guardModalOverlay = document.getElementById('guardModalOverlay');
+function openGuardModal(id){
+  const g = id ? guards.find(x=>x.id===id) : null;
+  document.getElementById('guardModalTitle').textContent = g ? 'Editar Vigilante' : 'Cadastrar Vigilante';
+  document.getElementById('guardId').value = g ? g.id : '';
+  document.getElementById('guardName').value = g ? g.name : '';
+  document.getElementById('guardPhone').value = g ? g.phone : '';
+  document.getElementById('guardRole').value = g ? g.role : '';
+  document.getElementById('guardAddress').value = g ? g.address : '';
+  document.getElementById('guardAdmission').value = g ? g.admission : '';
+  document.getElementById('guardHasCourse').checked = g ? !!g.hasCourse : false;
+  document.getElementById('guardCourseName').value = g ? g.courseName : '';
+  document.getElementById('guardCourseIssue').value = g ? g.courseIssue : '';
+  document.getElementById('guardCourseValidity').value = g ? g.courseValidity : '';
+  document.getElementById('guardNotes').value = g ? g.notes : '';
+  toggleCourseFields();
+  updateStatusPreview();
+  guardModalOverlay.classList.add('open');
+}
+function closeGuardModal(){ guardModalOverlay.classList.remove('open'); }
+document.getElementById('newGuardBtn').addEventListener('click', ()=>openGuardModal(null));
+document.getElementById('closeGuardModal').addEventListener('click', closeGuardModal);
+document.getElementById('cancelGuardModal').addEventListener('click', closeGuardModal);
+guardModalOverlay.addEventListener('click', e=>{ if(e.target === guardModalOverlay) closeGuardModal(); });
+
+function toggleCourseFields(){
+  const has = document.getElementById('guardHasCourse').checked;
+  document.getElementById('courseFields').classList.toggle('show', has);
+}
+document.getElementById('guardHasCourse').addEventListener('change', ()=>{ toggleCourseFields(); updateStatusPreview(); });
+document.getElementById('guardCourseValidity').addEventListener('change', updateStatusPreview);
+function updateStatusPreview(){
+  const has = document.getElementById('guardHasCourse').checked;
+  const validity = document.getElementById('guardCourseValidity').value;
+  const preview = document.getElementById('statusPreview');
+  if(!has){ preview.innerHTML = ''; return; }
+  const st = guardStatus({hasCourse:has, courseValidity:validity});
+  preview.innerHTML = validity ? `Status calculado: ${pillHtml(st)}` : '';
+}
+
+document.getElementById('saveGuardBtn').addEventListener('click', async ()=>{
+  const name = document.getElementById('guardName').value.trim();
+  if(!name){ showToast("Informe ao menos o nome do vigilante.", true); return; }
+  const id = document.getElementById('guardId').value;
+  const hasCourse = document.getElementById('guardHasCourse').checked;
+  const data = {
+    name,
+    phone: document.getElementById('guardPhone').value.trim(),
+    role: document.getElementById('guardRole').value.trim(),
+    address: document.getElementById('guardAddress').value.trim(),
+    admission: document.getElementById('guardAdmission').value,
+    hasCourse,
+    courseName: hasCourse ? document.getElementById('guardCourseName').value.trim() : '',
+    courseIssue: hasCourse ? document.getElementById('guardCourseIssue').value : '',
+    courseValidity: hasCourse ? document.getElementById('guardCourseValidity').value : '',
+    notes: document.getElementById('guardNotes').value.trim(),
+  };
+  const btn = document.getElementById('saveGuardBtn');
+  btn.disabled = true;
+  try{
+    if(id){
+      await updateDoc(doc(db,'guards',id), data);
+      showToast("Cadastro atualizado com sucesso.");
+    } else {
+      data.createdAt = new Date().toISOString();
+      await addDoc(guardsCol, data);
+      showToast("Vigilante cadastrado com sucesso.");
+    }
+    closeGuardModal();
+  }catch(e){
+    console.error(e);
+    showToast("Não foi possível salvar. Verifique sua conexão e as regras do Firestore.", true);
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+async function deleteGuard(id){
+  if(!confirm("Remover este vigilante do cadastro?")) return;
+  try{
+    await deleteDoc(doc(db,'guards',id));
+    showToast("Vigilante removido do cadastro.");
+  }catch(e){
+    console.error(e);
+    showToast("Não foi possível remover o cadastro.", true);
+  }
+}
+
+})();
 </script>
 </body>
 </html>
