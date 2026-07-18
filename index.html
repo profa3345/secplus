@@ -126,8 +126,10 @@ nav.main-nav{display:flex; align-items:center; gap:30px;}
 nav.main-nav a{font-size:14px; color:var(--text-muted); font-weight:500; transition:color .15s;}
 nav.main-nav a:hover{color:var(--silver-bright);}
 .header-actions{display:flex; align-items:center; gap:12px;}
-.header-phone{display:flex; flex-direction:column; align-items:flex-end; font-family:var(--ff-mono); font-size:12px; color:var(--text-muted); margin-right:4px;}
+.header-phone{display:flex; flex-direction:column; align-items:flex-end; font-family:var(--ff-mono); font-size:12px; color:var(--text-muted); margin-right:4px; transition:opacity .15s;}
 .header-phone b{color:var(--silver-bright); font-size:14px;}
+.header-phone:hover{opacity:.8;}
+.header-phone:hover b{color:var(--wa-green);}
 .nav-toggle{display:none; background:none; border:1px solid var(--border-strong); border-radius:var(--radius-sm); width:42px; height:42px; align-items:center; justify-content:center; color:var(--silver-bright);}
 
 /* ============ STATUS STRIP ============ */
@@ -175,12 +177,12 @@ nav.main-nav a:hover{color:var(--silver-bright);}
 .trust-label{font-family:var(--ff-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:6px;}
 
 /* ============ CAROUSEL ============ */
-#carousel-section{padding:90px 0 100px;}
+#carousel-section{padding:28px 0; border-bottom:1px solid var(--border);}
 .carousel{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border-strong); background:var(--bg-1);}
 .carousel-track{display:flex; transition:transform .55s cubic-bezier(.65,0,.35,1);}
-.carousel-slide{flex:0 0 100%; position:relative;}
-.carousel-slide img{width:100%; display:block; aspect-ratio:1774/887; object-fit:cover;}
-.carousel-caption{position:absolute; left:0; right:0; bottom:0; padding:26px 32px; background:linear-gradient(0deg, rgba(4,6,10,.92) 5%, rgba(4,6,10,.4) 60%, transparent); display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;}
+.carousel-slide{flex:0 0 100%; position:relative; display:flex; flex-direction:column; background:var(--panel-2);}
+.carousel-slide img{width:100%; display:block; aspect-ratio:1774/887; object-fit:cover; max-height:380px;}
+.carousel-caption{position:relative; padding:22px 32px; background:var(--panel-2); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
 .carousel-caption h4{font-family:var(--ff-body); font-weight:700; font-size:17px; text-transform:none; color:var(--silver-bright);}
 .carousel-caption p{font-family:var(--ff-mono); font-size:11.5px; color:var(--text-muted); margin-top:4px; max-width:440px;}
 .carousel-arrow{position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(8,11,18,.7); border:1px solid var(--border-strong); color:var(--silver-bright); display:flex; align-items:center; justify-content:center; z-index:5; backdrop-filter:blur(4px);}
@@ -456,7 +458,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
   .services-grid{grid-template-columns:1fr;}
   .trust-grid{grid-template-columns:1fr;}
   .data-table{font-size:12px;}
-  .carousel-slide img{aspect-ratio:4/5; object-position:top;}
+  .carousel-slide img{aspect-ratio:4/3; max-height:none;}
 }
 </style>
 </head>
@@ -482,10 +484,10 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
       <a href="#contact">Contato</a>
     </nav>
     <div class="header-actions">
-      <div class="header-phone">
+      <a class="header-phone" href="https://wa.me/5527999243874?text=Ol%C3%A1%2C%20SecPlus!%20Gostaria%20de%20falar%20sobre%20seguran%C3%A7a%20para%20minha%20empresa." target="_blank" rel="noopener">
         <span>Central de atendimento</span>
-        <b>(27) 99924-3874</b>
-      </div>
+        <b>Falar no WhatsApp</b>
+      </a>
       <a class="btn btn-primary" href="#quote">Solicitar Orçamento</a>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -516,6 +518,47 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
     <span>SEGURANÇA FÍSICA + CIBERSEGURANÇA</span>
   </div>
 </div>
+
+<!-- CAROUSEL -->
+<section id="carousel-section">
+  <div class="container">
+    <div class="carousel" id="carousel" tabindex="0" aria-label="Carrossel de soluções SecPlus">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide">
+          <img src="assets/bannerdesastres.jpg" alt="Resposta e Recuperação de Incidentes" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Resposta e Recuperação de Incidentes</h4><p>Atuamos rapidamente para conter, neutralizar e recuperar sua operação após ataques ou incidentes de segurança.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="respostaincidentes">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannerepentest.jpg" alt="Pentest — Teste de Invasão" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Pentest — Teste de Invasão</h4><p>Descubra vulnerabilidades antes que os atacantes descubram, com simulações reais de ataque.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="pentest">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannereventos.jpg" alt="Segurança para Eventos" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Segurança para Eventos</h4><p>Planejamento, prevenção e execução para eventos seguros e bem-sucedidos do início ao fim.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="evento">Solicitar Orçamento</button>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="assets/bannermonitoramentoevigilancia.jpg" alt="Monitoramento e Vigilância" loading="lazy">
+          <div class="carousel-caption">
+            <div><h4>Monitoramento e Vigilância</h4><p>Monitoramos 24h por dia, 7 dias por semana. Ao identificar ocorrência suspeita, acionamos a polícia imediatamente.</p></div>
+            <button class="btn btn-primary btn-sm carousel-cta" data-service="monitoramento">Solicitar Orçamento</button>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Slide anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button class="carousel-arrow next" id="carouselNext" aria-label="Próximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
 
 <!-- HERO -->
 <section id="hero">
@@ -566,52 +609,6 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
       <div class="trust-num">98<span class="unit">%</span></div>
       <div class="trust-label">Contratos renovados ano a ano</div>
     </div>
-  </div>
-</section>
-
-<!-- CAROUSEL -->
-<section id="carousel-section">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Soluções em destaque</div>
-      <h2>Cada frente, uma operação dedicada</h2>
-      <p class="lead">Da proteção física à cibersegurança, cada solução SecPlus é conduzida por uma equipe especializada nesse tema.</p>
-    </div>
-    <div class="carousel" id="carousel" tabindex="0" aria-label="Carrossel de soluções SecPlus">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide">
-          <img src="assets/bannerdesastres.jpg" alt="Resposta e Recuperação de Incidentes" loading="lazy">
-          <div class="carousel-caption">
-            <div><h4>Resposta e Recuperação de Incidentes</h4><p>Atuamos rapidamente para conter, neutralizar e recuperar sua operação após ataques ou incidentes de segurança.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="respostaincidentes">Solicitar Orçamento</button>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="assets/bannerepentest.jpg" alt="Pentest — Teste de Invasão" loading="lazy">
-          <div class="carousel-caption">
-            <div><h4>Pentest — Teste de Invasão</h4><p>Descubra vulnerabilidades antes que os atacantes descubram, com simulações reais de ataque.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="pentest">Solicitar Orçamento</button>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="assets/bannereventos.jpg" alt="Segurança para Eventos" loading="lazy">
-          <div class="carousel-caption">
-            <div><h4>Segurança para Eventos</h4><p>Planejamento, prevenção e execução para eventos seguros e bem-sucedidos do início ao fim.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="evento">Solicitar Orçamento</button>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="assets/bannermonitoramentoevigilancia.jpg" alt="Monitoramento e Vigilância" loading="lazy">
-          <div class="carousel-caption">
-            <div><h4>Monitoramento e Vigilância</h4><p>Monitoramos 24h por dia, 7 dias por semana. Ao identificar ocorrência suspeita, acionamos a polícia imediatamente.</p></div>
-            <button class="btn btn-primary btn-sm carousel-cta" data-service="monitoramento">Solicitar Orçamento</button>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-arrow prev" id="carouselPrev" aria-label="Slide anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
-      <button class="carousel-arrow next" id="carouselNext" aria-label="Próximo slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
-    </div>
-    <div class="carousel-dots" id="carouselDots"></div>
   </div>
 </section>
 
@@ -845,7 +842,7 @@ footer{padding:48px 0 34px; border-top:1px solid var(--border);}
       <div class="contact-list">
         <div class="contact-item">
           <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2z" opacity=".15"/><path d="M17.47 14.38c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
-          <div><h5>WhatsApp direto</h5><p><a href="https://wa.me/5527999243874" target="_blank" rel="noopener">(27) 99924-3874</a> — dúvidas, orçamentos e emergências</p></div>
+          <div><h5>WhatsApp direto</h5><p><a href="https://wa.me/5527999243874" target="_blank" rel="noopener">Falar no WhatsApp</a> — dúvidas, orçamentos e emergências</p></div>
         </div>
         <div class="contact-item">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
