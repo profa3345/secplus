@@ -562,6 +562,8 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
 .method-row p{color:var(--text-muted); font-size:14px; line-height:1.7; margin:0;}
 
 .related-services{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;}
+.gallery-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.gallery-grid img{width:100%; display:block; aspect-ratio:1774/887; object-fit:cover; border-radius:var(--radius); border:1px solid var(--border);}
 .related-card{background:var(--bg-1); border:1px solid var(--border); border-radius:var(--radius); padding:22px; transition:border-color .2s, transform .2s;}
 .related-card:hover{border-color:var(--blue-light); transform:translateY(-2px);}
 .related-card h4{font-family:var(--ff-body); font-weight:700; font-size:15px; text-transform:none; color:var(--silver-bright); margin-bottom:6px;}
@@ -578,6 +580,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
   .page-hero-img{order:-1;}
   .benefits-grid{grid-template-columns:1fr;}
   .related-services{grid-template-columns:1fr;}
+  .gallery-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -705,6 +708,16 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
           <p><strong>Escalabilidade</strong> — de eventos pequenos a operações com dezenas de profissionais.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="section" style="padding-top:0; padding-bottom:0;">
+  <div class="container">
+    <div class="gallery-grid">
+      <img src="assets/bannereventos.jpg" alt="Equipe SecPlus em operação de evento" loading="lazy">
+      <img src="assets/bannersegurancaeventos.jpg" alt="Equipe SecPlus supervisionando acesso ao evento" loading="lazy">
     </div>
   </div>
 </section>
