@@ -601,14 +601,14 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <a href="index.html#contact">Contato</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-primary" href="index.html#contact">Solicitar Orçamento</a>
+      <button class="btn btn-primary qq-trigger" data-service="Consultoria">Solicitar Orçamento</button>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
   </div>
   <div id="mobileNav" style="display:none; border-top:1px solid var(--border); padding:16px 24px; flex-direction:column; gap:14px;">
-    <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-bottom:4px;">Solicitar Orçamento</a>
+    <button class="btn btn-primary btn-block qq-trigger" data-service="Consultoria" style="margin-bottom:4px;">Solicitar Orçamento</button>
     <a href="index.html#services">Serviços</a>
     <a href="index.html#differentials">Diferenciais</a>
     <a href="index.html#about">Quem Somos</a>
@@ -632,10 +632,10 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <h1>Consultoria em Segurança Corporativa</h1>
       <p class="lead">Diagnóstico de riscos, plano de contingência e capacitação de equipes internas para empresas que querem elevar seu padrão de segurança.</p>
       <div class="page-hero-cta">
-        <a href="https://wa.me/5527999243874?text=Ol%C3%A1%2C%20SecPlus!%20Preciso%20de%20consultoria%20em%20seguran%C3%A7a." target="_blank" rel="noopener" class="btn btn-wa">
+        <button class="btn btn-wa qq-trigger" data-service="Consultoria">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.5 3.62 1.44 5.12L2 22l5.13-1.55a9.9 9.9 0 0 0 4.9 1.29h.01c5.46 0 9.9-4.45 9.9-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.94.94-3.05-.2-.32a8.15 8.15 0 0 1-1.26-4.38c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.41a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.2 8.2zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.8.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08s.9 2.42 1.02 2.58c.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
           Solicitar Orçamento
-        </a>
+        </button>
         <a href="index.html#contact" class="btn btn-ghost">Falar por formulário</a>
       </div>
     </div>
@@ -779,7 +779,7 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
       <div class="footer-col">
         <h6>Legal</h6>
         <a href="https://wa.me/5527999243874" target="_blank" rel="noopener">Falar no WhatsApp</a>
-        <a href="mailto:contato@secplus.com.br">contato@secplus.com.br</a>
+        <a href="mailto:contato@gruposecplus.com.br">contato@gruposecplus.com.br</a>
         <a href="#" id="openPrivacyModal">Política de Privacidade</a>
         <a href="#" id="openTermsModal">Termos de Uso</a>
       </div>
@@ -814,6 +814,41 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
     <div class="modal-body legal-text">
       <p><em>Conteúdo em rascunho — recomendamos revisão jurídica antes da publicação final.</em></p>
       <p>Este site tem caráter informativo e comercial. As estimativas e informações apresentadas estão sujeitas a confirmação por um especialista SecPlus após diagnóstico técnico. O uso deste site implica a concordância com a coleta de dados descrita na Política de Privacidade.</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK QUOTE MODAL -->
+<div class="modal-overlay" id="quickQuoteOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Solicitar Orçamento</h3>
+      <button class="icon-btn" id="closeQuickQuote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:20px; line-height:1.6;">Responda rapidinho — assim já mandamos tudo pronto pro WhatsApp e agilizamos seu atendimento.</p>
+      <div class="field">
+        <label for="qqService">Serviço de interesse</label>
+        <select id="qqService">
+          <option value="Segurança para Eventos">Segurança para Eventos</option>
+          <option value="Videomonitoramento / CFTV">Videomonitoramento / CFTV</option>
+          <option value="Portaria / Controle de Acesso">Portaria / Controle de Acesso</option>
+          <option value="Pentest">Pentest</option>
+          <option value="Resposta a Incidentes">Resposta a Incidentes</option>
+          <option value="Consultoria">Consultoria</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </div>
+      <div class="field"><label for="qqName">Seu nome</label><input id="qqName" type="text" placeholder="Como podemos te chamar?"></div>
+      <div class="field-row">
+        <div class="field"><label for="qqDate">Para quando é?</label><input id="qqDate" type="date"></div>
+        <div class="field"><label for="qqSize">Quantidade de pessoas / porte</label><input id="qqSize" type="text" placeholder="Ex: 200 pessoas, 10 câmeras..."></div>
+      </div>
+      <div class="field"><label for="qqDuration">Duração / horário</label><input id="qqDuration" type="text" placeholder="Ex: 8h às 23h, cobertura 24h..."></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="cancelQuickQuote">Cancelar</button>
+      <button class="btn btn-wa" id="sendQuickQuote">Continuar no WhatsApp</button>
     </div>
   </div>
 </div>
@@ -1028,6 +1063,46 @@ function wireLegalModal(openId, overlayId, closeId){
   closeEl.addEventListener('click', ()=> overlay.classList.remove('open'));
   overlay.addEventListener('click', e=>{ if(e.target === overlay) overlay.classList.remove('open'); });
 }
+
+/* QUICK QUOTE MODAL */
+const quickQuoteOverlay = document.getElementById('quickQuoteOverlay');
+function openQuickQuote(defaultService){
+  document.getElementById('qqService').value = defaultService || 'Consultoria';
+  document.getElementById('qqName').value = '';
+  document.getElementById('qqDate').value = '';
+  document.getElementById('qqSize').value = '';
+  document.getElementById('qqDuration').value = '';
+  quickQuoteOverlay.classList.add('open');
+}
+function closeQuickQuote(){ quickQuoteOverlay.classList.remove('open'); }
+document.querySelectorAll('.qq-trigger').forEach(btn=>{
+  btn.addEventListener('click', ()=> openQuickQuote(btn.dataset.service || 'Consultoria'));
+});
+document.getElementById('closeQuickQuote').addEventListener('click', closeQuickQuote);
+document.getElementById('cancelQuickQuote').addEventListener('click', closeQuickQuote);
+quickQuoteOverlay.addEventListener('click', e=>{ if(e.target === quickQuoteOverlay) closeQuickQuote(); });
+function fmtDateBR(iso){
+  if(!iso) return '';
+  const [y,m,d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+document.getElementById('sendQuickQuote').addEventListener('click', ()=>{
+  const service = document.getElementById('qqService').value;
+  const name = document.getElementById('qqName').value.trim();
+  const date = fmtDateBR(document.getElementById('qqDate').value);
+  const size = document.getElementById('qqSize').value.trim();
+  const duration = document.getElementById('qqDuration').value.trim();
+  const lines = [`Olá, SecPlus! Gostaria de solicitar um orçamento.`];
+  lines.push(`Serviço: ${service}`);
+  if(name) lines.push(`Nome: ${name}`);
+  if(date) lines.push(`Data desejada: ${date}`);
+  if(size) lines.push(`Quantidade de pessoas / porte: ${size}`);
+  if(duration) lines.push(`Duração / horário: ${duration}`);
+  const msg = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/5527999243874?text=${msg}`, '_blank');
+  closeQuickQuote();
+});
+
 wireLegalModal('openPrivacyModal', 'privacyModalOverlay', 'closePrivacyModal');
 wireLegalModal('openTermsModal', 'termsModalOverlay', 'closeTermsModal');
 
