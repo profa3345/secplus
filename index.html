@@ -271,10 +271,12 @@ nav.main-nav a:hover::after{right:0;}
 /* ============ SHARED FORM SHELL (Trabalhe Conosco) ============ */
 #how{background:var(--panel);}
 .quote-shell{display:grid; grid-template-columns:.85fr 1.15fr; gap:0; border:1px solid var(--border-strong); background:var(--bg-1); border-radius:var(--radius); overflow:hidden; box-shadow:0 24px 56px rgba(0,0,0,.3);}
-.quote-side{background:var(--panel-3); padding:44px 36px; display:flex; flex-direction:column; justify-content:space-between;}
+.quote-side{background:var(--panel-3); padding:44px 36px; display:flex; flex-direction:column; justify-content:flex-start; position:relative; overflow:hidden;}
+.quote-side-watermark{position:absolute; bottom:-30px; right:-30px; width:200px; height:auto; color:var(--blue-light); opacity:.06; pointer-events:none; z-index:0;}
+.quote-side-top{position:relative; z-index:1;}
 .quote-side-top h3{font-family:var(--ff-display); font-size:26px; color:var(--silver-bright); text-transform:uppercase;}
 .quote-side-top p{color:var(--text-muted); font-size:14.5px; margin-top:14px; line-height:1.7;}
-.quote-progress{display:flex; flex-direction:column; gap:14px; margin-top:32px;}
+.quote-progress{display:flex; flex-direction:column; gap:14px; margin-top:32px; position:relative; z-index:1;}
 .qp-item{display:flex; align-items:center; gap:12px; font-family:var(--ff-mono); font-size:12.5px; color:var(--text-faint);}
 .qp-dot{width:22px; height:22px; border-radius:50%; border:1px solid var(--border-strong); display:flex; align-items:center; justify-content:center; font-size:11px; flex:none; transition:all .2s;}
 .qp-item.active .qp-dot{background:var(--blue); border-color:var(--blue); color:#fff;}
@@ -985,6 +987,9 @@ footer::before{content:''; position:absolute; top:-1px; left:0; width:120px; hei
           <div class="qp-item active"><span class="qp-dot">✓</span> Confirmação pela nossa equipe de recrutamento</div>
           <div class="qp-item active"><span class="qp-dot">✓</span> Vagas de segurança, operações e tecnologia</div>
         </div>
+        <svg class="quote-side-watermark" viewBox="0 0 100 116" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M50 2 96 22 96 54C96 82 76 104 50 114 24 104 4 82 4 54L4 22Z" fill="none" stroke="currentColor" stroke-width="3"/>
+        </svg>
       </div>
 
       <div class="quote-body" id="guardSignupForm">
