@@ -1932,6 +1932,19 @@ document.getElementById('contactSendBtn').addEventListener('click', async ()=>{
     status: 'novo',
     createdAt: new Date().toISOString()
   };
+
+  const waLines = [`Olá, SecPlus! Enviei uma mensagem pelo site:`];
+  waLines.push(`Nome: ${lead.contact}`);
+  if(lead.company) waLines.push(`Empresa: ${lead.company}`);
+  if(lead.phone) waLines.push(`Telefone: ${lead.phone}`);
+  if(lead.email) waLines.push(`E-mail: ${lead.email}`);
+  if(lead.details) waLines.push(`Mensagem: ${lead.details}`);
+  const waMsg = encodeURIComponent(waLines.join('\n'));
+  window.open(`https://wa.me/5527999243874?text=${waMsg}`, '_blank');
+
+  showToast("Abrindo o WhatsApp com sua mensagem...");
+  ['cName','cCompany','cPhone','cEmail','cMsg'].forEach(id=>document.getElementById(id).value='');
+
   try{
     await addDoc(leadsCol, lead);
     notifyNewSubmission("Nova mensagem de contato — SecPlus", [
@@ -1941,11 +1954,8 @@ document.getElementById('contactSendBtn').addEventListener('click', async ()=>{
       `E-mail: ${lead.email || '—'}`,
       `Mensagem: ${lead.details || '—'}`,
     ]);
-    showToast("Mensagem enviada! Em breve nossa equipe entra em contato.");
-    ['cName','cCompany','cPhone','cEmail','cMsg'].forEach(id=>document.getElementById(id).value='');
   }catch(e){
-    console.error(e);
-    showToast("Não foi possível enviar agora. Tente pelo WhatsApp.", true);
+    console.error("Falha ao salvar cópia na Área Restrita (mensagem já foi enviada via WhatsApp):", e);
   }
 });
 
